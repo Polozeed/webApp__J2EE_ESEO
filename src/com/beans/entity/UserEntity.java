@@ -31,9 +31,8 @@ public class UserEntity
     @Column(name = "adresse_livraison", nullable = false, length = 60)
     private String adresse;
 
-    public UserEntity(Integer id,String username, String password, String nom, String prenom, String mail, String adresse)
+    public UserEntity(String username, String password, String nom, String prenom, String mail, String adresse)
     {
-        this.id =id;
         this.login = username;
         this.mdp = password;
         this.nom = nom;

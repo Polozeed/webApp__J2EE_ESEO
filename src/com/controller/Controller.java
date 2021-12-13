@@ -11,17 +11,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
+
 import com.beans.FactoryProvider;
 import com.beans.Product;
+
 import com.beans.User;
+import com.beans.daoFactory.UserDAOFactory;
 import com.beans.entity.UserEntity;
 import com.model.DB;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+
 import static java.lang.Integer.parseInt;
 
 public class Controller extends HttpServlet {
+
+	private UserDAOFactory userDAOFactory;
 	private static final long serialVersionUID = 1L;
 	ArrayList<Product> list = new ArrayList<>();
 	static ArrayList<String> cartlist = new ArrayList<>();
@@ -69,33 +75,26 @@ public class Controller extends HttpServlet {
 			String password_2 = request.getParameter("password_2");
 			
 			if(password_1.equals(password_2)) {
-				
-				UserEntity user = new UserEntity(10,name,password_1,username,username,email,address);
-
-				
-
 				try {
 					Session hibernateSession = FactoryProvider.getFactory().openSession();
 					Transaction transaction = hibernateSession.beginTransaction();
-					System.out.println("ici sans probleme");
+					UserEntity user = new UserEntity(name,password_1,username,username,email,address);
 					Object res = hibernateSession.save(user);
-
 					System.out.println(res.toString());
 					transaction.commit();
 					hibernateSession.close();
-
-					HttpSession httpSession = request.getSession();
-					httpSession.setAttribute("notification","Inscription Réussite !");
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				
+				HttpSession httpSession = request.getSession();
+				httpSession.setAttribute("notification","Inscription Réussite !");
+
+
+
 				request.setAttribute("username", username);
 				request.setAttribute("msg", "Account created successfully, Please Login!");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
-				
+
 			}else {
 				request.setAttribute("msg", "The two passwords do not match");
 				request.setAttribute("name", name);
@@ -115,11 +114,18 @@ public class Controller extends HttpServlet {
 			DB db = new DB();
 			User user = new User();
 			boolean status = false;
-			try {
-				status = db.checkUser(username,password);
 
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			try {
+				Session hibernateSession = FactoryProvider.getFactory().openSession();
+				Transaction transaction = hibernateSession.beginTransaction();
+				System.out.println("avant apelle ");
+				UserEntity res = hibernateSession.find(UserEntity.class,username);
+				if (res.getMdp().equals(password))
+					System.out.println("c est egale");
+				transaction.commit();
+				status = true;
+				hibernateSession.close();
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			if(status) {
