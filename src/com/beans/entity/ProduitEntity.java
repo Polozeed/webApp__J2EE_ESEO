@@ -1,11 +1,17 @@
 package com.beans.entity;
 
 
-import javax.persistence.*;
+import com.beans.Product;
+import com.beans.Temp;
 
-@Table(name = "produit")
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collections;
+
+@Table(name = "product")
 @Entity(name = "ProduitEntity")
-public class ProduitEntity {
+public class ProduitEntity  implements Comparable<ProduitEntity>{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_produit", nullable = false)
@@ -15,17 +21,25 @@ public class ProduitEntity {
     private String nom;
 
     @Column(name = "prix", nullable = true)
-    private Float prix;
+    private String prix;
 
-    @Column(name = "quantite_stock", nullable = true)
+    @Column(name = "categorie", nullable = true)
+    private String categorie;
+
+    @Column(name = "quantite", nullable = true)
     private String quantite;
 
+    @Column(name = "image", nullable = true)
+    private String image;
 
-    public ProduitEntity(Integer id, String nom, Float prix, String quantite) {
+
+    public ProduitEntity(Integer id, String nom, String prix, String quantite,String categorie,String image) {
         this.id = id;
         this.nom = nom;
         this.prix = prix;
         this.quantite = quantite;
+        this.categorie =categorie;
+        this.image = image;
     }
 
     public ProduitEntity() {
@@ -47,12 +61,20 @@ public class ProduitEntity {
         this.nom = nom;
     }
 
-    public Float getPrix() {
+    public String getPrix() {
         return prix;
     }
 
-    public void setPrix(Float prix) {
+    public void setPrix(String prix) {
         this.prix = prix;
+    }
+
+    public String getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
     }
 
     public String getQuantite() {
@@ -63,6 +85,13 @@ public class ProduitEntity {
         this.quantite = quantite;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     @Override
     public String toString() {
@@ -70,9 +99,43 @@ public class ProduitEntity {
                 "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", prix=" + prix +
+                ", categorie='" + categorie + '\'' +
                 ", quantite='" + quantite + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
+
+
+    public boolean check(ArrayList<String> cartlist, String id2) {
+        for(String id : cartlist) {
+            if(id.equals(id2))
+                return true;
+        }
+        return false;
+    }
+    public ArrayList<String> remove(ArrayList<String> cartlist, String id) {
+        for(String cid : cartlist) {
+            if(cid.equals(id)) {
+                cartlist.remove(cid);
+                break;
+            }
+        }
+        return cartlist;
+    }
+
+    public ArrayList<ProduitEntity> lowtohigh(ArrayList<ProduitEntity> list) {
+        Collections.sort(list);
+        return list;
+    }
+
+    public int compareTo(ProduitEntity p) {
+        return Integer.parseInt(this.prix) - Integer.parseInt(p.prix);
+    }
+    public ArrayList<ProduitEntity> hightolow(ArrayList<ProduitEntity> list) {
+        //Collections.sort(list, new Temp());
+        return list;
+    }
+
 }
 
 

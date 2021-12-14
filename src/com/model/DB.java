@@ -7,23 +7,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.beans.FactoryProvider;
-import com.beans.Product;
 import com.beans.User;
-import com.beans.entity.UserEntity;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import com.beans.entity.ProduitEntity;
 
 
 public class DB {
 	
 	private String username = "root";
 	private String password = "root";
-	private String dbName = "myproject";
+	private String dbName = "vente_en_ligne";
 	private String url = "jdbc:mysql://localhost:3306/" + dbName;
 	private String driver = "com.mysql.jdbc.Driver";
 	
-	ArrayList<Product> list = new ArrayList<>();
+	ArrayList<ProduitEntity> list = new ArrayList<ProduitEntity>();
 	ArrayList<User> userList = new ArrayList<>();
 	
 	private Connection con;
@@ -92,26 +88,27 @@ public class DB {
 		return true;
 	}
 
-	public ArrayList<Product> fetch() throws SQLException {
+	public ArrayList<ProduitEntity> fetch() throws SQLException {
 		dbConnect();
 		String sql = "Select * from product";
 		PreparedStatement st = con.prepareStatement(sql);
 		ResultSet rs = st.executeQuery();
 		while(rs.next()) {
-			int id=rs.getInt("id");
-			String name= rs.getString("name");
-			String category= rs.getString("category");
-			String price= rs.getString("price");
-			String featured= rs.getString("featured");
+			int id=rs.getInt("id_produit");
+			String name= rs.getString("nom");
+			String categorie= rs.getString("categorie");
+			String prix= rs.getString("prix");
+			String quantite= rs.getString("quantite");
 			String image= rs.getString("image");
-			
-			Product p = new Product();
-			p.setCategory(category);
-			p.setFeatured(featured);
+
+
+			ProduitEntity p = new ProduitEntity();
+			p.setCategorie(categorie);
+			p.setQuantite(quantite);
 			p.setId(id);
 			p.setImage(image);
-			p.setName(name);
-			p.setPrice(price);
+			p.setNom(name);
+			p.setPrix(prix);
 			list.add(p);
 			p=null;
 			
@@ -162,51 +159,49 @@ public class DB {
 		
 	}
 
-	public Product fetchProduct(String id) throws SQLException {
+	public ProduitEntity fetchProduct(String id) throws SQLException {
 		dbConnect();
 		String sql = "select * from product where id=?";
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		pstmt.setString(1, id);
 		ResultSet rst = pstmt.executeQuery();
-		Product p = new Product();
+		ProduitEntity p = new ProduitEntity();
 		while(rst.next()){
 			
-			p.setId(rst.getInt("id"));
-			p.setName(rst.getString("name"));
-			p.setPrice(rst.getString("price"));
-			p.setCategory(rst.getString("category"));
-			p.setFeatured(rst.getString("featured"));
+			p.setId(rst.getInt("id_produit"));
+			p.setNom(rst.getString("nom"));
+			p.setPrix(rst.getString("prix"));
+			p.setCategorie(rst.getString("categorie"));
+			p.setQuantite(rst.getString("quantite"));
 			p.setImage(rst.getString("image"));
 		}
 		dbClose();
 		return p;
 	}
 
-	public void updateProduct(Product p) throws SQLException {
+	public void updateProduct(ProduitEntity p) throws SQLException {
 		dbConnect();
 		String sql = "update product set name=?,price=?,category=?,featured=? where id=?";
 		PreparedStatement st = con.prepareStatement(sql);
-		st.setString(1, p.getName());
-		st.setString(2, p.getPrice());
-		st.setString(3, p.getCategory());
-		st.setString(4, p.getFeatured());
+		st.setString(1, p.getNom());
+		st.setString(2, p.getPrix());
+		st.setString(3, p.getCategorie());
+		st.setString(4, p.getQuantite());
 		st.setInt(5, p.getId());
 		st.executeUpdate();
 		dbClose();
 	}
 
-	public void addProduct(Product p) throws SQLException {
+	public void addProduct(ProduitEntity p) throws SQLException {
 		dbConnect();
 		String sql = "Insert into product(name,price,category,featured,image) values(?,?,?,?,?)";
 		PreparedStatement st = con.prepareStatement(sql);
 		
-		st.setString(1, p.getName());
-		st.setString(2, p.getPrice());
-		st.setString(3, p.getCategory());
-		st.setString(4, p.getFeatured());
+		st.setString(1, p.getNom());
+		st.setString(2, p.getPrix());
+		st.setString(3, p.getCategorie());
+		st.setString(4, p.getQuantite());
 		st.setString(5, p.getImage());
-		
-		
 		st.executeUpdate();
 		dbClose();
 	}

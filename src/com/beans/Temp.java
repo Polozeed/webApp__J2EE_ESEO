@@ -2,7 +2,7 @@ package com.beans;
 
 import java.util.Comparator;
 
-class Temp implements Comparator<Product> {
+public class Temp implements Comparator<Product> {
 
     @Override
     public int compare(Product o1, Product o2) {

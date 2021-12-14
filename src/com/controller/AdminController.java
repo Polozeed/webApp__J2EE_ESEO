@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
 import com.beans.Product;
+import com.beans.entity.ProduitEntity;
 import com.model.DB;
 
 public class AdminController extends HttpServlet {
@@ -70,7 +71,7 @@ public class AdminController extends HttpServlet {
 		if(page.equals("edit")) {
 			String id = request.getParameter("id");
 			DB account = new DB();
-			Product p = null;
+			ProduitEntity p = null;
 			try {
 				 p = account.fetchProduct(id);
 			} catch (SQLException e) {
@@ -88,12 +89,12 @@ public class AdminController extends HttpServlet {
 			String price = request.getParameter("price");
 			String category = request.getParameter("category");
 			String featured = request.getParameter("featured");
-			Product p = new Product();
+			ProduitEntity p = new ProduitEntity();
 			p.setId(Integer.parseInt(id));
-			p.setName(name);
-			p.setPrice(price);
-			p.setCategory(category);
-			p.setFeatured(featured);
+			p.setNom(name);
+			p.setPrix(price);
+			p.setCategorie(category);
+			p.setQuantite(featured);
 			
 			DB account = new DB();
 			try {
@@ -112,11 +113,11 @@ public class AdminController extends HttpServlet {
 			String category = request.getParameter("category");
 			String featured = request.getParameter("featured");
 			String image = request.getParameter("image");
-			Product p = new Product();
-			p.setName(name);
-			p.setPrice(price);
-			p.setCategory(category);
-			p.setFeatured(featured);
+			ProduitEntity p = new ProduitEntity();
+			p.setNom(name);
+			p.setPrix(price);
+			p.setCategorie(category);
+			p.setQuantite(featured);
 			p.setImage("img/"+image);
 			
 			DB account = new DB();

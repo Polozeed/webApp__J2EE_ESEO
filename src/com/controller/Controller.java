@@ -27,7 +27,7 @@ public class Controller extends HttpServlet {
 
 	private final UserDAOFactory userDAOFactory = new UserDAOFactory();
 	private static final long serialVersionUID = 1L;
-	ArrayList<Product> list = new ArrayList<Product>();
+	ArrayList<ProduitEntity> list = new ArrayList<ProduitEntity>();
 	static ArrayList<String> cartlist = new ArrayList<>();
 	ArrayList<User> userList = new ArrayList<>();
 	HttpSession session;
@@ -239,7 +239,7 @@ public class Controller extends HttpServlet {
 		if(page.equals("price-sort")) {
 			String price = request.getParameter("sort");
 			String action = request.getParameter("action");
-			Product p = new Product();
+			ProduitEntity p = new ProduitEntity();
 			if(price.equals("low-to-high"))
 				list = p.lowtohigh(list);
 			else
