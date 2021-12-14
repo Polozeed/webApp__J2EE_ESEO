@@ -1,10 +1,24 @@
-# E-commerce-shopping-portal-using-j2ee-technologies
-Create a dynamic e-commerce shopping cart using j2ee technologies like servlets, jsp, JDBC, Jstl, and Java Beans.
+# Projet JE2 ESEO A3
+### Consignes : 
+Vous devez développer une application de vente en ligne (version simplifiée). Vous avez
+le choix des articles en vente, mais ils devront être chacun défini a minima par :
+ Identifiant unique
+ Nom
+ Prix
+ Quantité disponible (stocks du magasin)
+Un client devra s’inscrire pour pouvoir commander et renseigner au minimum les
+informations suivantes à son inscription :
+ Nom
+ Prénom
+ Courriel
+ Adresse de livraison
+Une fois inscrit et connecté, le client pourra naviguer sur le site en ligne afin de
+sélectionner des articles pour les commander. Il ne pourra valider sa commande que si
+les articles sélectionnés sont bien en nombre suffisant dans le stock.
+Une facture sera produite par l’application (détails des articles commandés, montant
+total, …) lors d’une commande, mais vous vous affranchirez de la partie paiement.
 
-### Installing
 
-Just clone the project and import it into your IDE also import the provided sql file(mysql) for the purpose of fetching products from database and storing user details.
+### Maxime Martin 
 
-I'm using Apache Tomcat as server for deployment purpose.
 
-For jdbc and jstl purposes extract the jars.zip file and copy it to c:-> program files -> Apache Software Foundation -> Tomcat 9.0 -> lib
