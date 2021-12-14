@@ -10,11 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
 import com.beans.Product;
+import com.beans.daoFactory.AdminDAOFactory;
+import com.beans.daoFactory.UserDAOFactory;
 import com.beans.entity.ProduitEntity;
 import com.model.DB;
 
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final AdminDAOFactory adminDAOFactory = new AdminDAOFactory();
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String page = request.getParameter("page");
@@ -45,11 +48,9 @@ public class AdminController extends HttpServlet {
 		
 		if(page.equals("delete")) {
 			String id = request.getParameter("id");
-			DB db = new DB();
 			try {
-				db.deleteProduct(id);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				adminDAOFactory.supprimerProduit(id);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			

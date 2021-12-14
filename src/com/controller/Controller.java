@@ -16,16 +16,18 @@ import com.beans.FactoryProvider;
 import com.beans.Product;
 
 import com.beans.User;
+import com.beans.daoFactory.ProduitDAOFactory;
 import com.beans.daoFactory.UserDAOFactory;
 import com.beans.entity.ProduitEntity;
 import com.beans.entity.UserEntity;
-import com.model.DB;
+
 
 
 public class Controller extends HttpServlet {
 
 
 	private final UserDAOFactory userDAOFactory = new UserDAOFactory();
+	private final ProduitDAOFactory produitDAOFactory = new ProduitDAOFactory();
 	private static final long serialVersionUID = 1L;
 	ArrayList<ProduitEntity> list = new ArrayList<ProduitEntity>();
 	static ArrayList<String> cartlist = new ArrayList<>();
@@ -35,46 +37,26 @@ public class Controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String page = request.getParameter("page");
 		if(page == null || page.equals("index")) {
-			
-			DB db = new DB();
-			 try {
-				list = db.fetch();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-
-			/*try {
-				Session hibernateSession = FactoryProvider.getFactory().openSession();
-				Transaction transaction = hibernateSession.beginTransaction();
-				List<ProduitEntity> res =  hibernateSession
-						.createQuery("from com.beans.entity.ProduitEntity P", ProduitEntity.class)
-						.getResultList();
-
-				for(ProduitEntity rs: res)  {
-					ProduitEntity p = new ProduitEntity(rs.getId(),rs.getNom(),rs.getPrix(),rs.getQuantite());
-					System.out.println(p.toString());
-					list.add(p);
-					p=null;
-				}
-				System.out.println(res.size());
-				transaction.commit();
-				hibernateSession.close();
+			try {
+				list = produitDAOFactory.produitEntityList();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			session = request.getSession();
+			session.setAttribute("cartlist", cartlist);
+			session.setAttribute("list", list);
 
-			 */
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}else {
+			doPost(request, response);
+		}
 
 			 session = request.getSession();
 			 session.setAttribute("cartlist", cartlist);
 			 session.setAttribute("list", list);
 
 			request.getRequestDispatcher("index.jsp").forward(request, response);
-		}else {
-			doPost(request, response);
-		}
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -118,38 +100,21 @@ public class Controller extends HttpServlet {
 		}
 		
 		if(page.equals("login-form")) {
-			
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			
-			DB db = new DB();
-			User user = new User();
+
 			boolean status = false;
 			status = userDAOFactory.connexion(username,password);
 
 			if(status) {
 				session = request.getSession();
 				session.setAttribute("session", session);
-				/*try {
-					userList = db.fetchUser();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				session.setAttribute("address", user.fetchadd(userList,username));
-				session.setAttribute("email", user.fetchemail(userList,username));
-				session.setAttribute("name", user.fetchname(userList,username));
-				session.setAttribute("username", username);
-
-				 */
 				request.getRequestDispatcher("index.jsp").forward(request, response);
-
-
 			}else {
 				request.setAttribute("msg", "Invalid Crediantials");
 				request.setAttribute("username", username);
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
-			
 		}
 		
 		if(page.equals("logout")) {
@@ -163,17 +128,12 @@ public class Controller extends HttpServlet {
 		}
 		
 		if(page.equals("mobiles") || page.equals("laptops") || page.equals("clothing") || page.equals("home-decor") || page.equals("all-products")) {
-			DB db = new DB();
-			 try {
-				//list = db.fetch();
-				 System.out.println("ici fetch DB");
+			try {
+				list = produitDAOFactory.produitEntityList();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 			request.setAttribute("list", list);
-			
 			if(page.equals("mobiles"))
 				request.getRequestDispatcher("mobiles.jsp").forward(request, response);
 			if(page.equals("laptops"))
@@ -185,9 +145,7 @@ public class Controller extends HttpServlet {
 			if(page.equals("all-products"))
 				request.getRequestDispatcher("all-products.jsp").forward(request, response);
 		}
-		
-		
-		
+
 		if(page.equals("showcart")) {
 			request.getRequestDispatcher("cart.jsp").forward(request, response);
 		}

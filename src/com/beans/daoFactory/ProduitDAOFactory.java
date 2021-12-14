@@ -7,6 +7,7 @@ import com.sun.deploy.net.MessageHeader;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProduitDAOFactory {
@@ -23,6 +24,28 @@ public class ProduitDAOFactory {
         hibernateSession.close();
     }
 
+    
+    public ArrayList<ProduitEntity> produitEntityList() {
+
+        ArrayList<ProduitEntity> list = new ArrayList<ProduitEntity>();
+        try {
+
+            List<ProduitEntity> res = hibernateSession
+                    .createQuery("from com.beans.entity.ProduitEntity P", ProduitEntity.class)
+                    .getResultList();
+
+            for (ProduitEntity rs : res) {
+                ProduitEntity p = new ProduitEntity(rs.getId(), rs.getNom(), rs.getPrix(), rs.getQuantite(), rs.getCategorie(), rs.getImage());
+                System.out.println(p.toString());
+                list.add(p);
+                p = null;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
 
     public List<ProduitEntity> productList(){

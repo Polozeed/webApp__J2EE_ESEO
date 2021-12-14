@@ -25,7 +25,7 @@
 		</nav>
 	</header>
 	
-	 <sql:setDataSource user="root" password="" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/myproject" var="ds"/>
+	 <sql:setDataSource user="root" password="root" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/myproject" var="ds"/>
 	 
 	  <sql:query var="result" dataSource="${ds }">
  
