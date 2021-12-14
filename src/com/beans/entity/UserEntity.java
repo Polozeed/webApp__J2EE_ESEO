@@ -3,9 +3,11 @@ package com.beans.entity;
 
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+
 
 @Table(name = "client")
-@Entity
+@Entity(name = "UserEntity")
 public class UserEntity
 {
     @Id
@@ -31,7 +33,16 @@ public class UserEntity
     @Column(name = "adresse_livraison", nullable = false, length = 60)
     private String adresse;
 
-    public UserEntity(String username, String password, String nom, String prenom, String mail, String adresse)
+
+    @Column(name = "est_bloque", nullable = true)
+    private Boolean est_bloque;
+
+    @Column(name = "token", nullable = true)
+    private String token;
+
+
+
+    public UserEntity(String username, String password, String nom, String prenom, String mail, String adresse,String token, Boolean est_bloque)
     {
         this.login = username;
         this.mdp = password;
@@ -39,6 +50,8 @@ public class UserEntity
         this.prenom = prenom;
         this.mail = mail;
         this.adresse = adresse;
+        this.token = token;
+        this.est_bloque = est_bloque;
     }
 
     public UserEntity()
@@ -115,6 +128,22 @@ public class UserEntity
         this.id = id;
     }
 
+    public Boolean getEst_bloque() {
+        return est_bloque;
+    }
+
+    public void setEst_bloque(Boolean est_bloque) {
+        this.est_bloque = est_bloque;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public boolean isComplete()
     {
         if (!this.login.isEmpty() &&
@@ -130,5 +159,18 @@ public class UserEntity
         }
     }
 
-
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", mdp='" + mdp + '\'' +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", mail='" + mail + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", est_bloque=" + est_bloque +
+                ", token='" + token + '\'' +
+                '}';
+    }
 }

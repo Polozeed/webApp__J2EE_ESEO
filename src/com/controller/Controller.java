@@ -3,6 +3,7 @@ package com.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,10 +18,12 @@ import com.beans.Product;
 
 import com.beans.User;
 import com.beans.daoFactory.UserDAOFactory;
+import com.beans.entity.ProduitEntity;
 import com.beans.entity.UserEntity;
 import com.model.DB;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 
 import static java.lang.Integer.parseInt;
@@ -29,7 +32,7 @@ public class Controller extends HttpServlet {
 
 	private UserDAOFactory userDAOFactory;
 	private static final long serialVersionUID = 1L;
-	ArrayList<Product> list = new ArrayList<>();
+	ArrayList<Product> list = new ArrayList<Product>();
 	static ArrayList<String> cartlist = new ArrayList<>();
 	ArrayList<User> userList = new ArrayList<>();
 	HttpSession session;
@@ -45,11 +48,34 @@ public class Controller extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
+
+			/*try {
+				Session hibernateSession = FactoryProvider.getFactory().openSession();
+				Transaction transaction = hibernateSession.beginTransaction();
+				List<ProduitEntity> res =  hibernateSession
+						.createQuery("from com.beans.entity.ProduitEntity P", ProduitEntity.class)
+						.getResultList();
+
+				for(ProduitEntity rs: res)  {
+					ProduitEntity p = new ProduitEntity(rs.getId(),rs.getNom(),rs.getPrix(),rs.getQuantite());
+					System.out.println(p.toString());
+					list.add(p);
+					p=null;
+				}
+				System.out.println(res.size());
+				transaction.commit();
+				hibernateSession.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			 */
+
 			 session = request.getSession();
 			 session.setAttribute("cartlist", cartlist);
 			 session.setAttribute("list", list);
-			
+
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}else {
 			doPost(request, response);
@@ -78,9 +104,8 @@ public class Controller extends HttpServlet {
 				try {
 					Session hibernateSession = FactoryProvider.getFactory().openSession();
 					Transaction transaction = hibernateSession.beginTransaction();
-					UserEntity user = new UserEntity(name,password_1,username,username,email,address);
+					UserEntity user = new UserEntity(name,password_1,username,username,email,address,null, null);
 					Object res = hibernateSession.save(user);
-					System.out.println(res.toString());
 					transaction.commit();
 					hibernateSession.close();
 				} catch (Exception e) {
@@ -118,20 +143,22 @@ public class Controller extends HttpServlet {
 			try {
 				Session hibernateSession = FactoryProvider.getFactory().openSession();
 				Transaction transaction = hibernateSession.beginTransaction();
-				System.out.println("avant apelle ");
-				UserEntity res = hibernateSession.find(UserEntity.class,username);
+				UserEntity res =  hibernateSession
+						.createQuery("FROM com.beans.entity.UserEntity  WHERE login = :username", UserEntity.class)
+						.setParameter("username", username)
+						.getSingleResult();
+
 				if (res.getMdp().equals(password))
-					System.out.println("c est egale");
+					status = true;
 				transaction.commit();
-				status = true;
 				hibernateSession.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
 			if(status) {
 				session = request.getSession();
 				session.setAttribute("session", session);
-				
 				try {
 					userList = db.fetchUser();
 				} catch (SQLException e) {
@@ -142,6 +169,8 @@ public class Controller extends HttpServlet {
 				session.setAttribute("name", user.fetchname(userList,username));
 				session.setAttribute("username", username);
 				request.getRequestDispatcher("index.jsp").forward(request, response);
+
+
 			}else {
 				request.setAttribute("msg", "Invalid Crediantials");
 				request.setAttribute("username", username);
@@ -165,8 +194,9 @@ public class Controller extends HttpServlet {
 		if(page.equals("mobiles") || page.equals("laptops") || page.equals("clothing") || page.equals("home-decor") || page.equals("all-products")) {
 			DB db = new DB();
 			 try {
-				list = db.fetch();
-			} catch (SQLException e) {
+				//list = db.fetch();
+				 System.out.println("ici fetch DB");
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -222,9 +252,9 @@ public class Controller extends HttpServlet {
 			
 			request.getRequestDispatcher("success.jsp").forward(request, response);
 			
-			/*session = request.getSession();
+			session = request.getSession();
 			 cartlist.clear();
-			 session.setAttribute("cartlist", cartlist);*/
+			 session.setAttribute("cartlist", cartlist);
 		}
 		
 		if(page.equals("remove")) {
