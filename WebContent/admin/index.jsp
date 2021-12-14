@@ -53,9 +53,9 @@
 		  	
 				<tr>
 					<td style="width: 50px;"><c:out value="${row.id }"></c:out></td>
-					<td style="width: 100px;"><c:out value="${row.name }"></c:out></td>
-					<td style="width: 100px;"><c:out value="${row.price }"></c:out></td>
-					<td style="width: 100px;"><c:out value="${row.category}"/></td>
+					<td style="width: 100px;"><c:out value="${row.nom }"></c:out></td>
+					<td style="width: 100px;"><c:out value="${row.prix }"></c:out></td>
+					<td style="width: 100px;"><c:out value="${row.categorie}"/></td>
 					<td style="width: 100px;"><img src="${row.image}" height="100" width="150" ></td>
 					<td style="width: 100px;"><a href="<%= request.getContextPath() %>/admin?page=edit&id=${row.id}" style="color: #6bb1f8;">edit</a> ||
 					<a href="<%= request.getContextPath() %>/admin?page=delete&id=${row.id}" style="color:#6bb1f8;">delete</a></td>

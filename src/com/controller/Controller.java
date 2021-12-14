@@ -130,7 +130,7 @@ public class Controller extends HttpServlet {
 			if(status) {
 				session = request.getSession();
 				session.setAttribute("session", session);
-				try {
+				/*try {
 					userList = db.fetchUser();
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -139,6 +139,8 @@ public class Controller extends HttpServlet {
 				session.setAttribute("email", user.fetchemail(userList,username));
 				session.setAttribute("name", user.fetchname(userList,username));
 				session.setAttribute("username", username);
+
+				 */
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 
 
@@ -193,7 +195,7 @@ public class Controller extends HttpServlet {
 		if(page.equals("addtocart")) {
 			String id = request.getParameter("id");
 			String action = request.getParameter("action");
-			Product p = new Product();
+			ProduitEntity p = new ProduitEntity();
 			boolean check = p.check(cartlist,id);
 			
 			if(check)
@@ -228,7 +230,7 @@ public class Controller extends HttpServlet {
 		
 		if(page.equals("remove")) {
 			String id = request.getParameter("id");
-			Product p = new Product();
+			ProduitEntity p = new ProduitEntity();
 			cartlist = p.remove(cartlist,id);
 			
 			session = request.getSession();

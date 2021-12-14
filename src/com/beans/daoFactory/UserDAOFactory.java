@@ -16,15 +16,18 @@ public class UserDAOFactory {
     }
 
     public void transactionSessionClose(){
+        System.out.println("Transaction close");
         transaction.commit();
-        hibernateSession.close();
+        //hibernateSession.close();
     }
 
     public Object inscription(UserEntity user){
         System.out.println("----------------// User Inscription  //----------------");
         try {
+            System.out.println(user.toString());
             int res = (int)hibernateSession.save(user);
             this.transactionSessionClose();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -39,15 +42,18 @@ public class UserDAOFactory {
                     .createQuery("FROM com.beans.entity.UserEntity  WHERE login = :username", UserEntity.class)
                     .setParameter("username", username)
                     .getSingleResult();
+            System.out.println(res.toString());
             if (res.getMdp().equals(password))
                 status = true;
             else {
                 status = false;
             }
-            this.transactionSessionClose();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return status;
     }
+
+
 }

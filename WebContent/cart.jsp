@@ -66,13 +66,13 @@
 			<c:forEach items="${list }" var="Product">
 				<c:if test="${i == Product.getId() }">
 				
-				<c:set var="total" value="${total + Product.getPrice() }"></c:set>
+				<c:set var="total" value="${total + Product.getPrix() }"></c:set>
 				
 			<table style="table-layout: fixed;width: 100%;">
 				<tr>
-					<td style="width: 100px;"><img src="${Product.getImage()}" height="100" width="150" >  (<c:out value="${Product.getName()}"/>)</td>
-					<td style="width: 50px;"><c:out value="${Product.getPrice()}"/></td>
-					<td style="width: 100px;"><c:out value="${Product.getCategory()}"/></td>
+					<td style="width: 100px;"><img src="${Product.getImage()}" height="100" width="150" >  (<c:out value="${Product.getNom()}"/>)</td>
+					<td style="width: 50px;"><c:out value="${Product.getPrix()}"/></td>
+					<td style="width: 100px;"><c:out value="${Product.getCategorie()}"/></td>
 					<td style="width: 100px;"><a href="Controller?page=remove&id=<c:out value="${Product.getId()}"/>"><span class="btn btn-danger">X</span></a></td>
 				</tr>
 			</table>

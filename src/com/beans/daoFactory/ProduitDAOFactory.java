@@ -2,6 +2,7 @@ package com.beans.daoFactory;
 
 import com.beans.FactoryProvider;
 import com.beans.Product;
+import com.beans.entity.ProduitEntity;
 import com.sun.deploy.net.MessageHeader;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -24,7 +25,7 @@ public class ProduitDAOFactory {
 
 
 
-    public List<Product> productList(){
+    public List<ProduitEntity> productList(){
         return null;
     }
 

@@ -31,8 +31,6 @@ public class AdminController extends HttpServlet {
 		if(page.equals("admin-login-form")) {
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			
-			
 			if(username.equals("admin") && password.equals("admin@1234")) {
 				request.getRequestDispatcher("admin/index.jsp").forward(request, response);
 
