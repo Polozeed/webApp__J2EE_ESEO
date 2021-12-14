@@ -8,36 +8,46 @@ import org.hibernate.Transaction;
 public class UserDAOFactory {
 
 
-        private final Session hibernateSession = FactoryProvider.getFactory().openSession();
-        private final Transaction transaction = hibernateSession.beginTransaction();
+    private final Session hibernateSession = FactoryProvider.getFactory().openSession();
+    private final Transaction transaction = hibernateSession.beginTransaction();
 
+
+    public UserDAOFactory() {
+    }
+
+    public void transactionSessionClose(){
+        transaction.commit();
+        hibernateSession.close();
+    }
 
     public Object inscription(UserEntity user){
+        System.out.println("----------------// User Inscription  //----------------");
         try {
-            System.out.println("je suis 3");
-            Session hibernateSession = FactoryProvider.getFactory().openSession();
-            Transaction transaction = hibernateSession.beginTransaction();
-            System.out.println("je suis 4");
             int res = (int)hibernateSession.save(user);
-            System.out.println("je suis 5");
-            System.out.println(res);
-            transaction.commit();
-            hibernateSession.close();
+            this.transactionSessionClose();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public void connexion(UserEntity user){
+    public Boolean connexion(String username, String password) {
+        System.out.println("----------------// User Connexion //----------------");
+        boolean status = false;
         try {
-            Object res = hibernateSession.save(user);
-            System.out.println(res.toString());
-            transaction.commit();
-            hibernateSession.close();
+            UserEntity res = hibernateSession
+                    .createQuery("FROM com.beans.entity.UserEntity  WHERE login = :username", UserEntity.class)
+                    .setParameter("username", username)
+                    .getSingleResult();
+            if (res.getMdp().equals(password))
+                status = true;
+            else {
+                status = false;
+            }
+            this.transactionSessionClose();
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        return status;
     }
 }

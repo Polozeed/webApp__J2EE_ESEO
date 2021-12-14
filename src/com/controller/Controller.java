@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,16 +20,12 @@ import com.beans.daoFactory.UserDAOFactory;
 import com.beans.entity.ProduitEntity;
 import com.beans.entity.UserEntity;
 import com.model.DB;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
-
-import static java.lang.Integer.parseInt;
 
 public class Controller extends HttpServlet {
 
-	private UserDAOFactory userDAOFactory;
+
+	private final UserDAOFactory userDAOFactory = new UserDAOFactory();
 	private static final long serialVersionUID = 1L;
 	ArrayList<Product> list = new ArrayList<Product>();
 	static ArrayList<String> cartlist = new ArrayList<>();
@@ -101,21 +96,12 @@ public class Controller extends HttpServlet {
 			String password_2 = request.getParameter("password_2");
 			
 			if(password_1.equals(password_2)) {
-				try {
-					Session hibernateSession = FactoryProvider.getFactory().openSession();
-					Transaction transaction = hibernateSession.beginTransaction();
-					UserEntity user = new UserEntity(name,password_1,username,username,email,address,null, null);
-					Object res = hibernateSession.save(user);
-					transaction.commit();
-					hibernateSession.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+
+				UserEntity user = new UserEntity(name,password_1,username,username,email,address,null, null);
+				Object res = userDAOFactory.inscription(user);
+
 				HttpSession httpSession = request.getSession();
 				httpSession.setAttribute("notification","Inscription Réussite !");
-
-
-
 				request.setAttribute("username", username);
 				request.setAttribute("msg", "Account created successfully, Please Login!");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -139,22 +125,7 @@ public class Controller extends HttpServlet {
 			DB db = new DB();
 			User user = new User();
 			boolean status = false;
-
-			try {
-				Session hibernateSession = FactoryProvider.getFactory().openSession();
-				Transaction transaction = hibernateSession.beginTransaction();
-				UserEntity res =  hibernateSession
-						.createQuery("FROM com.beans.entity.UserEntity  WHERE login = :username", UserEntity.class)
-						.setParameter("username", username)
-						.getSingleResult();
-
-				if (res.getMdp().equals(password))
-					status = true;
-				transaction.commit();
-				hibernateSession.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			status = userDAOFactory.connexion(username,password);
 
 			if(status) {
 				session = request.getSession();
@@ -182,12 +153,10 @@ public class Controller extends HttpServlet {
 		if(page.equals("logout")) {
 			session = request.getSession();
 			session.invalidate();
-			
-			 session = request.getSession();
-			 cartlist.clear();
-			 session.setAttribute("cartlist", cartlist);
-			 session.setAttribute("list", list);
-			
+			session = request.getSession();
+			cartlist.clear();
+			session.setAttribute("cartlist", cartlist);
+			session.setAttribute("list", list);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 		

@@ -7,15 +7,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.beans.FactoryProvider;
 import com.beans.Product;
 import com.beans.User;
+import com.beans.entity.UserEntity;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 
 public class DB {
 	
 	private String username = "root";
 	private String password = "root";
-	private String dbName = "test";
+	private String dbName = "myproject";
 	private String url = "jdbc:mysql://localhost:3306/" + dbName;
 	private String driver = "com.mysql.jdbc.Driver";
 	
@@ -62,6 +66,9 @@ public class DB {
 		st.executeUpdate();
 		dbClose();
 	}
+
+
+
 
 	public boolean checkUser(String username, String password) throws SQLException {
 		dbConnect();
