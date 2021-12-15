@@ -36,24 +36,28 @@
      
 	 	<div class="signup-group">
 	 		<label>Name</label>
-	 		<input type="text" name="name" value="<c:out value="${p.getNom() }"></c:out>" required>
+	 		<input type="text" name="nom" value="<c:out value="${p.getNom() }"></c:out>" required>
 	 	</div>
 	 	<div class="signup-group">
 	 		<label>Price</label>
-	 		<input type="text" name="price" value="<c:out value="${p.getPrix() }"></c:out>" required>
+	 		<input type="text" name="prix" value="<c:out value="${p.getPrix() }"></c:out>" required>
 	 	</div>
 	 	<div class="signup-group">
 	 		<label>Categorie</label>
-	 		<input type="text" name="category" value="<c:out value="${p.getCategorie() }"></c:out>" required>
+	 		<input type="text" name="categorie" value="<c:out value="${p.getCategorie() }"></c:out>" required>
 	 	</div>
 	 	
 	 	<div class="signup-group">
 	 		<label>Quantite</label>
-	 		<input type="text" name="featured" value="<c:out value="${p.getQuantite() }"></c:out>" required>
+	 		<input type="text" name="quantite" value="<c:out value="${p.getQuantite() }"></c:out>" required>
 	 	</div>
+
+
 	 	<div class="signup-group">
 	 		<label>Image</label>
-	 		<img style="height: 160px;width: 160px;" src="<c:out value="${p.getImage() }"></c:out>">
+	 		<img   style="height: 160px;width: 160px;" src="<c:out value="${p.getImage() }"></c:out>">
+			<br>
+			<input type="text" name="image" value="<c:out value="${p.getImage() }"></c:out>" >
 	 	</div>
 	 	<div class="signup-group">
 			<input type="submit" value="Process">	 

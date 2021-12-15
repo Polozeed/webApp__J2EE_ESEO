@@ -42,6 +42,14 @@ public class ProduitEntity  implements Comparable<ProduitEntity>{
         this.image = image;
     }
 
+    public ProduitEntity(String nom, String prix, String quantite,String categorie,String image) {
+        this.nom = nom;
+        this.prix = prix;
+        this.quantite = quantite;
+        this.categorie =categorie;
+        this.image = image;
+    }
+
     public ProduitEntity() {
     }
 

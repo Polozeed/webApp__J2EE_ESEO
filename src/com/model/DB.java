@@ -190,6 +190,7 @@ public class DB {
 		st.setInt(5, p.getId());
 		st.executeUpdate();
 		dbClose();
+
 	}
 
 	public void addProduct(ProduitEntity p) throws SQLException {

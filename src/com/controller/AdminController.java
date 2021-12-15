@@ -91,33 +91,34 @@ public class AdminController extends HttpServlet {
 		
 		if(page.equals("edit_product")){
 			String id = request.getParameter("id");
-			String name = request.getParameter("name");
-			String price = request.getParameter("price");
-			String category = request.getParameter("category");
-			String featured = request.getParameter("featured");
+			String name = request.getParameter("nom");
+			String price = request.getParameter("prix");
+			String category = request.getParameter("categorie");
+			String featured = request.getParameter("quantite");
+			String image = request.getParameter("image");
+
 			ProduitEntity p = new ProduitEntity();
 			p.setId(Integer.parseInt(id));
 			p.setNom(name);
 			p.setPrix(price);
 			p.setCategorie(category);
 			p.setQuantite(featured);
-			
-			DB account = new DB();
+			p.setImage(image);
 			try {
-				account.updateProduct(p);
-			} catch (SQLException e) {
+				adminDAOFactory.updateOneProduct(p);
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			JOptionPane.showMessageDialog(null, "Product details updated successfully", "Info", JOptionPane.INFORMATION_MESSAGE);
+			//JOptionPane.showMessageDialog(null, "Product details updated successfully", "Info", JOptionPane.INFORMATION_MESSAGE);
 			request.getRequestDispatcher("admin/index.jsp").forward(request, response);
 		}
 		
 		if(page.equals("add_product")){
-			String name = request.getParameter("name");
-			String price = request.getParameter("price");
-			String category = request.getParameter("category");
-			String featured = request.getParameter("featured");
+			String name = request.getParameter("nom");
+			String price = request.getParameter("prix");
+			String category = request.getParameter("categoie");
+			String featured = request.getParameter("quantite");
 			String image = request.getParameter("image");
 			ProduitEntity p = new ProduitEntity();
 			p.setNom(name);
@@ -125,12 +126,9 @@ public class AdminController extends HttpServlet {
 			p.setCategorie(category);
 			p.setQuantite(featured);
 			p.setImage("img/"+image);
-			
-			DB account = new DB();
 			try {
-				account.addProduct(p);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				adminDAOFactory.newOneProduct(p);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			//JOptionPane.showMessageDialog(null, "Product added Successfully", "Info", JOptionPane.INFORMATION_MESSAGE);

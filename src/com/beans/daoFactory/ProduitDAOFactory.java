@@ -5,6 +5,8 @@ import com.beans.entity.ProduitEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,6 @@ public class ProduitDAOFactory {
 
     public void transactionSessionClose(){
         transaction.commit();
-        hibernateSession.close();
     }
 
     
@@ -36,18 +37,15 @@ public class ProduitDAOFactory {
                 list.add(p);
                 p = null;
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
     }
 
-
     public List<ProduitEntity> productList(){
         return null;
     }
-
 
     public ProduitEntity getOneProduit(int id) {
         System.out.println("----------------// Get One Produit //----------------");
@@ -64,10 +62,10 @@ public class ProduitDAOFactory {
         return res;
     }
 
+
     public void deleteOneProduit(int id) {
         try {
-            ProduitEntity res =hibernateSession
-                    .find(ProduitEntity.class, id);
+            ProduitEntity res =hibernateSession.find(ProduitEntity.class, id);
             hibernateSession.remove(res);
             System.out.println("----------------// Delete One Produit //----------------");
         } catch (Exception e) {
@@ -78,5 +76,29 @@ public class ProduitDAOFactory {
         }
     }
 
+    public void updateProduct(ProduitEntity produit) {
+        try {
+            System.out.println("----------------// Update One Produit //----------------");
+            System.out.println(produit.toString());
+           hibernateSession.merge(produit);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            this.transactionSessionClose();
+        }
+    }
 
+    public void newProduct(ProduitEntity produit) {
+        try {
+            System.out.println("----------------// New One Produit //----------------");
+            System.out.println(produit.toString());
+            hibernateSession.save(produit);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            this.transactionSessionClose();
+        }
+    }
 }

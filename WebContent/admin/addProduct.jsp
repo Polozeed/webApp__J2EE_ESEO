@@ -35,20 +35,20 @@
      
 	 	<div class="signup-group">
 	 		<label>Name</label>
-	 		<input type="text" name="name" placeholder="product name goes here"  required>
+	 		<input type="text" name="nom" placeholder="product name goes here"  required>
 	 	</div>
 	 	<div class="signup-group">
 	 		<label>Price</label>
-	 		<input type="text" name="price" placeholder="product price" required>
+	 		<input type="text" name="prix" placeholder="product price" required>
 	 	</div>
 	 	<div class="signup-group">
 	 		<label>Category</label>
-	 		<input type="text" name="category" placeholder="product category" required>
+	 		<input type="text" name="categorie" placeholder="product category" required>
 	 	</div>
 	 	
 	 	<div class="signup-group">
 	 		<label>Featured</label>
-	 		<input type="text" name="featured" placeholder="yes/no" required>
+	 		<input type="text" name="quantite" placeholder="yes/no" required>
 	 	</div>
 	 	<div class="signup-group">
 	 		 <label for="fileupload"> Select an image to upload</label>

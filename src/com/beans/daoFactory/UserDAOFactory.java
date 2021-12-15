@@ -8,8 +8,8 @@ import org.hibernate.Transaction;
 public class UserDAOFactory {
 
 
-    private final Session hibernateSession = FactoryProvider.getFactory().openSession();
-    private final Transaction transaction = hibernateSession.beginTransaction();
+    private Session hibernateSession = FactoryProvider.getFactory().openSession();
+    private Transaction transaction = hibernateSession.beginTransaction();
 
 
     public UserDAOFactory() {

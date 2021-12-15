@@ -13,8 +13,8 @@ import java.util.List;
 
 public class AdminDAOFactory {
 
-    private final Session hibernateSession = FactoryProvider.getFactory().openSession();
-    private final Transaction transaction = hibernateSession.beginTransaction();
+    private Session hibernateSession = FactoryProvider.getFactory().openSession();
+    private Transaction transaction = hibernateSession.beginTransaction();
     private final ProduitDAOFactory produitDAOFactory = new ProduitDAOFactory();
 
     public AdminDAOFactory() {
@@ -44,4 +44,13 @@ public class AdminDAOFactory {
         ProduitEntity res = produitDAOFactory.getOneProduit(id);
         return res;
     }
+
+    public void updateOneProduct(ProduitEntity p){
+        produitDAOFactory.updateProduct(p);
+    }
+
+    public void newOneProduct(ProduitEntity p){
+        produitDAOFactory.newProduct(p);
+    }
+
 }
