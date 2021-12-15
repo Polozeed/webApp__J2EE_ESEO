@@ -24,16 +24,7 @@
 			</ul>
 		</nav>
 	</header>
-	
-	 <sql:setDataSource user="root" password="root" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/myproject" var="ds"/>
-	 
-	  <sql:query var="result" dataSource="${ds }">
- 
-		 select * from product
-		 
-	   </sql:query>
-	   
-	  
+
 	
 	<div class="container">
 	<h2>Products List:</h2>
@@ -47,8 +38,9 @@
 			<th>Option</th>
 		</tr>
 	</table>
-		
-		 <c:forEach items="${result.rows }" var="row">
+
+		 <c:forEach items="${list }" var="row">
+
 		  <table style="table-layout: fixed;width: 100%;">
 		  	
 				<tr>

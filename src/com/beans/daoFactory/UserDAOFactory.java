@@ -26,10 +26,11 @@ public class UserDAOFactory {
         try {
             System.out.println(user.toString());
             int res = (int)hibernateSession.save(user);
-            this.transactionSessionClose();
-
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        finally {
+            this.transactionSessionClose();
         }
         return null;
     }

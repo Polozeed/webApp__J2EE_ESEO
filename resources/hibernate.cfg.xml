@@ -14,5 +14,6 @@
         <mapping class="com.beans.entity.UserEntity"/>
         <mapping class="com.beans.entity.ProduitEntity"/>
 
+
     </session-factory>
 </hibernate-configuration>

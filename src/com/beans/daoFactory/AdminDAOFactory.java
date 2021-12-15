@@ -8,13 +8,14 @@ import org.hibernate.Transaction;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdminDAOFactory {
 
     private final Session hibernateSession = FactoryProvider.getFactory().openSession();
     private final Transaction transaction = hibernateSession.beginTransaction();
-
+    private final ProduitDAOFactory produitDAOFactory = new ProduitDAOFactory();
 
     public AdminDAOFactory() {
     }
@@ -23,15 +24,24 @@ public class AdminDAOFactory {
         hibernateSession.close();
     }
 
-    public void supprimerProduit(String id)  {
+    public void supprimerProduit(int id)  {
         try {
-            ProduitEntity res =  hibernateSession.createQuery("DELETE FROM com.beans.entity.ProduitEntity  WHERE id_produit = :id", ProduitEntity.class)
-                    .setParameter("id", id)
-                    .getSingleResult();
-            System.out.println("---------// Produit Delete //---------------");
+            System.out.println("id ============>" +id);
+            produitDAOFactory.deleteOneProduit(id);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<ProduitEntity> produitEntityListAdmin() {
+        ArrayList list = new ArrayList();
+        list =produitDAOFactory.produitEntityList();
+        return list;
+    }
+
+    public ProduitEntity getOneproduitEntity(int id) {
+        ProduitEntity res = produitDAOFactory.getOneProduit(id);
+        return res;
     }
 }

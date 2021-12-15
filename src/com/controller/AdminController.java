@@ -2,11 +2,13 @@ package com.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 import com.beans.Product;
@@ -18,6 +20,7 @@ import com.model.DB;
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final AdminDAOFactory adminDAOFactory = new AdminDAOFactory();
+	HttpSession session;
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String page = request.getParameter("page");
@@ -48,19 +51,26 @@ public class AdminController extends HttpServlet {
 		
 		if(page.equals("delete")) {
 			String id = request.getParameter("id");
+			System.out.println("id===> res : " + id);
 			try {
-				adminDAOFactory.supprimerProduit(id);
+				adminDAOFactory.supprimerProduit(Integer.parseInt(id));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-			JOptionPane.showMessageDialog(null, "Product deleted successfully", "Info", JOptionPane.INFORMATION_MESSAGE);
 			request.getRequestDispatcher("admin/index.jsp").forward(request, response);
 
 		}
 		
 		if(page.equals("index")) {
 			request.getRequestDispatcher("admin/index.jsp").forward(request, response);
+			ArrayList list = new ArrayList();
+			try {
+				list = adminDAOFactory.produitEntityListAdmin();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			session = request.getSession();
+			session.setAttribute("list", list);
 		}
 		
 		if(page.equals("addproduct")) {
@@ -69,16 +79,13 @@ public class AdminController extends HttpServlet {
 		
 		if(page.equals("edit")) {
 			String id = request.getParameter("id");
-			DB account = new DB();
-			ProduitEntity p = null;
 			try {
-				 p = account.fetchProduct(id);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				ProduitEntity p = adminDAOFactory.getOneproduitEntity(Integer.parseInt(id));
+				request.setAttribute("p", p);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-			request.setAttribute("p", p);
+
 			request.getRequestDispatcher("admin/editProduct.jsp").forward(request, response);
 		}
 		
@@ -126,7 +133,7 @@ public class AdminController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			JOptionPane.showMessageDialog(null, "Product added Successfully", "Info", JOptionPane.INFORMATION_MESSAGE);
+			//JOptionPane.showMessageDialog(null, "Product added Successfully", "Info", JOptionPane.INFORMATION_MESSAGE);
 			request.getRequestDispatcher("admin/index.jsp").forward(request, response);
 		}
 	}

@@ -1,9 +1,7 @@
 package com.beans.daoFactory;
 
 import com.beans.FactoryProvider;
-import com.beans.Product;
 import com.beans.entity.ProduitEntity;
-import com.sun.deploy.net.MessageHeader;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -29,11 +27,9 @@ public class ProduitDAOFactory {
 
         ArrayList<ProduitEntity> list = new ArrayList<ProduitEntity>();
         try {
-
             List<ProduitEntity> res = hibernateSession
                     .createQuery("from com.beans.entity.ProduitEntity P", ProduitEntity.class)
                     .getResultList();
-
             for (ProduitEntity rs : res) {
                 ProduitEntity p = new ProduitEntity(rs.getId(), rs.getNom(), rs.getPrix(), rs.getQuantite(), rs.getCategorie(), rs.getImage());
                 System.out.println(p.toString());
@@ -53,6 +49,34 @@ public class ProduitDAOFactory {
     }
 
 
+    public ProduitEntity getOneProduit(int id) {
+        System.out.println("----------------// Get One Produit //----------------");
+        ProduitEntity res = new ProduitEntity();
+        try {
+            res = hibernateSession
+                    .createQuery("FROM com.beans.entity.ProduitEntity p WHERE p.id = :id", ProduitEntity.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+            System.out.println(res.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public void deleteOneProduit(int id) {
+        try {
+            ProduitEntity res =hibernateSession
+                    .find(ProduitEntity.class, id);
+            hibernateSession.remove(res);
+            System.out.println("----------------// Delete One Produit //----------------");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            this.transactionSessionClose();
+        }
+    }
 
 
 }

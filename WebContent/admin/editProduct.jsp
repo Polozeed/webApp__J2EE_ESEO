@@ -36,20 +36,20 @@
      
 	 	<div class="signup-group">
 	 		<label>Name</label>
-	 		<input type="text" name="name" value="<c:out value="${p.getName() }"></c:out>" required>
+	 		<input type="text" name="name" value="<c:out value="${p.getNom() }"></c:out>" required>
 	 	</div>
 	 	<div class="signup-group">
 	 		<label>Price</label>
-	 		<input type="text" name="price" value="<c:out value="${p.getPrice() }"></c:out>" required>
+	 		<input type="text" name="price" value="<c:out value="${p.getPrix() }"></c:out>" required>
 	 	</div>
 	 	<div class="signup-group">
-	 		<label>Category</label>
-	 		<input type="text" name="category" value="<c:out value="${p.getCategory() }"></c:out>" required>
+	 		<label>Categorie</label>
+	 		<input type="text" name="category" value="<c:out value="${p.getCategorie() }"></c:out>" required>
 	 	</div>
 	 	
 	 	<div class="signup-group">
-	 		<label>Featured</label>
-	 		<input type="text" name="featured" value="<c:out value="${p.getFeatured() }"></c:out>" required>
+	 		<label>Quantite</label>
+	 		<input type="text" name="featured" value="<c:out value="${p.getQuantite() }"></c:out>" required>
 	 	</div>
 	 	<div class="signup-group">
 	 		<label>Image</label>
