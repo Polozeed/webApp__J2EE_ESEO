@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 import com.beans.User;
+import com.beans.daoFactory.PDFfactory;
 import com.beans.daoFactory.ProduitDAOFactory;
 import com.beans.daoFactory.UserDAOFactory;
 import com.beans.entity.ProduitEntity;
@@ -21,7 +22,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class PDFController extends HttpServlet {
 
 
-    private final UserDAOFactory userDAOFactory = new UserDAOFactory();
+    private static final int BYTES_DOWNLOAD = 1024;
+    private final PDFfactory pdFfactory = new PDFfactory();
     private final ProduitDAOFactory produitDAOFactory = new ProduitDAOFactory();
     private static final long serialVersionUID = 1L;
     HttpSession session;
@@ -30,20 +32,22 @@ public class PDFController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = request.getParameter("page");
         if(page == null || page.equals("pdf")) {
-            Document document = new Document();
-            try {
-                PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("HelloWorld.pdf"));
-                document.open();
-                document.add(new Paragraph("A Hello World PDF document."));
-                document.close();
-                writer.close();
-            } catch (DocumentException | FileNotFoundException e) {
-                e.printStackTrace();
+            response.setContentType("text/plain");
+            response.setHeader("Content-Disposition",
+                    "attachment;filename=downloadname.pdf");
+            ServletContext ctx = getServletContext();
+            InputStream is = pdFfactory.pdfgenerate();
+            int read=0;
+            byte[] bytes = new byte[BYTES_DOWNLOAD];
+            OutputStream os = response.getOutputStream();
+            while((read = is.read(bytes))!= -1){
+                os.write(bytes, 0, read);
             }
-            session = request.getSession();
+            os.flush();
+            os.close();
 
 
-            request.getRequestDispatcher("pdf.jsp").forward(request, response);
+            //request.getRequestDispatcher("pdf.jsp").forward(request, response);
         }
     }
 
