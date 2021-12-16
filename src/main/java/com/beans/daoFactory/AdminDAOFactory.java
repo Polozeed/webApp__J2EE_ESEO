@@ -26,7 +26,6 @@ public class AdminDAOFactory {
 
     public void supprimerProduit(int id)  {
         try {
-            System.out.println("id ============>" +id);
             produitDAOFactory.deleteOneProduit(id);
 
         } catch (Exception e) {

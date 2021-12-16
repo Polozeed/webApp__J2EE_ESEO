@@ -42,8 +42,8 @@
 	 		<input type="text" name="prix" placeholder="product price" required>
 	 	</div>
 	 	<div class="signup-group">
-	 		<label>Category</label>
-	 		<input type="text" name="categorie" placeholder="product category" required>
+			<label>Categorie modif</label>
+			<input type="text" name="categorie"  required>
 	 	</div>
 	 	
 	 	<div class="signup-group">

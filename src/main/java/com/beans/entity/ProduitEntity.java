@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-@Table(name = "produit")
+@Table(name = "product")
 @Entity(name = "ProduitEntity")
 public class ProduitEntity  implements Comparable<ProduitEntity>{
 

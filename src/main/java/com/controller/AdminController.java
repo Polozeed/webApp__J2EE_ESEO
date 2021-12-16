@@ -21,6 +21,8 @@ public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final AdminDAOFactory adminDAOFactory = new AdminDAOFactory();
 	HttpSession session;
+	ArrayList list = new ArrayList();
+
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String page = request.getParameter("page");
@@ -63,9 +65,10 @@ public class AdminController extends HttpServlet {
 		
 		if(page.equals("index")) {
 			request.getRequestDispatcher("admin/index.jsp").forward(request, response);
-			ArrayList list = new ArrayList();
+
 			try {
 				list = adminDAOFactory.produitEntityListAdmin();
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -103,23 +106,24 @@ public class AdminController extends HttpServlet {
 			p.setPrix(price);
 			p.setCategorie(category);
 			p.setQuantite(featured);
-			p.setImage(image);
+			p.setImage("img/"+image);
 			try {
 				adminDAOFactory.updateOneProduct(p);
+				list.add(p);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//JOptionPane.showMessageDialog(null, "Product details updated successfully", "Info", JOptionPane.INFORMATION_MESSAGE);
 			request.getRequestDispatcher("admin/index.jsp").forward(request, response);
 		}
 		
 		if(page.equals("add_product")){
 			String name = request.getParameter("nom");
 			String price = request.getParameter("prix");
-			String category = request.getParameter("categoie");
+			String category = request.getParameter("categorie");
 			String featured = request.getParameter("quantite");
 			String image = request.getParameter("image");
+
 			ProduitEntity p = new ProduitEntity();
 			p.setNom(name);
 			p.setPrix(price);
@@ -131,7 +135,6 @@ public class AdminController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			//JOptionPane.showMessageDialog(null, "Product added Successfully", "Info", JOptionPane.INFORMATION_MESSAGE);
 			request.getRequestDispatcher("admin/index.jsp").forward(request, response);
 		}
 	}
