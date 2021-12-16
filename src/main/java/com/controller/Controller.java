@@ -221,6 +221,11 @@ public class Controller extends HttpServlet {
 			if(action.equals("home-decor"))
 				request.getRequestDispatcher("menu/home-decor.jsp").forward(request, response);
 		}
+
+		if(page.equals("compte")) {
+			request.getRequestDispatcher("compte.jsp").forward(request, response);
+		}
 	}
+
 
 }
