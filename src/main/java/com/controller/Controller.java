@@ -135,15 +135,15 @@ public class Controller extends HttpServlet {
 			}
 			request.setAttribute("list", list);
 			if(page.equals("mobiles"))
-				request.getRequestDispatcher("mobiles.jsp").forward(request, response);
+				request.getRequestDispatcher("menu/mobiles.jsp").forward(request, response);
 			if(page.equals("laptops"))
-				request.getRequestDispatcher("laptops.jsp").forward(request, response);
+				request.getRequestDispatcher("menu/laptops.jsp").forward(request, response);
 			if(page.equals("clothing"))
-				request.getRequestDispatcher("clothing.jsp").forward(request, response);
+				request.getRequestDispatcher("menu/clothing.jsp").forward(request, response);
 			if(page.equals("home-decor"))
-				request.getRequestDispatcher("home-decor.jsp").forward(request, response);
+				request.getRequestDispatcher("menu/home-decor.jsp").forward(request, response);
 			if(page.equals("all-products"))
-				request.getRequestDispatcher("all-products.jsp").forward(request, response);
+				request.getRequestDispatcher("menu/all-products.jsp").forward(request, response);
 		}
 
 		if(page.equals("showcart")) {
@@ -166,15 +166,15 @@ public class Controller extends HttpServlet {
 			if(action.equals("index"))
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			if(action.equals("allproducts"))
-				request.getRequestDispatcher("all-products.jsp").forward(request, response);
+				request.getRequestDispatcher("menu/all-products.jsp").forward(request, response);
 			if(action.equals("clothing"))
-				request.getRequestDispatcher("clothing.jsp").forward(request, response);
+				request.getRequestDispatcher("menu/clothing.jsp").forward(request, response);
 			if(action.equals("home-decor"))
-				request.getRequestDispatcher("home-decor.jsp").forward(request, response);
+				request.getRequestDispatcher("menu/home-decor.jsp").forward(request, response);
 			if(action.equals("laptops"))
-				request.getRequestDispatcher("laptops.jsp").forward(request, response);
+				request.getRequestDispatcher("menu/laptops.jsp").forward(request, response);
 			if(action.equals("mobiles"))
-				request.getRequestDispatcher("mobiles.jsp").forward(request, response);
+				request.getRequestDispatcher("menu/mobiles.jsp").forward(request, response);
 		}
 		
 		if(page.equals("success")) {
@@ -210,15 +210,15 @@ public class Controller extends HttpServlet {
 			if(action.equals("index"))
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			if(action.equals("all-products"))
-				request.getRequestDispatcher("all-products.jsp").forward(request, response);
+				request.getRequestDispatcher("menu/all-products.jsp").forward(request, response);
 			if(action.equals("mobiles"))
-				request.getRequestDispatcher("mobiles.jsp").forward(request, response);
+				request.getRequestDispatcher("menu/mobiles.jsp").forward(request, response);
 			if(action.equals("laptops"))
-				request.getRequestDispatcher("laptops.jsp").forward(request, response);
+				request.getRequestDispatcher("menu/laptops.jsp").forward(request, response);
 			if(action.equals("clothing"))
-				request.getRequestDispatcher("clothing.jsp").forward(request, response);
+				request.getRequestDispatcher("menu/clothing.jsp").forward(request, response);
 			if(action.equals("home-decor"))
-				request.getRequestDispatcher("home-decor.jsp").forward(request, response);
+				request.getRequestDispatcher("menu/home-decor.jsp").forward(request, response);
 		}
 	}
 

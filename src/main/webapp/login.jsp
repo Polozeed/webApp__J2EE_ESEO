@@ -17,7 +17,7 @@
 	<%@include file="topbar.jsp" %>
 
 	<div class="signup-header">
-	 	<h2>Login to <mark>Tiazon</mark></h2>
+	 	<h2>Login to <mark>E-Commerce Eseo</mark></h2>
 	</div>
 
 	 <form method="post" action="Controller">

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Connexion Admin</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
 	<%@include file="../topbar.jsp" %>
 
 	<div class="signup-header">
-	 	<h2> <mark>Admin</mark> Login</h2>
+	 	<h2> <mark>Connexion</mark> Admin</h2>
 	</div>
 
 <form method="post" action="admin">
@@ -23,15 +23,15 @@
 	 	<font color="#F24638"><c:out value="${msg }"></c:out></font>
 	 
 	 	<div class="signup-group">
-	 		<label>Username</label>
-	 		<input type="text" name="username" placeholder="Your Username" value="<c:out value="${username }"></c:out>">
+	 		<label>Identifiant</label>
+	 		<input type="text" name="username" placeholder="Votre identifiant" value="<c:out value="${username }"></c:out>">
 	 	</div>
 	 	<div class="signup-group">
-	 		<label>Password</label>
-	 		<input type="password" name="password" placeholder="Enter password">
+	 		<label>Mot de passe</label>
+	 		<input type="password" name="password" placeholder="Votre mot de passe">
 	 	</div>
 	 	<div class="signup-group">
-	 		<button type="submit" name="login" class="signup-btn">Log in</button>
+	 		<button type="submit" name="Se connecter" class="signup-btn">Log in</button>
 	 	</div>
 	 </form>
 

@@ -6,7 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>Home</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> 
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body>
 
@@ -15,7 +15,7 @@
 		<c:set var="x" value="${x+1 }"></c:set>
 	</c:forEach>
 
-	<%@include file="topbar.jsp" %>
+	<%@include file="../topbar.jsp" %>
 	
 	<div class="tiazon-content">
  	<div class="container">
@@ -24,17 +24,8 @@
 
  				<div class="col-md-8"><!-- right -->
  					<h2 style="text-align: center;">Vêtements</h2><br>
- 					
- 					<h5>Sort by(Price):</h5>
-					<form action="Controller" method="get" style="border: none;margin:0px;padding: 0px;margin-bottom: 20px;">
-					<input type="hidden" name="page" value="price-sort">
-					<input type="hidden" name="action" value="clothing">
-					<select name="sort">
-					<option value="low-to-high">Low to high</option>
-					<option value="high-to-high">high to low</option>
-					</select>
-					<input type="submit" value="Go!">
-					</form>
+
+					<%@include file="trie.jsp" %>
  					
  					<c:forEach items="${list }" var="product">
  						
@@ -43,8 +34,8 @@
 		 					<div class="col-md-4">
 		 						<img src="${product.getImage() }" class="img-responsive" ><br>
 		 						<div class="text-center"><a style="color: black;"><c:out value="${product.getNom() }"></c:out></a></div>
-		 						<p style="text-align: center;"> &#x20b9;  <c:out value="${ product.getPrix() }"></c:out></p>
-		 						<div class="text-center">  <a class="btn btn-primary" href="Controller?page=addtocart&action=clothing&id=<c:out value="${product.getId()}"/>">Add to Cart</a> </div><br>
+		 						<p style="text-align: center;"> <c:out value="${ product.getPrix() } €"></c:out></p>
+		 						<div class="text-center">  <a class="btn btn-primary" href="Controller?page=addtocart&action=clothing&id=<c:out value="${product.getId()}"/>">Ajouter</a> </div><br>
 		 					</div>
  							
  						</c:if>
@@ -58,7 +49,7 @@
  	</div>
 
 
-	<%@include file="bottombar.jsp" %>
+	<%@include file="../bottombar.jsp" %>
 	
 </body>
 </html>

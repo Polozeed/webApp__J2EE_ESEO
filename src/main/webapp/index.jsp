@@ -20,21 +20,12 @@
 	<div class="tiazon-content">
  	<div class="container">
  		<div class="row">
-				<%@include file="menu.jsp" %>
+				<%@include file="menu/menu.jsp" %>
 
  				<div class="col-md-8"><!-- right -->
- 					<h2 style="text-align: center;">Produits du moment</h2><br>
- 					
-					<h5>Sort by(Price):</h5>
-					<form action="Controller" method="get" style="border: none;margin:0px;padding: 0px;margin-bottom: 20px;">
-					<input type="hidden" name="page" value="price-sort">
-					<input type="hidden" name="action" value="index">
-					<select name="sort">
-					<option value="low-to-high">Low to high</option>
-					<option value="high-to-high">high to low</option>
-					</select>
-					<input type="submit" value="Go!">
-					</form>
+ 					<h2 style="text-align: center;">Produits en tendance</h2><br>
+
+					<%@include file="menu/trie.jsp" %>
 					
  					<c:forEach items="${list }" var="product">
  						
@@ -43,7 +34,7 @@
 		 					<div class="col-md-4">
 		 						<img src="${product.getImage() }" class="img-responsive" ><br>
 		 						<div class="text-center"><a style="color: black;"><c:out value="${product.getNom() }"></c:out></a></div>
-		 						<p style="text-align: center;"> &#x20b9;  <c:out value="${ product.getPrix() }"></c:out></p>
+		 						<p style="text-align: center;"> <c:out value="${ product.getPrix() } €"></c:out></p>
 		 						<div class="text-center">  <a class="btn btn-primary" href="Controller?page=addtocart&action=index&id=<c:out value="${product.getId()}"/>">Add to Cart</a> </div><br>
 		 					</div>
  							

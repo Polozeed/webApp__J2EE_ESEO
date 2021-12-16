@@ -29,3 +29,7 @@
 /build/classes/java/main/com/controller/Controller.class
 /build/classes/java/main/com/model/DB.class
 /build/resources/main/hibernate.cfg.xml
+/.gradle/checksums/md5-checksums.bin
+/.gradle/checksums/sha1-checksums.bin
+/build/classes/java/main/com/beans/daoFactory/PDFfactory.class
+/build/classes/java/main/com/controller/PDFController.class

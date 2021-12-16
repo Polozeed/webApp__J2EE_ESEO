@@ -2,13 +2,13 @@
 <!-- Topbar pour l'admin appelée sur chaque jsp le concernant-->
 <header>
     <h1>
-        Welcome admin
+        Administrateur
     </h1>
     <nav>
         <ul>
-            <li><a href="admin?page=index">Home</a></li>
-            <li><a href="admin?page=addproduct">Add Product</a></li>
-            <li><a href="#">Settings</a></li>
+            <li><a href="admin?page=index">Accueil</a></li>
+            <li><a href="admin?page=addproduct">Ajouter un produit</a></li>
+            <li><a href="#">Paramètres</a></li>
             <li><a href="#">Pages</a></li>
         </ul>
     </nav>

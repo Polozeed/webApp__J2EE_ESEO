@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Liste des produits</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> 
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
@@ -14,13 +14,13 @@
 
 	
 	<div class="container">
-	<h2>Products List:</h2>
+	<h2>Liste des produits :</h2>
 		 <table>
 			<tr>
-			<th>Item id</th>
-			<th>Name</th>
-			<th>Price</th>
-			<th>Category</th>
+			<th>Identifiant</th>
+			<th>Nom</th>
+			<th>Prix</th>
+			<th>Catégorie</th>
 			<th>Image</th>
 			<th>Option</th>
 		</tr>
