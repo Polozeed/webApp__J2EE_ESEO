@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -9,6 +8,8 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+
+	<%@include file="../topbar.jsp" %>
 
 	<div class="signup-header">
 	 	<h2> <mark>Admin</mark> Login</h2>
@@ -33,5 +34,7 @@
 	 		<button type="submit" name="login" class="signup-btn">Log in</button>
 	 	</div>
 	 </form>
+
+	<%@include file="../bottombar.jsp" %>
 </body>
 </html>

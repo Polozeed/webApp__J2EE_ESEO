@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -16,46 +15,15 @@
 		<c:set var="x" value="${x+1 }"></c:set>
 	</c:forEach>
 
-	<header>
-	<h1>
-		Maxime et Martin
-	</h1>
-	<nav>
-		<ul>
-			<li><a href="Controller?page=index">Accueil</a></li>
-			<c:choose>
-				<c:when test="${session == null}">
-					<li><a href="Controller?page=login">Se connecter</a></li>
-					<li><a href="Controller?page=sign-up">S'inscrire</a></li>
-				</c:when>
-				<c:when test="${session != null}">
-					<li><a href="Controller?page=logout" style="color: #F24638;">Se déconnecter</a></li>
-					<li><a href="#">Mon Compte(<c:out value="${username }"></c:out>)</a></li>
-				</c:when>
-			</c:choose>
-			<li><a href="Controller?page=showcart">Panier (<c:out value="${x}"/>)</a></li>
-			<li><a href="Controller?page=index">Se connecter en administrateur</a></li>
-		</ul>
-	</nav>
-	</header>
+    <%@include file="topbar.jsp" %>
 	
 	<div class="tiazon-content">
  	<div class="container">
  		<div class="row">
- 				<div class="col-md-4"><!-- left -->
- 						<div class="list-group"><!-- products -->
-						  <a href="Controller?page=all-products" class="list-group-item" style="background:  #d6d4d3;">
-						    All Products
-						  </a>
-						  <a href="Controller?page=mobiles" class="list-group-item">Mobiles</a>
-						  <a href="Controller?page=laptops" class="list-group-item">Laptops</a>
-						  <a href="Controller?page=clothing" class="list-group-item">Clothing</a>
-						  <a href="Controller?page=home-decor" class="list-group-item">Home Decor</a>
-						</div> 
- 				</div><!-- left -->
+				<%@include file="menu.jsp" %>
 
  				<div class="col-md-8"><!-- right -->
- 					<h2 style="text-align: center;">All Products</h2><br>
+ 					<h2 style="text-align: center;">Tous les produits</h2><br>
  					
  					<h5>Sort by(Price):</h5>
 					<form action="Controller" method="get" style="border: none;margin:0px;padding: 0px;margin-bottom: 20px;">
@@ -83,13 +51,9 @@
  			</div>
  		</div>
  	</div>
-	
-	
-	<footer>
-		<div class="footer"> &copy; 2018 Copyright:
-	      <a href="Controller?page=index"> Tiazon.com</a>
-	    </div>
-	</footer>
+
+
+	<%@include file="bottombar.jsp" %>
 	
 </body>
 </html>

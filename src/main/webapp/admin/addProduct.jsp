@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <!DOCTYPE html>
@@ -11,19 +10,8 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<header>
-		<h1>
-			Welcome admin
-		</h1>
-		<nav>
-			<ul>
-				<li><a href="admin?page=index">Home</a></li>
-				<li><a href="admin?page=addproduct">Add Product</a></li>
-				<li><a href="#">Settings</a></li>
-				<li><a href="#">Pages</a></li>
-			</ul>
-		</nav>
-	</header>
+
+	<%@include file="topbarAdmin.jsp" %>
 	
 	<div class="signup-header">
 	 	<h2>Add Product</h2>
@@ -58,11 +46,7 @@
 			<input type="submit" value="Process">	 
 		</div>
 	 </form>
-	
-	 <footer style="position: absolute;left: 0;bottom: 0;width: 100%;">
-		<div class="footer"> &copy; 2018 Copyright:
-	      Tiazon.com
-	    </div>
-	</footer>
+
+	<%@include file="../bottombar.jsp" %>
 </body>
 </html>
