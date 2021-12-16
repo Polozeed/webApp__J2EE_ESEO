@@ -1,5 +1,9 @@
 @charset "ISO-8859-1";
 
+:root {
+    --main-bg-color: #244AAC;
+}
+
 /* login-signup */
 
 * {
@@ -12,7 +16,7 @@
   width: 30%;
   margin: 50px auto 0px;
   color: white;
-  background:black;
+  background: var(--main-bg-color);
   text-align: center;
   border: 1px solid #B0C4DE;
   border-bottom: none;
@@ -51,14 +55,14 @@ form, .content {
   padding: 10px;
   font-size: 15px;
   color: white;
-  background:black;
+  background:var(--main-bg-color);
   border: none;
   border-radius: 5px;
 }
 
  mark{
   color:grey;
-  background:black;
+  background:var(--main-bg-color);
   font-size:26px;
 }
 
@@ -68,7 +72,7 @@ form, .content {
 header{
 	width:100%;
 	height:70px;
-	background-color: black;
+	background-color: var(--main-bg-color);
 }
 
 h1{
@@ -112,7 +116,7 @@ a:hover {
 
 /* Footer */
 .footer{
-	background: black;
+	background: var(--main-bg-color);
 	color: white;
 	padding-top: 20px;
 	padding-bottom: 20px;
@@ -128,7 +132,7 @@ table th{
 }
 
 table td{
-	border: 1px solid black;
+	border: 1px solid var(--main-bg-color);
 	padding: 4px 8px;
 }
 

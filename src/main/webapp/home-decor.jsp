@@ -15,28 +15,29 @@
 	<c:forEach items="${cartlist }" var="i">
 		<c:set var="x" value="${x+1 }"></c:set>
 	</c:forEach>
-	
-	<header>
-		<h1>
-			Tiazon
-		</h1>
-		<nav>
-			<ul>
-				<li><a href="Controller?page=index">Home</a></li>
-				<c:choose>
-					<c:when test="${session == null}">
-						<li><a href="Controller?page=login">Login</a></li>
-						<li><a href="Controller?page=sign-up">Sign-up</a></li>
-					</c:when>
-					<c:when test="${session != null}">
-						<li><a href="Controller?page=logout" style="color: #F24638;">Logout</a></li>
-						<li><a href="#">My Account(<c:out value="${username }"></c:out>)</a></li>
-					</c:when>
-				</c:choose>
-				<li><a href="Controller?page=showcart">cart(<c:out value="${x}"/>)</a></li>
-			</ul>
-		</nav>
-	</header>
+
+<header>
+	<h1>
+		Maxime et Martin
+	</h1>
+	<nav>
+    <ul>
+      <li><a href="Controller?page=index">Accueil</a></li>
+      <c:choose>
+        <c:when test="${session == null}">
+          <li><a href="Controller?page=login">Se connecter</a></li>
+          <li><a href="Controller?page=sign-up">S'inscrire</a></li>
+        </c:when>
+        <c:when test="${session != null}">
+          <li><a href="Controller?page=logout" style="color: #F24638;">Se déconnecter</a></li>
+          <li><a href="#">Mon Compte(<c:out value="${username }"></c:out>)</a></li>
+        </c:when>
+      </c:choose>
+      <li><a href="Controller?page=showcart">Panier (<c:out value="${x}"/>)</a></li>
+      <li><a href="Controller?page=index">Se connecter en administrateur</a></li>
+    </ul>
+  </nav>
+</header>
 	
 	<div class="tiazon-content">
  	<div class="container">
@@ -44,17 +45,17 @@
  				<div class="col-md-4"><!-- left -->
  						<div class="list-group"><!-- products -->
 						  <a href="Controller?page=all-products" class="list-group-item" style="background:  #d6d4d3;">
-						    All Products
+						    Tous les produits
 						  </a>
-						  <a href="Controller?page=mobiles" class="list-group-item">Mobiles</a>
-						  <a href="Controller?page=laptops" class="list-group-item">Laptops</a>
-						  <a href="Controller?page=clothing" class="list-group-item">Clothing</a>
-						  <a href="Controller?page=home-decor" class="list-group-item">Home Decor</a>
+						  <a href="Controller?page=mobiles" class="list-group-item">Téléphones</a>
+						  <a href="Controller?page=laptops" class="list-group-item">Ordinateurs portables</a>
+						  <a href="Controller?page=clothing" class="list-group-item">Vêtements</a>
+						  <a href="Controller?page=home-decor" class="list-group-item">Décoration d'intérieurs</a>
 						</div> 
  				</div><!-- left -->
 
  				<div class="col-md-8"><!-- right -->
- 					<h2 style="text-align: center;">Home Decor</h2><br>
+ 					<h2 style="text-align: center;">Décoration d'intérieurs</h2><br>
  					
  					<h5>Sort by(Price):</h5>
 					<form action="Controller" method="get" style="border: none;margin:0px;padding: 0px;margin-bottom: 20px;">
@@ -75,7 +76,7 @@
 		 						<img src="${product.getImage() }" class="img-responsive" ><br>
 		 						<div class="text-center"><a style="color: black;"><c:out value="${product.getNom() }"></c:out></a></div>
 		 						<p style="text-align: center;"> &#x20b9;  <c:out value="${ product.getPrix() }"></c:out></p>
-								<div class="text-center">  <a class="btn btn-primary" href="Controller?page=addtocart&action=home-decor&id=<c:out value="${product.getId()}"/>">Add to Cart</a> </div><br>		 					</div>
+								<div class="text-center">  <a class="btn btn-primary" href="Controller?page=addtocart&action=home-decor&id=<c:out value="${product.getId()}"/>">Ajouter au panier</a> </div><br>		 					</div>
  							
  						</c:if>
  						
@@ -89,8 +90,8 @@
 	
 	
 	<footer>
-		<div class="footer"> &copy; 2018 Copyright:
-	      <a href="Controller?page=index"> Tiazon.com</a>
+		<div class="footer">
+	      <a href="Controller?page=index"> Site de Maxime et Martin</a>
 	    </div>
 	</footer>
 	
