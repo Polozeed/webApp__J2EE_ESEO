@@ -17,7 +17,7 @@
 	<%@include file="topbar.jsp" %>
 
 	<div class="signup-header">
-	 	<h2>Login to <mark>E-Commerce Eseo</mark></h2>
+	 	<h2>Se connecter à <mark>E-Commerce Eseo</mark></h2>
 	</div>
 
 	 <form method="post" action="Controller">
@@ -28,18 +28,18 @@
 	 	<font color="#F24638"><c:out value="${msg }"></c:out></font>
 	 
 	 	<div class="signup-group">
-	 		<label>Username</label>
-	 		<input type="text" name="username" placeholder="Your Username" value="<c:out value="${username }"></c:out>">
+	 		<label>Identifiant</label>
+	 		<input type="text" name="username" placeholder="Identifiant" value="<c:out value="${username }"></c:out>">
 	 	</div>
 	 	<div class="signup-group">
-	 		<label>Password</label>
-	 		<input type="password" name="password" placeholder="Enter password">
+	 		<label>Mot de passe</label>
+	 		<input type="password" name="password" placeholder="Mot de passe">
 	 	</div>
 	 	<div class="signup-group">
-	 		<button type="submit" name="login" class="signup-btn">Log in</button>
+	 		<button type="submit" name="login" class="signup-btn">Se connecter</button>
 	 	</div>
 	 	<p>
-	 		New to Tiazon? <a href="Controller?page=sign-up" style="color:#F24638;">Create Account</a>
+	 		Pas encore inscrit ? <a href="Controller?page=sign-up" style="color:#F24638;">Créer un compte</a>
 	 	</p>
 	 </form>
 	<br><br><br>

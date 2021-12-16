@@ -30,13 +30,8 @@
  					<c:forEach items="${list }" var="product">
  						
  						<c:if test="${product.getCategorie() == 'clothing' }">
- 							
-		 					<div class="col-md-4">
-		 						<img src="${product.getImage() }" class="img-responsive" ><br>
-		 						<div class="text-center"><a style="color: black;"><c:out value="${product.getNom() }"></c:out></a></div>
-		 						<p style="text-align: center;"> <c:out value="${ product.getPrix() } €"></c:out></p>
-		 						<div class="text-center">  <a class="btn btn-primary" href="Controller?page=addtocart&action=clothing&id=<c:out value="${product.getId()}"/>">Ajouter</a> </div><br>
-		 					</div>
+
+							<%@include file="produits.jsp" %>
  							
  						</c:if>
  						

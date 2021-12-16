@@ -79,7 +79,7 @@ public class Controller extends HttpServlet {
 			
 			if(password_1.equals(password_2)) {
 
-				UserEntity user = new UserEntity(name,password_1,username,username,email,address,null, null);
+				UserEntity user = new UserEntity(username,password_1,username,name,email,address,null, null);
 				Object res = userDAOFactory.inscription(user);
 
 				HttpSession httpSession = request.getSession();
@@ -156,11 +156,12 @@ public class Controller extends HttpServlet {
 			ProduitEntity p = new ProduitEntity();
 			boolean check = p.check(cartlist,id);
 			
-			if(check)
-				JOptionPane.showMessageDialog(null, "Product is already added to Cart", "Info", JOptionPane.INFORMATION_MESSAGE);
+			if(check) {
+				//JOptionPane.showMessageDialog(null, "Product is already added to Cart", "Info", JOptionPane.INFORMATION_MESSAGE);
+			}
 			else {
-			cartlist.add(id);
-			JOptionPane.showMessageDialog(null, "Product successfully added to Cart", "Info", JOptionPane.INFORMATION_MESSAGE);
+				cartlist.add(id);
+				//JOptionPane.showMessageDialog(null, "Product successfully added to Cart", "Info", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
 			if(action.equals("index"))

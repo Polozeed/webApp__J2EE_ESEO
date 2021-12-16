@@ -23,20 +23,14 @@
 				<%@include file="menu.jsp" %>
 
  				<div class="col-md-8"><!-- right -->
- 					<h2 style="text-align: center;">Décoration d'intérieurs</h2><br>
+ 					<h2 style="text-align: center;">Décoration d'intérieurs</h2>
 
 					<%@include file="trie.jsp" %>
  					
  					<c:forEach items="${list }" var="product">
  						
  						<c:if test="${product.getCategorie() == 'home decor' }">
- 							
-		 					<div class="col-md-4">
-		 						<img src="${product.getImage() }" class="img-responsive" ><br>
-		 						<div class="text-center"><a style="color: black;"><c:out value="${product.getNom() }"></c:out></a></div>
-		 						<p style="text-align: center;"> <c:out value="${ product.getPrix() } €"></c:out></p>
-								<div class="text-center">  <a class="btn btn-primary" href="Controller?page=addtocart&action=home-decor&id=<c:out value="${product.getId()}"/>">Ajouter</a> </div><br>		 					</div>
- 							
+							<%@include file="produits.jsp" %>
  						</c:if>
  						
  						

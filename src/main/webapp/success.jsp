@@ -21,40 +21,24 @@
 	<%@include file="topbar.jsp" %>
 	
 	<c:choose>
-		<c:when test="${session == null}">
-				<%
-				JOptionPane.showMessageDialog(null, "Please Login first", "Info", JOptionPane.INFORMATION_MESSAGE);
-				request.getRequestDispatcher("login.jsp").forward(request, response);
-				%>
-		</c:when>
-		
 		<c:when test="${x == 0}">
-				
 				<%
-				JOptionPane.showMessageDialog(null, "Your shopping bag is empty", "Info", JOptionPane.INFORMATION_MESSAGE);
+				//JOptionPane.showMessageDialog(null, "Votre panier est vide", "Info", JOptionPane.INFORMATION_MESSAGE);
 				request.getRequestDispatcher("cart.jsp").forward(request, response);
 				%>
 		</c:when>
 		
 		<c:when test="${session != null}">
-				
-				
 				<div class="container" style="margin-top: 60px;margin-bottom: 60px;">
-					<h4>Thank you <font color="#6bb1f8"><c:out value="${name }"></c:out></font> for Shopping with us. We received your order and it will be delivered to <font color="#6bb1f8"><c:out value="${address }"></c:out></font> with in 4-5 working days.</h4>
-					<h4>Confirmation mail will be sent shortly to <font color="#6bb1f8"><c:out value="${email }"></c:out></font>.</h4>
-					
+					<h4>Merci <font color="#6bb1f8"><c:out value="${name }"></c:out></font> d'avoir passé commande. Vous serez livré à <font color="#6bb1f8"><c:out value="${address }"></c:out></font> en 3 jours ouvrés.</h4>
 					<br><br>
-					<a href="Controller?page=index"><input type="button" value="Continue Shopping" class="btn btn-warning" style="width:100%;padding:8px;font-size:16px;"></a>
+					<a href="Controller?page=index"><input type="button" value="Poursuivre mes achats" class="btn btn-warning" style="width:100%;padding:8px;font-size:16px;"></a>
 				</div>
 			
 		</c:when>
 	
 	</c:choose>
+	<%@include file="bottombar.jsp" %>
 
-	<footer style="position: fixed;bottom: 0;left: 0;width: 100%;">
-		<div class="footer"> &copy; 2018 Copyright:
-	      <a href="Controller?page=index"> Tiazon.com</a>
-	    </div>
-	</footer>
 </body>
 </html>

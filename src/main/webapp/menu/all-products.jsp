@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<c:set var="x" value="0"></c:set>
+	<c:set var="x" value="0"></c:set>
 	<c:forEach items="${cartlist }" var="i">
 		<c:set var="x" value="${x+1 }"></c:set>
 	</c:forEach>
@@ -18,8 +18,8 @@
     <%@include file="../topbar.jsp" %>
 	
 	<div class="tiazon-content">
- 	<div class="container">
- 		<div class="row">
+ 		<div class="container">
+ 			<div class="row">
 				<%@include file="menu.jsp" %>
 
  				<div class="col-md-8"><!-- right -->
@@ -28,14 +28,7 @@
 					<%@include file="trie.jsp" %>
  					
  					<c:forEach items="${list }" var="product">
- 						
- 							
-		 					<div class="col-md-4">
-		 						<img src="${product.getImage() }" class="img-responsive" ><br>
-		 						<div class="text-center"><a style="color: black;"><c:out value="${product.getNom() }"></c:out></a></div>
-		 						<p style="text-align: center;"> <c:out value="${ product.getPrix() } €"></c:out></p>
-		 						<div class="text-center">  <a class="btn btn-primary" href="Controller?page=addtocart&action=allproducts&id=<c:out value="${product.getId()}"/>">Ajouter</a> </div><br>
-		 					</div>
+						<%@include file="produits.jsp" %>
  					</c:forEach>
  					
  				</div>

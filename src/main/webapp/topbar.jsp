@@ -12,13 +12,14 @@
                 <c:when test="${session == null}">
                     <li><a href="Controller?page=login">Se connecter</a></li>
                     <li><a href="Controller?page=sign-up">S'inscrire</a></li>
+                    <li><a href="Controller?page=login">Panier (<c:out value="${x}"/>)</a></li>
                 </c:when>
                 <c:when test="${session != null}">
                     <li><a href="Controller?page=logout" style="color: #F24638;">Se déconnecter</a></li>
-                    <li><a href="#">Mon Compte(<c:out value="${username }"></c:out>)</a></li>
+                    <li><a href="Controller?page=compte">Mon Compte(<c:out value="${username}"></c:out>)</a></li>
+                    <li><a href="Controller?page=showcart">Panier (<c:out value="${x}"/>)</a></li>
                 </c:when>
             </c:choose>
-            <li><a href="Controller?page=showcart">Panier (<c:out value="${x}"/>)</a></li>
             <li><a href="admin">Se connecter en administrateur</a></li>
         </ul>
     </nav>
