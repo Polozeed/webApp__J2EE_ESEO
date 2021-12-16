@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="E-commerce-shopping-portal-using-j2ee-technologies-master:war">
-    <output-path>$PROJECT_DIR$/out/artifacts/E_commerce_shopping_portal_using_j2ee_technologies_master_war</output-path>
-    <root id="archive" name="E-commerce-shopping-portal-using-j2ee-technologies-master_war.war">
-      <element id="artifact" artifact-name="E-commerce-shopping-portal-using-j2ee-technologies-master:war exploded" />
-    </root>
-  </artifact>
-</component>
