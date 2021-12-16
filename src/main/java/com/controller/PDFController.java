@@ -1,23 +1,12 @@
 package com.controller;
 
 import java.io.*;
-import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import javax.xml.soap.Text;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-
-import com.beans.User;
 import com.beans.daoFactory.PDFfactory;
 import com.beans.daoFactory.ProduitDAOFactory;
-import com.beans.daoFactory.UserDAOFactory;
-import com.beans.entity.ProduitEntity;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
+
 
 public class PDFController extends HttpServlet {
 
@@ -25,6 +14,8 @@ public class PDFController extends HttpServlet {
     private static final int BYTES_DOWNLOAD = 1024;
     private final PDFfactory pdFfactory = new PDFfactory();
     private final ProduitDAOFactory produitDAOFactory = new ProduitDAOFactory();
+    private final PDFfactory PDFfactory = new PDFfactory();
+
     private static final long serialVersionUID = 1L;
     HttpSession session;
 
@@ -34,9 +25,11 @@ public class PDFController extends HttpServlet {
         if(page == null || page.equals("pdf")) {
             response.setContentType("text/plain");
             response.setHeader("Content-Disposition",
-                    "attachment;filename=downloadname.pdf");
+                    "attachment;filename=download.pdf");
             ServletContext ctx = getServletContext();
-            InputStream is = pdFfactory.pdfgenerate();
+            //InputStream is = pdFfactory.pdfgenerate();
+            PDFfactory.createPDF("my2.pdf");
+            InputStream is = PDFfactory.conversion();
             int read=0;
             byte[] bytes = new byte[BYTES_DOWNLOAD];
             OutputStream os = response.getOutputStream();
