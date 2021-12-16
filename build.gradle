@@ -36,6 +36,7 @@ dependencies {
     compileOnly('javax.servlet:javax.servlet-api:4.0.1')
     implementation('org.mariadb.jdbc:mariadb-java-client:2.7.4')
     implementation ('mysql:mysql-connector-java:5.1.36')
+    implementation group: 'com.itextpdf', name: 'itextpdf', version: '5.0.6'
 
     implementation('org.hibernate:hibernate-core:5.5.3.Final')
     implementation('org.hibernate.validator:hibernate-validator:6.2.0.Final')

@@ -4,8 +4,9 @@
   <welcome-file-list>
     <welcome-file>Controller</welcome-file>
   </welcome-file-list>
+
   <servlet>
-    <description></description>
+    <description>  Controller  </description>
     <display-name>Controller</display-name>
     <servlet-name>Controller</servlet-name>
     <servlet-class>com.controller.Controller</servlet-class>
@@ -14,8 +15,10 @@
     <servlet-name>Controller</servlet-name>
     <url-pattern>/Controller</url-pattern>
   </servlet-mapping>
+
+
   <servlet>
-    <description></description>
+    <description>   Admin   </description>
     <display-name>AdminController</display-name>
     <servlet-name>AdminController</servlet-name>
     <servlet-class>com.controller.AdminController</servlet-class>
@@ -24,4 +27,17 @@
     <servlet-name>AdminController</servlet-name>
     <url-pattern>/admin</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <description>  PDF  </description>
+    <display-name>PDFController</display-name>
+    <servlet-name>PDFController</servlet-name>
+    <servlet-class>com.controller.PDFController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PDFController</servlet-name>
+    <url-pattern>/pdf</url-pattern>
+  </servlet-mapping>
+
+
 </web-app>
