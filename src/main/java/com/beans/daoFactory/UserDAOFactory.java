@@ -6,6 +6,9 @@ import com.beans.entity.UserEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserDAOFactory {
 
 
@@ -71,6 +74,55 @@ public class UserDAOFactory {
         }
         return res;
     }
+
+    public UserEntity getOneUserById(int id) {
+        System.out.println("----------------// Get One User By Id //----------------");
+        UserEntity res = new UserEntity();
+        try {
+            res = hibernateSession
+                    .createQuery("FROM com.beans.entity.UserEntity p WHERE p.id = :id", UserEntity.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+            System.out.println(res.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public ArrayList<UserEntity> userEntityList() {
+
+        ArrayList<UserEntity> list = new ArrayList<UserEntity>();
+        try {
+            List<UserEntity> res = hibernateSession
+                    .createQuery("from com.beans.entity.UserEntity S", UserEntity.class)
+                    .getResultList();
+            for (UserEntity rs : res) {
+                UserEntity S = new UserEntity(rs.getLogin(),rs.getMdp(),rs.getNom(),rs.getPrenom(), rs.getMail(),rs.getAdresse(),rs.getToken(),rs.getEst_bloque());
+                System.out.println(S.toString());
+                list.add(S);
+                S = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+
+    public void updateUser(UserEntity user) {
+        try {
+            System.out.println("----------------// Update One User//----------------");
+            System.out.println(user.toString());
+            hibernateSession.merge(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            this.transactionSessionClose();
+        }
+    }
+
 
 
 }

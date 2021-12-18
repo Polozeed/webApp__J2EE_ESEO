@@ -260,18 +260,18 @@ public class Controller extends HttpServlet {
 		}
 
 		if(page.equals("pdf")) {
-			response.setHeader("Content-Disposition",
-					"attachment;filename=download.pdf");
-
-
 			UserEntity userpdf = userDAOFactory.getOneUser(session.getAttribute("login").toString());
+			String resultFileName = "Facture_E-Commerce-ESEO" + java.time.LocalDate.now().toString()+"_" + userpdf.getLogin();
+			response.setHeader("Content-Disposition",
+					"attachment;filename="+resultFileName+".pdf");
+
+
 			ArrayList listproduct = new ArrayList();
 			ArrayList<ProduitEntity> listProduitEntityToPDF = new ArrayList();
 			for (String entity:cartlist){
 				ProduitEntity res = produitDAOFactory.getOneProduit(Integer.parseInt(entity));
 				listProduitEntityToPDF.add(res);
 			}
-
 			ServletContext ctx = getServletContext();
 			PDFfactory.createPDF("my2.pdf",listProduitEntityToPDF, userpdf);
 			InputStream is = PDFfactory.conversion();

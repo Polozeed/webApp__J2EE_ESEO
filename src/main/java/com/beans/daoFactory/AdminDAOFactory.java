@@ -16,6 +16,7 @@ public class AdminDAOFactory {
     private Session hibernateSession = FactoryProvider.getFactory().openSession();
     private Transaction transaction = hibernateSession.beginTransaction();
     private final ProduitDAOFactory produitDAOFactory = new ProduitDAOFactory();
+    private final UserDAOFactory userDAOFactory = new UserDAOFactory();
 
     public AdminDAOFactory() {
     }
@@ -39,13 +40,30 @@ public class AdminDAOFactory {
         return list;
     }
 
+    public ArrayList<UserEntity> userEntityListAdmin() {
+        ArrayList list = new ArrayList();
+        list =userDAOFactory.userEntityList();
+        return list;
+    }
+
     public ProduitEntity getOneproduitEntity(int id) {
         ProduitEntity res = produitDAOFactory.getOneProduit(id);
         return res;
     }
 
+    public UserEntity getOneUserEntity(String login) {
+        UserEntity res = userDAOFactory.getOneUser(login);
+        return res;
+    }
+
+
+
     public void updateOneProduct(ProduitEntity p){
         produitDAOFactory.updateProduct(p);
+    }
+
+    public void updateOneUser(UserEntity p){
+        userDAOFactory.updateUser(p);
     }
 
     public void newOneProduct(ProduitEntity p){

@@ -15,6 +15,7 @@ import com.beans.Product;
 import com.beans.daoFactory.AdminDAOFactory;
 import com.beans.daoFactory.UserDAOFactory;
 import com.beans.entity.ProduitEntity;
+import com.beans.entity.UserEntity;
 import com.model.DB;
 
 public class AdminController extends HttpServlet {
@@ -22,6 +23,8 @@ public class AdminController extends HttpServlet {
 	private final AdminDAOFactory adminDAOFactory = new AdminDAOFactory();
 	HttpSession session;
 	ArrayList list = new ArrayList();
+	ArrayList listUtilisateur = new ArrayList();
+	String editUser = null;
 
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -64,16 +67,38 @@ public class AdminController extends HttpServlet {
 		}
 		
 		if(page.equals("index")) {
-			request.getRequestDispatcher("admin/index.jsp").forward(request, response);
-
 			try {
 				list = adminDAOFactory.produitEntityListAdmin();
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			session = request.getSession();
 			session.setAttribute("list", list);
+			request.getRequestDispatcher("admin/index.jsp").forward(request, response);
+		}
+
+		if(page.equals("listeUtilisateur")) {
+			try {
+				listUtilisateur = adminDAOFactory.userEntityListAdmin();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			session = request.getSession();
+			session.setAttribute("listUser", listUtilisateur);
+			request.getRequestDispatcher("admin/listeUtilisateur.jsp").forward(request, response);
+		}
+
+
+		if(page.equals("editUser")) {
+			editUser = request.getParameter("id");
+
+			try {
+				UserEntity u = adminDAOFactory.getOneUserEntity(editUser);
+				request.setAttribute("u", u);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			request.getRequestDispatcher("admin/editUser.jsp").forward(request, response);
 		}
 		
 		if(page.equals("addproduct")) {
@@ -115,6 +140,21 @@ public class AdminController extends HttpServlet {
 				e.printStackTrace();
 			}
 			request.getRequestDispatcher("admin/index.jsp").forward(request, response);
+		}
+
+
+
+		if(page.equals("edit_user")){
+			Boolean bloque = Boolean.valueOf(request.getParameter("bloque"));
+			UserEntity u = adminDAOFactory.getOneUserEntity(editUser);
+			u.setEst_bloque(bloque);
+			try {
+				adminDAOFactory.updateOneUser(u);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.getRequestDispatcher("admin/listeUtilisateur.jsp").forward(request, response);
 		}
 		
 		if(page.equals("add_product")){

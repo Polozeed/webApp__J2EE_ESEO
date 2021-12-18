@@ -41,9 +41,21 @@ public class UserEntity
     private String token;
 
 
-
     public UserEntity(String username, String password, String nom, String prenom, String mail, String adresse,String token, Boolean est_bloque)
     {
+        this.login = username;
+        this.mdp = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+        this.adresse = adresse;
+        this.token = token;
+        this.est_bloque = est_bloque;
+    }
+
+    public UserEntity(int id,String username, String password, String nom, String prenom, String mail, String adresse,String token, Boolean est_bloque)
+    {
+        this.id =id;
         this.login = username;
         this.mdp = password;
         this.nom = nom;

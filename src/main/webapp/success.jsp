@@ -34,6 +34,11 @@
 					<br><br>
 					<a href="Controller?page=index"><input type="button" value="Poursuivre mes achats" class="btn btn-warning" style="width:100%;padding:8px;font-size:16px;"></a>
 				</div>
+
+
+			<div>
+				<a href="Controller?page=pdf" style="color: #000000">Télécharger la facture PDF</a>
+			</div>
 			
 		</c:when>
 	

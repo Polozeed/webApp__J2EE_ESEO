@@ -84,28 +84,6 @@ public class PDFfactory {
                 }
                 printPageNumber(cb);
             }
-
-            /*for(int i=0; i < 33; i++ ){
-                if(beginPage){
-                    beginPage = false;
-                    generateLayout(doc, cb);
-                    generateHeader(doc, cb);
-                    y = 615;
-                }
-
-
-                generateDetail(doc, cb, i, y);
-
-                y = y - 15;
-                if(y < 50){
-                    printPageNumber(cb);
-                    doc.newPage();
-                    beginPage = true;
-                }
-            }
-            printPageNumber(cb);
-
-             */
         }
         catch (DocumentException dex) {
             dex.printStackTrace();
@@ -151,7 +129,7 @@ public class PDFfactory {
             cb.lineTo(500,650);
             cb.stroke();
 
-            createHeadings(cb,22,633,"Id");
+            createHeadings(cb,22,633,"Item");
             createHeadings(cb,52,633,"Intitule");
             createHeadings(cb,152,633,"Categorie");
             createHeadings(cb,432,633,"Quantite");
@@ -164,13 +142,13 @@ public class PDFfactory {
 
     private void generateHeader(Document doc, PdfContentByte cb, UserEntity user)  {
         try {
-            createHeadings(cb,200,750,"E commerce ESEO");
+            createHeadings(cb,200,750,"E-commerce ESEO");
             createHeadings(cb,200,735,"10 Bd Jean Jeanneteau, 49100 Angers");
             createHeadings(cb,200,720,user.getLogin()+ "  /" +user.getAdresse());
             createHeadings(cb,200,705,user.getMail());
             createHeadings(cb,200,690,"France");
 
-            createHeadings(cb,482,743, user.getNom() + " ," + user.getPrenom());
+            createHeadings(cb,482,743, user.getNom() + ", " + user.getPrenom());
             createHeadings(cb,482,723,"ESEO-OO" + user.getId().toString());
             createHeadings(cb,482,703,java.time.LocalDate.now().toString());
         } catch (Exception ex){
@@ -181,9 +159,9 @@ public class PDFfactory {
     private void generateDetail(Document doc, PdfContentByte cb, int index, int y,ProduitEntity entity)  {
         DecimalFormat df = new DecimalFormat("0.00");
         try {
-            createContent(cb,48,y,String.valueOf(index+1),PdfContentByte.ALIGN_RIGHT);
-            createContent(cb,52,y, "ITEM" + entity.getNom(),PdfContentByte.ALIGN_LEFT);
-            createContent(cb,152,y, "Product Description - SIZE " + entity.getCategorie(),PdfContentByte.ALIGN_LEFT);
+            createContent(cb,48,y,String.valueOf(index),PdfContentByte.ALIGN_RIGHT);
+            createContent(cb,52,y,  entity.getNom(),PdfContentByte.ALIGN_LEFT);
+            createContent(cb,152,y, entity.getCategorie(),PdfContentByte.ALIGN_LEFT);
 
             double price = Double.parseDouble(entity.getPrix());
             double extPrice = Double.parseDouble(entity.getPrix());
