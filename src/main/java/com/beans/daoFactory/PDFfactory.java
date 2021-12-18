@@ -3,7 +3,10 @@ package com.beans.daoFactory;
 
 import java.io.*;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
+import com.beans.entity.ProduitEntity;
+import com.beans.entity.UserEntity;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
@@ -32,7 +35,7 @@ public class PDFfactory {
         }
 
         pdfFilename = args[0].trim();
-        PDFfactory.createPDF(pdfFilename);
+        //PDFfactory.createPDF(pdfFilename,);
 
     }
 
@@ -41,8 +44,9 @@ public class PDFfactory {
         return in;
     }
 
-    public void createPDF (String pdfFilename){
+    public void createPDF (String pdfFilename, ArrayList<ProduitEntity> produitEntityArrayList, UserEntity user){
 
+        System.out.println(produitEntityArrayList.toString());
         Document doc = new Document();
         PdfWriter docWriter = null;
         initializeFonts();
@@ -62,15 +66,36 @@ public class PDFfactory {
 
             boolean beginPage = true;
             int y = 0;
+            int i = 0;
+            for (ProduitEntity entity:produitEntityArrayList){
+                if(beginPage){
+                    beginPage = false;
+                    generateLayout(doc, cb);
+                    generateHeader(doc, cb, user);
+                    y = 615;
+                }
+                i = i+1;
+                generateDetail(doc, cb, i, y,entity);
+                y = y - 15;
+                if(y < 50){
+                    printPageNumber(cb);
+                    doc.newPage();
+                    beginPage = true;
+                }
+                printPageNumber(cb);
+            }
 
-            for(int i=0; i < 33; i++ ){
+            /*for(int i=0; i < 33; i++ ){
                 if(beginPage){
                     beginPage = false;
                     generateLayout(doc, cb);
                     generateHeader(doc, cb);
                     y = 615;
                 }
+
+
                 generateDetail(doc, cb, i, y);
+
                 y = y - 15;
                 if(y < 50){
                     printPageNumber(cb);
@@ -79,6 +104,8 @@ public class PDFfactory {
                 }
             }
             printPageNumber(cb);
+
+             */
         }
         catch (DocumentException dex) {
             dex.printStackTrace();
@@ -107,7 +134,7 @@ public class PDFfactory {
             cb.lineTo(480,760);
             cb.stroke();
 
-            createHeadings(cb,422,743,"N. Client ");
+            createHeadings(cb,422,743,"Nom Client ");
             createHeadings(cb,422,723,"N. Commande ");
             createHeadings(cb,422,703,"Date Facture");
 
@@ -135,31 +162,31 @@ public class PDFfactory {
 
     }
 
-    private void generateHeader(Document doc, PdfContentByte cb)  {
+    private void generateHeader(Document doc, PdfContentByte cb, UserEntity user)  {
         try {
             createHeadings(cb,200,750,"E commerce ESEO");
             createHeadings(cb,200,735,"10 Bd Jean Jeanneteau, 49100 Angers");
-            createHeadings(cb,200,720,"13 Av. Morane Saulnier, 78140 Vélizy-Villacoublay");
-            createHeadings(cb,200,705,"Groupe ESEO");
+            createHeadings(cb,200,720,user.getLogin()+ "  /" +user.getAdresse());
+            createHeadings(cb,200,705,user.getMail());
             createHeadings(cb,200,690,"France");
 
-            createHeadings(cb,482,743,"ABC0001");
-            createHeadings(cb,482,723,"123456");
-            createHeadings(cb,482,703,"09/26/2012");
+            createHeadings(cb,482,743, user.getNom() + " ," + user.getPrenom());
+            createHeadings(cb,482,723,"ESEO-OO" + user.getId().toString());
+            createHeadings(cb,482,703,java.time.LocalDate.now().toString());
         } catch (Exception ex){
             ex.printStackTrace();
         }
     }
 
-    private void generateDetail(Document doc, PdfContentByte cb, int index, int y)  {
+    private void generateDetail(Document doc, PdfContentByte cb, int index, int y,ProduitEntity entity)  {
         DecimalFormat df = new DecimalFormat("0.00");
         try {
             createContent(cb,48,y,String.valueOf(index+1),PdfContentByte.ALIGN_RIGHT);
-            createContent(cb,52,y, "ITEM" + String.valueOf(index+1),PdfContentByte.ALIGN_LEFT);
-            createContent(cb,152,y, "Product Description - SIZE " + String.valueOf(index+1),PdfContentByte.ALIGN_LEFT);
+            createContent(cb,52,y, "ITEM" + entity.getNom(),PdfContentByte.ALIGN_LEFT);
+            createContent(cb,152,y, "Product Description - SIZE " + entity.getCategorie(),PdfContentByte.ALIGN_LEFT);
 
-            double price = Double.valueOf(df.format(Math.random() * 10));
-            double extPrice = price * (index+1) ;
+            double price = Double.parseDouble(entity.getPrix());
+            double extPrice = Double.parseDouble(entity.getPrix());
             createContent(cb,498,y, df.format(price),PdfContentByte.ALIGN_RIGHT);
             createContent(cb,568,y, df.format(extPrice),PdfContentByte.ALIGN_RIGHT);
         } catch (Exception ex){

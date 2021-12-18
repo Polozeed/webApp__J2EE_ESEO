@@ -1,6 +1,7 @@
 package com.beans.daoFactory;
 
 import com.beans.FactoryProvider;
+import com.beans.entity.ProduitEntity;
 import com.beans.entity.UserEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -54,6 +55,21 @@ public class UserDAOFactory {
             e.printStackTrace();
         }
         return status;
+    }
+
+    public UserEntity getOneUser(String login) {
+        System.out.println("----------------// Get One User //----------------");
+        UserEntity res = new UserEntity();
+        try {
+            res = hibernateSession
+                    .createQuery("FROM com.beans.entity.UserEntity p WHERE p.login = :login", UserEntity.class)
+                    .setParameter("login", login)
+                    .getSingleResult();
+            System.out.println(res.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 
 

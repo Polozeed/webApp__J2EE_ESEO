@@ -30,7 +30,7 @@
 		
 		<c:when test="${session != null}">
 				<div class="container" style="margin-top: 60px;margin-bottom: 60px;">
-					<h4>Merci <font color="#6bb1f8"><c:out value="${name }"></c:out></font> d'avoir passé commande. Vous serez livré à <font color="#6bb1f8"><c:out value="${address }"></c:out></font> en 3 jours ouvrés.</h4>
+					<h4>Merci <font color="#6bb1f8"><c:out value="${login }"></c:out></font> d'avoir passé commande. Vous serez livré à <font color="#6bb1f8"><c:out value="${adress }"></c:out></font> en 3 jours ouvrés.</h4>
 					<br><br>
 					<a href="Controller?page=index"><input type="button" value="Poursuivre mes achats" class="btn btn-warning" style="width:100%;padding:8px;font-size:16px;"></a>
 				</div>
