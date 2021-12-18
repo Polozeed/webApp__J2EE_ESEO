@@ -1,22 +1,16 @@
 package com.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
-
-import com.beans.Product;
 import com.beans.daoFactory.AdminDAOFactory;
-import com.beans.daoFactory.UserDAOFactory;
 import com.beans.entity.ProduitEntity;
 import com.beans.entity.UserEntity;
-import com.model.DB;
+
 
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,21 +33,22 @@ public class AdminController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String page = request.getParameter("page");
+
+
+		//----------------------------------------// Formulaire Admin Login //------------------------------------------
 		if(page.equals("admin-login-form")) {
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			if(username.equals("admin") && password.equals("admin@1234")) {
 				request.getRequestDispatcher("admin/index.jsp").forward(request, response);
-
 			}
 			else {
 				request.setAttribute("msg", "Invalid Crediantials");
 				request.setAttribute("username", username);
 				request.getRequestDispatcher("admin/login.jsp").forward(request, response);
-
 			}
 		}
-		
+		//----------------------------------------// Suppression Produit //---------------------------------------------
 		if(page.equals("delete")) {
 			String id = request.getParameter("id");
 			System.out.println("id===> res : " + id);
@@ -63,9 +58,9 @@ public class AdminController extends HttpServlet {
 				e.printStackTrace();
 			}
 			request.getRequestDispatcher("admin/index.jsp").forward(request, response);
-
 		}
-		
+
+		//----------------------------------------// JSP Index //-------------------------------------------------------
 		if(page.equals("index")) {
 			try {
 				list = adminDAOFactory.produitEntityListAdmin();
@@ -77,6 +72,7 @@ public class AdminController extends HttpServlet {
 			request.getRequestDispatcher("admin/index.jsp").forward(request, response);
 		}
 
+		//----------------------------------------// JSP liste Utilisateur //-------------------------------------------
 		if(page.equals("listeUtilisateur")) {
 			try {
 				listUtilisateur = adminDAOFactory.userEntityListAdmin();
@@ -88,10 +84,9 @@ public class AdminController extends HttpServlet {
 			request.getRequestDispatcher("admin/listeUtilisateur.jsp").forward(request, response);
 		}
 
-
+		//----------------------------------------// JSP Edit User//---------------------------------------------
 		if(page.equals("editUser")) {
 			editUser = request.getParameter("id");
-
 			try {
 				UserEntity u = adminDAOFactory.getOneUserEntity(editUser);
 				request.setAttribute("u", u);
@@ -100,11 +95,14 @@ public class AdminController extends HttpServlet {
 			}
 			request.getRequestDispatcher("admin/editUser.jsp").forward(request, response);
 		}
-		
+
+		//----------------------------------------// JSP Add Produit //---------------------------------------------
 		if(page.equals("addproduct")) {
 			request.getRequestDispatcher("admin/addProduct.jsp").forward(request, response);
 		}
-		
+
+
+
 		if(page.equals("edit")) {
 			String id = request.getParameter("id");
 			try {
@@ -113,10 +111,10 @@ public class AdminController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 			request.getRequestDispatcher("admin/editProduct.jsp").forward(request, response);
 		}
-		
+
+		//----------------------------------------// Formulaire Edition Produit //---------------------------------------------
 		if(page.equals("edit_product")){
 			String id = request.getParameter("id");
 			String name = request.getParameter("nom");
@@ -124,7 +122,6 @@ public class AdminController extends HttpServlet {
 			String category = request.getParameter("categorie");
 			String featured = request.getParameter("quantite");
 			String image = request.getParameter("image");
-
 			ProduitEntity p = new ProduitEntity();
 			p.setId(Integer.parseInt(id));
 			p.setNom(name);
@@ -142,8 +139,7 @@ public class AdminController extends HttpServlet {
 			request.getRequestDispatcher("admin/index.jsp").forward(request, response);
 		}
 
-
-
+		//----------------------------------------// Formulaire Edition User //----------------------------------------
 		if(page.equals("edit_user")){
 			Boolean bloque = Boolean.valueOf(request.getParameter("bloque"));
 			UserEntity u = adminDAOFactory.getOneUserEntity(editUser);
@@ -156,14 +152,14 @@ public class AdminController extends HttpServlet {
 			}
 			request.getRequestDispatcher("admin/listeUtilisateur.jsp").forward(request, response);
 		}
-		
+
+		//----------------------------------------// Formulaire Ajout Produit //----------------------------------------
 		if(page.equals("add_product")){
 			String name = request.getParameter("nom");
 			String price = request.getParameter("prix");
 			String category = request.getParameter("categorie");
 			String featured = request.getParameter("quantite");
 			String image = request.getParameter("image");
-
 			ProduitEntity p = new ProduitEntity();
 			p.setNom(name);
 			p.setPrix(price);
@@ -178,5 +174,4 @@ public class AdminController extends HttpServlet {
 			request.getRequestDispatcher("admin/index.jsp").forward(request, response);
 		}
 	}
-
 }
