@@ -17,54 +17,51 @@
 <%@include file="topbar.jsp" %>
 
 <div class="signup-header">
-  <h2>Login to <mark>Tiazon</mark></h2>
+  <h2>Information du compte</h2>
 </div>
 
 <form method="post" action="Controller">
 
-  <input type="hidden" name="page" value="login-form">
+  <input type="hidden" name="page" value="info-compte">
 
   <!-- Validations errors -->
-  <font color="#F24638"><c:out value="${msg }"></c:out></font>
+  <span style="color: #F24638; "><c:out value="${msg }"></c:out></span>
 
   <div class="signup-group">
     <label>Nom</label>
-    <input type="text" name="name" placeholder="Nom" value="<c:out value="${firstname }"></c:out>" required>
+    <input type="text" name="name" placeholder="Nom" value="<c:out value="${firstname }"></c:out>">
+    <label>Prénom</label>
+    <input type="text" name="name" placeholder="Prénom" value="<c:out value="${name }"></c:out>">
   </div>
   <div class="signup-group">
-    <label>Prénom</label>
-    <input type="text" name="name" placeholder="Prénom" value="<c:out value="${name }"></c:out>" required>
+
   </div>
   <div class="signup-group">
     <label>Email</label>
-    <input type="email" name="email" placeholder="Adresse email" value="<c:out value="${email }"></c:out>" required>
+    <input type="email" name="email" placeholder="Adresse email" value="<c:out value="${email }"></c:out>">
   </div>
   <div class="signup-group">
     <label>Identifiant</label>
-    <input type="text" name="username" placeholder="Identifiant" value="<c:out value="${username }"></c:out>" required>
+    <input type="text" name="username" placeholder="Identifiant" value="<c:out value="${username }"></c:out>">
   </div>
 
   <div class="signup-group">
     <label>Adresse de livraison</label>
-    <input type="text" name="address" placeholder="Adresse" value="<c:out value="${address }"></c:out>" required>
+    <input type="text" name="address" placeholder="Adresse" value="<c:out value="${address }"></c:out>">
   </div>
 
-  <div class="signup-group">
-    <label>Nouveau mot de passe</label>
-    <input type="password" name="password_1" placeholder="Entrer votre mot de passe" required>
-  </div>
-  <div class="signup-group">
-    <label>Confirmer le mot de passe</label>
-    <input type="password" name="password_2" placeholder="Confirmer le mot de passe" required>
+  <div>
+    <a href="Controller?page=historique" style="color: #000000">Consulter votre historique des commandes</a>
   </div>
 
-  <div class="signup-group">
-    <button type="submit" name="majInfo" class="signup-btn">Mettre à jour les informations</button>
+  <div>
+    <a href="Controller?page=changement-mdp" style="color: #000000">Changer votre mot de passe</a>
   </div>
 
-  <div class="signup-group">
-    <button type="submit" name="historique" class="signup-btn">Consulter l'historique des commandes</button>
+  <div class="te">
+    <button type="submit" name="majInfo" class="signup-btn" >Mettre à jour les informations</button>
   </div>
+
 </form>
 <br><br><br>
 <%@include file="bottombar.jsp" %>

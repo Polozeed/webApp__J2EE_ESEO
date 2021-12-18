@@ -25,7 +25,7 @@
 	 <input type="hidden" name="page" value="sign-up-form">
 	 
 	 	<!-- Validations errors -->
-	 	<font color="#F24638"><c:out value="${msg }"></c:out></font>
+	 	<span style="color: #F24638; "><c:out value="${msg }"></c:out></span>
 	 	
 	 	
 	 	<div class="signup-group">

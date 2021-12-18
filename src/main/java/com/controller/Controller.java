@@ -251,6 +251,14 @@ public class Controller extends HttpServlet {
 			request.getRequestDispatcher("compte.jsp").forward(request, response);
 		}
 
+		if(page.equals("historique")) {
+			request.getRequestDispatcher("historique.jsp").forward(request, response);
+		}
+
+		if(page.equals("changement-mdp")) {
+			request.getRequestDispatcher("changement-mdp.jsp").forward(request, response);
+		}
+
 		if(page.equals("pdf")) {
 			response.setHeader("Content-Disposition",
 					"attachment;filename=download.pdf");
