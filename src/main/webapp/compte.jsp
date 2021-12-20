@@ -4,7 +4,7 @@
 <html>
 <head>
   <meta charset="ISO-8859-1">
-  <title>Login page</title>
+  <title>Information compte</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -22,14 +22,16 @@
 
 <form method="post" action="Controller">
 
-  <input type="hidden" name="page" value="info-compte">
+  <input type="hidden" name="page" value="compte-form">
 
-  <!-- Validations errors -->
-  <span style="color: #F24638; "><c:out value="${msg }"></c:out></span>
+  <div class="signup-group">
+    <label>Identifiant</label>
+    <input type="text" name="username" placeholder="Identifiant" value="<c:out value="${username }"></c:out>">
+  </div>
 
   <div class="signup-group">
     <label>Nom</label>
-    <input type="text" name="name" placeholder="Nom" value="<c:out value="${firstname }"></c:out>">
+    <input type="text" name="firstname" placeholder="Nom" value="<c:out value="${firstname }"></c:out>">
     <label>Prénom</label>
     <input type="text" name="name" placeholder="Prénom" value="<c:out value="${name }"></c:out>">
   </div>
@@ -39,10 +41,6 @@
   <div class="signup-group">
     <label>Email</label>
     <input type="email" name="email" placeholder="Adresse email" value="<c:out value="${email }"></c:out>">
-  </div>
-  <div class="signup-group">
-    <label>Identifiant</label>
-    <input type="text" name="username" placeholder="Identifiant" value="<c:out value="${username }"></c:out>">
   </div>
 
   <div class="signup-group">

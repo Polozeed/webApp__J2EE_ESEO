@@ -72,10 +72,9 @@ public class Controller extends HttpServlet {
 		}else {
 			doPost(request, response);
 		}
-			 session = request.getSession();
-			 session.setAttribute("cartlist", cartlist);
-			 session.setAttribute("list", list);
-
+			session = request.getSession();
+			session.setAttribute("cartlist", cartlist);
+			session.setAttribute("list", list);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 
 	}
@@ -106,11 +105,11 @@ public class Controller extends HttpServlet {
 				HttpSession httpSession = request.getSession();
 				httpSession.setAttribute("notification","Inscription Réussite !");
 				request.setAttribute("username", username);
-				request.setAttribute("msg", "Account created successfully, Please Login!");
+				request.setAttribute("msg", "Création du compte réussi, connectez-vous !");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 
 			}else {
-				request.setAttribute("msg", "The two passwords do not match");
+				request.setAttribute("msg", "Les deux mots de passe ne correspondent pas");
 				request.setAttribute("name", name);
 				request.setAttribute("address", address);
 				request.setAttribute("email", email);
@@ -134,7 +133,7 @@ public class Controller extends HttpServlet {
 
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}else {
-				request.setAttribute("msg", "Invalid Crediantials");
+				request.setAttribute("msg", "Identifiant ou mot de passe incorrect");
 				request.setAttribute("username", username);
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
@@ -248,7 +247,32 @@ public class Controller extends HttpServlet {
 		}
 
 		if(page.equals("compte")) {
+			UserEntity userAccount = userDAOFactory.getOneUser(session.getAttribute("login").toString());
+			request.setAttribute("username", userAccount.getLogin());
+			request.setAttribute("firstname", userAccount.getNom());
+			request.setAttribute("name", userAccount.getPrenom());
+			request.setAttribute("email", userAccount.getMail());
+			request.setAttribute("address", userAccount.getAdresse());
 			request.getRequestDispatcher("compte.jsp").forward(request, response);
+		}
+
+		if(page.equals("compte-form")) {
+			String name = request.getParameter("name");
+			String firstname = request.getParameter("firstname");
+			String email = request.getParameter("email");
+			String address = request.getParameter("address");
+			UserEntity userAccount = userDAOFactory.getOneUser(session.getAttribute("login").toString());
+			userAccount.setNom(firstname);
+			userAccount.setPrenom(name);
+			userAccount.setMail(email);
+			userAccount.setAdresse(address);
+			try {
+				userDAOFactory.updateUser(userAccount);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 
 		if(page.equals("historique")) {
@@ -257,6 +281,24 @@ public class Controller extends HttpServlet {
 
 		if(page.equals("changement-mdp")) {
 			request.getRequestDispatcher("changement-mdp.jsp").forward(request, response);
+		}
+
+		if(page.equals("changement-mdp-form")) {
+			String password_1 = request.getParameter("mdp1");
+			String password_2 = request.getParameter("mdp2");
+			if(password_1.equals(password_2)) {
+				UserEntity userAccount = userDAOFactory.getOneUser(session.getAttribute("login").toString());
+				userAccount.setMdp(password_1);
+				try {
+					userDAOFactory.updateUser(userAccount);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else {
+				request.setAttribute("msg", "Les deux mots de passe ne correspondent pas");
+			}
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 
 		if(page.equals("pdf")) {

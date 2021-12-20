@@ -9,6 +9,10 @@
 </head>
 <body>
 
+<c:set var="x" value="0"></c:set>
+<c:forEach items="${cartlist }" var="i">
+    <c:set var="x" value="${x+1 }"></c:set>
+</c:forEach>
 
 <%@include file="topbar.jsp" %>
 
@@ -18,10 +22,10 @@
 
 <form method="post" action="Controller">
 
-    <input type="hidden" name="page" value="login-form">
+    <input type="hidden" name="page" value="changement-mdp-form">
 
     <!-- Validations errors -->
-    <font color="#F24638"><c:out value="${msg }"></c:out></font>
+    <span style="color: #F24638; "><c:out value="${msg }"></c:out></span>
 
     <div class="signup-group">
         <label>Mot de passe</label>
@@ -33,7 +37,7 @@
     </div>
     <div class="signup-group">
         <button type="submit" name="valider" class="signup-btn">Valider</button>
-        <button type="submit" name="annuler" class="signup-btn">Annuler</button>
+        <a href='Controller?page=index' style="color: #000000">Annuler</a>
     </div>
 
 </form>

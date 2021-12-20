@@ -33,3 +33,8 @@
 /.gradle/checksums/sha1-checksums.bin
 /build/classes/java/main/com/beans/daoFactory/PDFfactory.class
 /build/classes/java/main/com/controller/PDFController.class
+/.gradle/7.1/executionHistory/executionHistory.bin
+/.gradle/7.1/fileHashes/fileHashes.lock
+/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+/.gradle/buildOutputCleanup/cache.properties
+/.gradle/buildOutputCleanup/outputFiles.bin
