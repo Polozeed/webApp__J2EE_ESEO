@@ -38,3 +38,10 @@
 /.gradle/buildOutputCleanup/buildOutputCleanup.lock
 /.gradle/buildOutputCleanup/cache.properties
 /.gradle/buildOutputCleanup/outputFiles.bin
+/.gradle/7.1/executionHistory/executionHistory.bin
+/.gradle/7.1/executionHistory/executionHistory.lock
+/.gradle/7.1/fileHashes/fileHashes.bin
+/.gradle/7.1/fileHashes/fileHashes.lock
+/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+/build/classes/java/main/com/beans/daoFactory/HistoriqueCommandeDAOFactory.class
+/build/classes/java/main/com/beans/entity/HistoriqueCommandeEntity.class

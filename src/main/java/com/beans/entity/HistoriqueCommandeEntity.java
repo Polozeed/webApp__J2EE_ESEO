@@ -68,4 +68,15 @@ public class HistoriqueCommandeEntity {
     public int getId_produit() {return id_produit;}
 
     public void setId_produit(int id_produit) {this.id_produit = id_produit;}
+
+    @Override
+    public String toString() {
+        return "ProduitEntity{" +
+                "id=" + id_hist_commande +
+                ", dateheure='" + dateheure + '\'' +
+                ", id_client=" + id_client +
+                ", id_produit='" + id_produit + '\'' +
+                ", quantite='" + quantite + '\'' +
+                '}';
+    }
 }

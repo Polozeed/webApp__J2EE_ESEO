@@ -19,9 +19,11 @@ import com.beans.FactoryProvider;
 import com.beans.Product;
 
 import com.beans.User;
+import com.beans.daoFactory.HistoriqueCommandeDAOFactory;
 import com.beans.daoFactory.PDFfactory;
 import com.beans.daoFactory.ProduitDAOFactory;
 import com.beans.daoFactory.UserDAOFactory;
+import com.beans.entity.HistoriqueCommandeEntity;
 import com.beans.entity.ProduitEntity;
 import com.beans.entity.UserEntity;
 
@@ -32,8 +34,10 @@ public class Controller extends HttpServlet {
 
 	private final UserDAOFactory userDAOFactory = new UserDAOFactory();
 	private final ProduitDAOFactory produitDAOFactory = new ProduitDAOFactory();
+	private final HistoriqueCommandeDAOFactory historiqueDAOFactory = new HistoriqueCommandeDAOFactory();
 	private static final long serialVersionUID = 1L;
 	ArrayList<ProduitEntity> list = new ArrayList<ProduitEntity>();
+	ArrayList<HistoriqueCommandeEntity> historiqueList = new ArrayList<HistoriqueCommandeEntity>();
 	static ArrayList<String> cartlist = new ArrayList<>();
 	ArrayList<User> userList = new ArrayList<>();
 	HttpSession session;
@@ -276,6 +280,9 @@ public class Controller extends HttpServlet {
 		}
 
 		if(page.equals("historique")) {
+			UserEntity userAccount = userDAOFactory.getOneUser(session.getAttribute("login").toString());
+			historiqueList = historiqueDAOFactory.getHistorique(userAccount.getId());
+			System.out.println("Historique : " + historiqueList);
 			request.getRequestDispatcher("historique.jsp").forward(request, response);
 		}
 

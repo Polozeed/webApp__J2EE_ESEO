@@ -27,8 +27,8 @@ public class HistoriqueCommandeDAOFactory {
         ArrayList<HistoriqueCommandeEntity> list = new ArrayList<HistoriqueCommandeEntity>();
         try {
             List<HistoriqueCommandeEntity> res = hibernateSession
-                    .createQuery("FROM com.beans.entity.HistoriqueCommandeEntity hc WHERE hc.id = :id", HistoriqueCommandeEntity.class)
-                    .setParameter("id", id_client)
+                    .createQuery("FROM com.beans.entity.HistoriqueCommandeEntity hc WHERE hc.id_client = :id_client", HistoriqueCommandeEntity.class)
+                    .setParameter("id_client", id_client)
                     .getResultList();
             for (HistoriqueCommandeEntity rs : res) {
                 HistoriqueCommandeEntity hc = new HistoriqueCommandeEntity(rs.getDateheure(), rs.getQuantite(), rs.getId_client(), rs.getId_produit());

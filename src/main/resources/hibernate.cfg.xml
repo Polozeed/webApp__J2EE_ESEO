@@ -12,6 +12,7 @@
         <property name="show_sql">true</property>
         <mapping class="com.beans.entity.UserEntity"/>
         <mapping class="com.beans.entity.ProduitEntity"/>
+        <mapping class="com.beans.entity.HistoriqueCommandeEntity"/>
 
 
     </session-factory>

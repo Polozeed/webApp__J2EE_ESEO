@@ -22,7 +22,6 @@ public class UserDAOFactory {
     public void transactionSessionClose(){
         System.out.println("Transaction close");
         transaction.commit();
-        //hibernateSession.close();
     }
 
     public Object inscription(UserEntity user){
