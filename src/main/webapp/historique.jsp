@@ -20,6 +20,7 @@
 <div class="container">
     <table>
         <tr>
+            <th>Date de la commande</th>
             <th>Nom du produit</th>
             <th>Prix</th>
             <th>Quantité</th>
@@ -28,18 +29,19 @@
     </table>
 
     <c:set var="total" value="0"></c:set>
-    <c:forEach items="${cartlist }" var="i">
+    <c:forEach items="${historique}" var="Hist">
         <c:forEach items="${list }" var="Product">
-            <c:if test="${i == Product.getId() }">
+            <c:if test="${Hist.getId_produit() == Product.getId() }">
 
                 <c:set var="total" value="${total + Product.getPrix() }"></c:set>
 
                 <table style="table-layout: fixed;width: 100%;">
                     <tr>
+                        <td style="width: 50px;"><c:out value="${Hist.getDateheure()}"/></td>
                         <td style="width: 100px;"><img src="${Product.getImage()}" height="100" width="150" >  (<c:out value="${Product.getNom()}"/>)</td>
                         <td style="width: 50px;"><c:out value="${Product.getPrix()}"/></td>
-                        <td style="width: 100px;"><c:out value="${Product.getQuantite()}"/></td>
-                        <td style="width: 100px;">Catégorie</td>
+                        <td style="width: 100px;"><c:out value="${Hist.getQuantite()}"/></td>
+                        <td style="width: 100px;"><c:out value="${Product.getCategorie()}"/></td>
                     </tr>
                 </table>
             </c:if>

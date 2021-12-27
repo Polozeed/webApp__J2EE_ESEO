@@ -37,9 +37,9 @@ public class Controller extends HttpServlet {
 	private final HistoriqueCommandeDAOFactory historiqueDAOFactory = new HistoriqueCommandeDAOFactory();
 	private static final long serialVersionUID = 1L;
 	ArrayList<ProduitEntity> list = new ArrayList<ProduitEntity>();
-	ArrayList<HistoriqueCommandeEntity> historiqueList = new ArrayList<HistoriqueCommandeEntity>();
+	ArrayList<HistoriqueCommandeEntity> historiqueList = new ArrayList<>();
 	static ArrayList<String> cartlist = new ArrayList<>();
-	ArrayList<User> userList = new ArrayList<>();
+	ArrayList<UserEntity> userList = new ArrayList<>();
 	HttpSession session;
 
 
@@ -283,6 +283,9 @@ public class Controller extends HttpServlet {
 			UserEntity userAccount = userDAOFactory.getOneUser(session.getAttribute("login").toString());
 			historiqueList = historiqueDAOFactory.getHistorique(userAccount.getId());
 			System.out.println("Historique : " + historiqueList);
+			System.out.println("CartList : " + cartlist);
+			System.out.println("List : " + list);
+			request.setAttribute("historique", historiqueList);
 			request.getRequestDispatcher("historique.jsp").forward(request, response);
 		}
 

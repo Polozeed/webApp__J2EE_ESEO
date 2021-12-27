@@ -2,7 +2,6 @@ package com.beans.daoFactory;
 
 import com.beans.FactoryProvider;
 import com.beans.entity.HistoriqueCommandeEntity;
-import com.beans.entity.ProduitEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -31,7 +30,7 @@ public class HistoriqueCommandeDAOFactory {
                     .setParameter("id_client", id_client)
                     .getResultList();
             for (HistoriqueCommandeEntity rs : res) {
-                HistoriqueCommandeEntity hc = new HistoriqueCommandeEntity(rs.getDateheure(), rs.getQuantite(), rs.getId_client(), rs.getId_produit());
+                HistoriqueCommandeEntity hc = new HistoriqueCommandeEntity(rs.getId_hist_commande(), rs.getDateheure(), rs.getQuantite(), rs.getId_client(), rs.getId_produit());
                 System.out.println(hc.toString());
                 list.add(hc);
                 hc = null;
