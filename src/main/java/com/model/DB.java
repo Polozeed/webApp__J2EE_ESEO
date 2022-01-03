@@ -98,13 +98,13 @@ public class DB {
 			String name= rs.getString("nom");
 			String categorie= rs.getString("categorie");
 			String prix= rs.getString("prix");
-			String quantite= rs.getString("quantite");
+			String en_tendance = rs.getString("quantite");
 			String image= rs.getString("image");
 
 
 			ProduitEntity p = new ProduitEntity();
 			p.setCategorie(categorie);
-			p.setQuantite(quantite);
+			p.setEnTendance(en_tendance);
 			p.setId(id);
 			p.setImage(image);
 			p.setNom(name);
@@ -172,7 +172,8 @@ public class DB {
 			p.setNom(rst.getString("nom"));
 			p.setPrix(rst.getString("prix"));
 			p.setCategorie(rst.getString("categorie"));
-			p.setQuantite(rst.getString("quantite"));
+			p.setQuantite(rst.getInt("quantite"));
+			p.setEnTendance(rst.getString("en_tendance"));
 			p.setImage(rst.getString("image"));
 		}
 		dbClose();
@@ -186,7 +187,8 @@ public class DB {
 		st.setString(1, p.getNom());
 		st.setString(2, p.getPrix());
 		st.setString(3, p.getCategorie());
-		st.setString(4, p.getQuantite());
+		st.setInt(3, p.getQuantite());
+		st.setString(4, p.getEnTendance());
 		st.setInt(5, p.getId());
 		st.executeUpdate();
 		dbClose();
@@ -195,13 +197,14 @@ public class DB {
 
 	public void addProduct(ProduitEntity p) throws SQLException {
 		dbConnect();
-		String sql = "Insert into product(name,price,category,featured,image) values(?,?,?,?,?)";
+		String sql = "Insert into product(name,price,category,quantite,featured,image) values(?,?,?,?,?,?)";
 		PreparedStatement st = con.prepareStatement(sql);
 		
 		st.setString(1, p.getNom());
 		st.setString(2, p.getPrix());
 		st.setString(3, p.getCategorie());
-		st.setString(4, p.getQuantite());
+		st.setInt(3, p.getQuantite());
+		st.setString(4, p.getEnTendance());
 		st.setString(5, p.getImage());
 		st.executeUpdate();
 		dbClose();

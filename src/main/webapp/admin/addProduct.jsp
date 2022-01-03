@@ -33,10 +33,13 @@
 			<label>Categorie</label>
 			<input type="text" name="categorie"  required>
 	 	</div>
-	 	
+		 <div class="signup-group">
+			 <label>Quantité en stock</label>
+			 <input type="text" name="quantite" placeholder="Quantite en stock" required>
+		 </div>
 	 	<div class="signup-group">
 	 		<label>En tendance</label>
-	 		<input type="text" name="quantite" placeholder="yes/no" required>
+	 		<input type="text" name="en_tendance" placeholder="yes/no" required>
 	 	</div>
 	 	<div class="signup-group">
 	 		 <label for="fileupload"> Select an image to upload</label>

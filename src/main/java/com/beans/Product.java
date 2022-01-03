@@ -10,11 +10,9 @@ public class Product implements Comparable<Product> {
 	private String name;
 	private String price;
 	private String category;
+	private int quantite;
 	private String featured;
 	private String image;
-
-
-
 
 	public int getId() {
 		return id;
@@ -40,11 +38,15 @@ public class Product implements Comparable<Product> {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getFeatured() {
+	public String getEnTendance() {
 		return featured;
 	}
-	public void setFeatured(String featured) {
+	public void setEnTendance(String featured) {
 		this.featured = featured;
+	}
+	public int getQuantite() {return quantite;}
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
 	}
 	public String getImage() {
 		return image;
@@ -54,7 +56,7 @@ public class Product implements Comparable<Product> {
 	}
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", category=" + category + ", featured="
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", category=" + category + ", quantite=" + quantite + ", featured="
 				+ featured + ", image=" + image + "]";
 	}
 	public boolean check(ArrayList<String> cartlist, String id2) {

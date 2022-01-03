@@ -9,7 +9,7 @@
             <li><a href="admin?page=index">Accueil</a></li>
             <li><a href="admin?page=addproduct">Ajouter un produit</a></li>
             <li><a href="admin?page=listeUtilisateur">Liste Utilisateur</a></li>
-            <li><a href="#">Pages</a></li>
+            <li><a href="Controller?page=logout">Se déconnecter</a></li>
         </ul>
     </nav>
 </header>

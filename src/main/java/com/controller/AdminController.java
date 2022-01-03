@@ -120,14 +120,16 @@ public class AdminController extends HttpServlet {
 			String name = request.getParameter("nom");
 			String price = request.getParameter("prix");
 			String category = request.getParameter("categorie");
-			String featured = request.getParameter("quantite");
+			int quantite = Integer.parseInt(request.getParameter("quantite"));
+			String featured = request.getParameter("en_tendance");
 			String image = request.getParameter("image");
 			ProduitEntity p = new ProduitEntity();
 			p.setId(Integer.parseInt(id));
 			p.setNom(name);
 			p.setPrix(price);
 			p.setCategorie(category);
-			p.setQuantite(featured);
+			p.setEnTendance(featured);
+			p.setQuantite(quantite);
 			p.setImage("img/"+image);
 			try {
 				adminDAOFactory.updateOneProduct(p);
@@ -158,13 +160,15 @@ public class AdminController extends HttpServlet {
 			String name = request.getParameter("nom");
 			String price = request.getParameter("prix");
 			String category = request.getParameter("categorie");
-			String featured = request.getParameter("quantite");
+			int quantite = Integer.parseInt(request.getParameter("quantite"));
+			String featured = request.getParameter("en_tendance");
 			String image = request.getParameter("image");
 			ProduitEntity p = new ProduitEntity();
 			p.setNom(name);
 			p.setPrix(price);
 			p.setCategorie(category);
-			p.setQuantite(featured);
+			p.setQuantite(quantite);
+			p.setEnTendance(featured);
 			p.setImage("img/"+image);
 			try {
 				adminDAOFactory.newOneProduct(p);

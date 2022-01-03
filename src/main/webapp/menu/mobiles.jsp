@@ -15,6 +15,8 @@
 		<c:set var="x" value="${x+1 }"></c:set>
 	</c:forEach>
 
+	<%! String nomMenu = "mobiles"; %>
+
 	<%@include file="../topbar.jsp" %>
 	
 	<div class="tiazon-content">
@@ -25,13 +27,42 @@
  				<div class="col-md-8"><!-- right -->
  					<h2 style="text-align: center;">Téléphones</h2><br>
 
-					<%@include file="trie.jsp" %>
+					<!-- Trie appelé sur les jsp du menu -->
+					<h5>Trier par prix :</h5>
+					<form action="Controller" method="get" style="border: none;margin:0px;padding: 0px;margin-bottom: 20px;">
+						<input type="hidden" name="page" value="price-sort">
+						<input type="hidden" name="action" value="mobiles">
+						<select name="sort">
+							<option value="low-to-high">Croissant</option>
+							<option value="high-to-high">Décroissant</option>
+						</select>
+						<input type="submit" value="Valider">
+					</form>
  					
  					<c:forEach items="${list }" var="product">
  						
  						<c:if test="${product.getCategorie() == 'mobiles' }">
 
-							<%@include file="produits.jsp" %>
+							<!-- Afficher les produits correspondant au menu sélectionné -->
+							<div class="col-md-4">
+								<img src="${product.getImage() }" class="img-responsive" >
+								<br>
+								<div class="text-center"><a style="color: black;"><c:out value="${product.getNom() }"></c:out></a></div>
+								<p style="text-align: center;"> <c:out value="${ product.getPrix() } €"></c:out></p>
+								<c:choose>
+									<c:when test="${session == null}">
+										<div class="text-center">
+											<a class="btn btn-primary" href="Controller?page=login"/>Ajouter</a>
+										</div>
+									</c:when>
+									<c:when test="${session != null}">
+										<div class="text-center">
+											<a class="btn btn-primary" href="Controller?page=addtocart&action=mobiles&id=<c:out value="${product.getId()}"/>">Ajouter</a>
+										</div>
+									</c:when>
+								</c:choose>
+								<br>
+							</div>
  							
  						</c:if>
  						

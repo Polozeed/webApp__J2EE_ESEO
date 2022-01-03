@@ -39,6 +39,10 @@
 	 		<input type="text" name="quantite" value="<c:out value="${p.getQuantite() }"></c:out>" required>
 	 	</div>
 
+		 <div class="signup-group">
+			 <label>En tendance</label>
+			 <input type="text" name="en_tendance" value="<c:out value="${p.getEnTendance() }"></c:out>" required>
+		 </div>
 
 	 	<div class="signup-group">
 	 		<label>Image</label>

@@ -32,7 +32,7 @@ public class ProduitDAOFactory {
                     .createQuery("from com.beans.entity.ProduitEntity P", ProduitEntity.class)
                     .getResultList();
             for (ProduitEntity rs : res) {
-                ProduitEntity p = new ProduitEntity(rs.getId(), rs.getNom(), rs.getPrix(), rs.getQuantite(), rs.getCategorie(), rs.getImage());
+                ProduitEntity p = new ProduitEntity(rs.getId(), rs.getNom(), rs.getPrix(), rs.getQuantite(), rs.getEnTendance(), rs.getCategorie(), rs.getImage());
                 System.out.println(p.toString());
                 list.add(p);
                 p = null;

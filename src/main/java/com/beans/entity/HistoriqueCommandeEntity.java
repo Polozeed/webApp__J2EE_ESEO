@@ -71,7 +71,7 @@ public class HistoriqueCommandeEntity {
 
     @Override
     public String toString() {
-        return "ProduitEntity{" +
+        return "HistoriqueCommandeEntity{" +
                 "id=" + id_hist_commande +
                 ", dateheure='" + dateheure + '\'' +
                 ", id_client=" + id_client +

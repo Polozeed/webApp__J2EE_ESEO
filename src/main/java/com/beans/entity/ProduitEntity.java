@@ -1,14 +1,11 @@
 package com.beans.entity;
 
 
-import com.beans.Product;
-import com.beans.Temp;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-@Table(name = "product")
+@Table(name = "produit")
 @Entity(name = "ProduitEntity")
 public class ProduitEntity  implements Comparable<ProduitEntity>{
 
@@ -20,32 +17,37 @@ public class ProduitEntity  implements Comparable<ProduitEntity>{
     @Column(name = "nom", nullable = false, length = 60)
     private String nom;
 
-    @Column(name = "prix", nullable = true)
+    @Column(name = "prix", nullable = false)
     private String prix;
 
-    @Column(name = "categorie", nullable = true)
+    @Column(name = "categorie", nullable = false)
     private String categorie;
 
-    @Column(name = "quantite", nullable = true)
-    private String quantite;
+    @Column(name = "quantite", nullable = false)
+    private int quantite;
 
-    @Column(name = "image", nullable = true)
+    @Column(name = "en_tendance", nullable = false)
+    private String en_tendance;
+
+    @Column(name = "image", nullable = false)
     private String image;
 
 
-    public ProduitEntity(Integer id, String nom, String prix, String quantite,String categorie,String image) {
+    public ProduitEntity(Integer id, String nom, String prix, int quantite, String en_tendance, String categorie,String image) {
         this.id = id;
         this.nom = nom;
         this.prix = prix;
         this.quantite = quantite;
+        this.en_tendance = en_tendance;
         this.categorie =categorie;
         this.image = image;
     }
 
-    public ProduitEntity(String nom, String prix, String quantite,String categorie,String image) {
+    public ProduitEntity(String nom, String prix, int quantite, String en_tendance, String categorie,String image) {
         this.nom = nom;
         this.prix = prix;
         this.quantite = quantite;
+        this.en_tendance = en_tendance;
         this.categorie =categorie;
         this.image = image;
     }
@@ -85,12 +87,20 @@ public class ProduitEntity  implements Comparable<ProduitEntity>{
         this.categorie = categorie;
     }
 
-    public String getQuantite() {
+    public int getQuantite() {
         return quantite;
     }
 
-    public void setQuantite(String quantite) {
+    public void setQuantite(int quantite) {
         this.quantite = quantite;
+    }
+
+    public String getEnTendance() {
+        return en_tendance;
+    }
+
+    public void setEnTendance(String en_tendance) {
+        this.en_tendance = en_tendance;
     }
 
     public String getImage() {
@@ -109,6 +119,7 @@ public class ProduitEntity  implements Comparable<ProduitEntity>{
                 ", prix=" + prix +
                 ", categorie='" + categorie + '\'' +
                 ", quantite='" + quantite + '\'' +
+                ", en tendance='" + en_tendance + '\'' +
                 ", image='" + image + '\'' +
                 '}';
     }

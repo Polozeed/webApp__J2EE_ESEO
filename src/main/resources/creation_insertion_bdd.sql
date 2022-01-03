@@ -64,27 +64,28 @@ CREATE TABLE IF NOT EXISTS `produit` (
   `nom` varchar(100) NOT NULL,
   `prix` varchar(50) NOT NULL,
   `categorie` varchar(50) NOT NULL,
-  `quantite` varchar(50) NOT NULL,
+  `quantite` int(8) NOT NULL,
+  `en_tendance` varchar(4) NOT NULL,
   `image` varchar(255) NOT NULL,
   PRIMARY KEY (`id_produit`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-INSERT INTO `produit` (`id_produit`, `nom`, `prix`, `categorie`, `quantite`, `image`) VALUES
-(1, 'one plus MAXIME', '38500', 'mobiles', 'yes', 'img/oneplus-6.jpg'),
-(2, 'Iphone X', '99800', 'mobiles', 'no', 'img/iphone-x.jpeg'),
-(3, 'Pocophone F1', '26000', 'mobiles', 'no', 'img/pocophone-f1.jpg'),
-(4, 'Samsung S9', '52000', 'mobiles', 'yes', 'img/samsung-s9.jpg'),
-(5, 'Macbook Air', '124000', 'laptops', 'yes', 'img/macbook-air.jpg'),
-(6, 'Asus Rog', '92000', 'laptops', 'no', 'img/asus-rog.jpg'),
-(7, 'HP Pavilion', '62000', 'laptops', 'no', 'img/hp-pavilion.png'),
-(8, 'Acer Predator', '76000', 'laptops', 'yes', 'img/acer-predator.jpg'),
-(9, 'Jeans', '750', 'clothing', 'no', 'img/jeans.jpg'),
-(10, 'Shirts', '600', 'clothing', 'yes', 'img/shirts.jpg'),
-(11, 'T-Shirt', '400', 'clothing', 'no', 'img/t-shirt.jpg'),
-(12, 'Sweatshirt', '550', 'clothing', 'no', 'img/sweatshirt.jpg'),
-(13, 'Painting', '1200', 'home decor', 'no', 'img/painting.jpg'),
-(14, 'Wall Shelf', '24000', 'home decor', 'yes', 'img/wall-shelf.jpg'),
-(18, 'Wall Clock', '450', 'home decor', 'no', 'img/clock.jpg');
+INSERT INTO `produit` (`id_produit`, `nom`, `prix`, `categorie`, `quantite`, `en_tendance`, `image`) VALUES
+(1, 'one plus MAXIME', '38500', 'mobiles', 5, 'oui', 'img/oneplus-6.jpg'),
+(2, 'Iphone X', '99800', 'mobiles', 3, 'oui', 'img/iphone-x.jpeg'),
+(3, 'Pocophone F1', '26000', 'mobiles', 4, 'oui', 'img/pocophone-f1.jpg'),
+(4, 'Samsung S9', '52000', 'mobiles', 54, 'non', 'img/samsung-s9.jpg'),
+(5, 'Macbook Air', '124000', 'laptops', 2, 'oui', 'img/macbook-air.jpg'),
+(6, 'Asus Rog', '92000', 'laptops', 1, 'oui', 'img/asus-rog.jpg'),
+(7, 'HP Pavilion', '62000', 'laptops', 1, 'oui', 'img/hp-pavilion.png'),
+(8, 'Acer Predator', '76000', 'laptops', 23, 'oui', 'img/acer-predator.jpg'),
+(9, 'Jeans', '750', 'clothing', 10, 'non', 'img/jeans.jpg'),
+(10, 'Shirts', '600', 'clothing', 10, 'non', 'img/shirts.jpg'),
+(11, 'T-Shirt', '400', 'clothing', 25, 'non', 'img/t-shirt.jpg'),
+(12, 'Sweatshirt', '550', 'clothing', 8, 'oui', 'img/sweatshirt.jpg'),
+(13, 'Painting', '1200', 'home decor', 12, 'non', 'img/painting.jpg'),
+(14, 'Wall Shelf', '24000', 'home decor', 15, 'non', 'img/wall-shelf.jpg'),
+(18, 'Wall Clock', '450', 'home decor', 35, 'non', 'img/clock.jpg');
 
 -- --------------------------------------------------------
 

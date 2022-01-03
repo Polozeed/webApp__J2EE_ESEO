@@ -173,9 +173,7 @@ public class Controller extends HttpServlet {
 		}
 
 		if(page.equals("showcart")) {
-			System.out.println("je suis dans showcart");
 			request.getRequestDispatcher("cart.jsp").forward(request, response);
-
 		}
 		
 		if(page.equals("addtocart")) {
