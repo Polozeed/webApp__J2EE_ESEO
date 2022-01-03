@@ -173,7 +173,11 @@ public class Controller extends HttpServlet {
 		}
 
 		if(page.equals("showcart")) {
+			System.out.println("je suis dans showcart");
+			//System.out.println(request.getAttribute("id").toString());
+			//System.out.println(userDAOFactory.getOneUserById((Integer) request.getAttribute("id")));
 			request.getRequestDispatcher("cart.jsp").forward(request, response);
+
 		}
 		
 		if(page.equals("addtocart")) {
@@ -205,10 +209,9 @@ public class Controller extends HttpServlet {
 		
 		if(page.equals("success")) {
 			request.getRequestDispatcher("success.jsp").forward(request, response);
-
-			//session = request.getSession();
-			//cartlist.clear();
-			//session.setAttribute("cartlist", cartlist);
+			session = request.getSession();
+			cartlist.clear();
+			session.setAttribute("cartlist", cartlist);
 			//request.getRequestDispatcher("compte.jsp").forward(request, response);
 
 		}

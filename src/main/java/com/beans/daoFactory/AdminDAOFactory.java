@@ -20,6 +20,9 @@ public class AdminDAOFactory {
 
     public AdminDAOFactory() {
     }
+
+
+
     public void transactionSessionClose(){
         transaction.commit();
         hibernateSession.close();

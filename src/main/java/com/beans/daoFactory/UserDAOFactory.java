@@ -118,7 +118,6 @@ public class UserDAOFactory {
             e.printStackTrace();
         }
         finally {
-            this.transactionSessionClose();
         }
     }
 

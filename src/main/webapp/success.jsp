@@ -23,7 +23,6 @@
 	<c:choose>
 		<c:when test="${x == 0}">
 				<%
-				//JOptionPane.showMessageDialog(null, "Votre panier est vide", "Info", JOptionPane.INFORMATION_MESSAGE);
 				request.getRequestDispatcher("cart.jsp").forward(request, response);
 				%>
 		</c:when>
