@@ -38,34 +38,56 @@
 						</select>
 						<input type="submit" value="Valider">
 					</form>
- 					
- 					<c:forEach items="${list }" var="product">
- 						
- 						<c:if test="${product.getCategorie() == 'home decor' }">
+
+					<c:forEach items="${list }" var="product">
+
+						<c:if test="${product.getCategorie() == 'home decor' }">
 							<!-- Afficher les produits correspondant au menu sélectionné -->
 							<div class="col-md-4">
 								<img src="${product.getImage() }" class="img-responsive" >
 								<br>
 								<div class="text-center"><a style="color: black;"><c:out value="${product.getNom() }"></c:out></a></div>
-								<p style="text-align: center;"> <c:out value="${ product.getPrix() } €"></c:out></p>
-								<c:choose>
-									<c:when test="${session == null}">
-										<div class="text-center">
-											<a class="btn btn-primary" href="Controller?page=login"/>Ajouter</a>
-										</div>
-									</c:when>
-									<c:when test="${session != null}">
-										<div class="text-center">
-											<a class="btn btn-primary" href="Controller?page=addtocart&action=home-decor&id=<c:out value="${product.getId()}"/>">Ajouter</a>
-										</div>
-									</c:when>
-								</c:choose>
+								<c:if test="${product.getQuantite() <= 0}">
+									<p style="text-align: center;"> Produit Indisponible</p>
+									<p style="text-align: center;"> <c:out value="${ product.getPrix() } €"></c:out></p>
+									<c:choose>
+										<c:when test="${session == null}">
+											<div class="text-center">
+												<a class="btn btn-danger ">Indisponible</a>
+											</div>
+										</c:when>
+										<c:when test="${session != null}">
+											<div class="text-center">
+												<a class="btn btn-danger">Indisponible</a>
+											</div>
+										</c:when>
+									</c:choose>
+								</c:if>
+
+								<c:if test="${product.getQuantite() > 0}">
+									<p style="text-align: center;"> <c:out value="Quantité disponible: ${ product.getQuantite() } "></c:out></p>
+									<p style="text-align: center;"> <c:out value="${ product.getPrix() } €"></c:out></p>
+									<c:choose>
+										<c:when test="${session == null}">
+											<div class="text-center">
+												<a class="btn btn-primary" href="Controller?page=login"/>Ajouter</a>
+											</div>
+										</c:when>
+										<c:when test="${session != null}">
+											<div class="text-center">
+												<a class="btn btn-primary" href="Controller?page=addtocart&action=index&id=<c:out value="${product.getId()}"/>">Ajouter</a>
+											</div>
+										</c:when>
+									</c:choose>
+								</c:if>
+
 								<br>
 							</div>
- 						</c:if>
- 						
- 						
- 					</c:forEach>
+
+						</c:if>
+
+
+					</c:forEach>
  					
  				</div>
  			</div>

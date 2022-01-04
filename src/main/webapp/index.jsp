@@ -39,7 +39,7 @@
 
  					<c:forEach items="${list }" var="product">
 
- 						<c:if test="${product.getEnTendance() == 'oui' or 'yes'}">
+ 						<c:if test="${product.getEnTendance() == 'oui' or product.getEnTendance()== 'yes'}">
 
 							<!-- Afficher les produits correspondant au menu sélectionné -->
 							<div class="col-md-4">
