@@ -98,6 +98,7 @@ public class ProduitDAOFactory {
             e.printStackTrace();
         }
         finally {
+            this.transactionSessionClose();
         }
     }
 }
