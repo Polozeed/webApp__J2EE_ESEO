@@ -1,7 +1,7 @@
 package com.beans.entity;
 
 
-import com.beans.Temp;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -155,18 +155,13 @@ public class ProduitEntity  implements Comparable<ProduitEntity>{
     }
 
     public ArrayList<ProduitEntity> hightolow(ArrayList<ProduitEntity> list) {
-        Collections.sort(list, new Comp());
+        Collections.sort(list, new ComparaisonPrix());
         return list;
     }
 
 
 }
 
-class Comp implements Comparator<ProduitEntity> {
-    public int compare(ProduitEntity p1, ProduitEntity p2) {
-        return Integer.parseInt(p2.getPrix()) - Integer.parseInt(p1.getPrix());
-    }
-}
 
 
 
