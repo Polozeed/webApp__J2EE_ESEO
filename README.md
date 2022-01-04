@@ -1,3 +1,4 @@
+
 # Site JSP Ecommerce Projet ESEO A3
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com) 
@@ -9,11 +10,9 @@ Le projet a été réalisé par Maxime Pouplain et Martin Courier de Méré.
 
 ## Pour commencer
 
-Entrez ici les instructions pour bien débuter avec votre projet...
-
 ### Pré-requis
 
-Ce qu'il est requis pour commencer avec votre projet
+Ce qu'il est requis pour commencer l'installation du projet
 
 - Installation d'une base de donnée SQL.
 - Execution du Script creation_insertion_bdd.sql.

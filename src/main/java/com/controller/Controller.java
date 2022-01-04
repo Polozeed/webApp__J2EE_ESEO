@@ -204,7 +204,7 @@ public class Controller extends HttpServlet {
 		
 		if(page.equals("success")) {
 			request.getRequestDispatcher("success.jsp").forward(request, response);
-			cartlist.clear();
+
 			session.setAttribute("cartlist", cartlist);
 		}
 		
@@ -305,11 +305,11 @@ public class Controller extends HttpServlet {
 		}
 
 		if(page.equals("pdf")) {
+			System.out.println("je suis dans pdf");
 			UserEntity userpdf = userDAOFactory.getOneUser(session.getAttribute("login").toString());
 			String resultFileName = "Facture_E-Commerce-ESEO" + java.time.LocalDate.now().toString()+"_" + userpdf.getLogin();
 			response.setHeader("Content-Disposition",
 					"attachment;filename="+resultFileName+".pdf");
-
 
 			ArrayList listproduct = new ArrayList();
 			ArrayList<ProduitEntity> listProduitEntityToPDF = new ArrayList();
@@ -328,6 +328,7 @@ public class Controller extends HttpServlet {
 			}
 			os.flush();
 			os.close();
+			cartlist.clear();
 
 		}
 	}
