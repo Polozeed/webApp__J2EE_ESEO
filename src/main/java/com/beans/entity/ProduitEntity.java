@@ -155,16 +155,16 @@ public class ProduitEntity  implements Comparable<ProduitEntity>{
     }
 
     public ArrayList<ProduitEntity> hightolow(ArrayList<ProduitEntity> list) {
-        Collections.sort(list, new Tempz());
+        Collections.sort(list, new Comp());
         return list;
     }
 
 
 }
 
-class Tempz implements Comparator<ProduitEntity> {
-    public int compare(ProduitEntity o1, ProduitEntity o2) {
-        return Integer.parseInt(o2.getPrix()) - Integer.parseInt(o1.getPrix());
+class Comp implements Comparator<ProduitEntity> {
+    public int compare(ProduitEntity p1, ProduitEntity p2) {
+        return Integer.parseInt(p2.getPrix()) - Integer.parseInt(p1.getPrix());
     }
 }
 
