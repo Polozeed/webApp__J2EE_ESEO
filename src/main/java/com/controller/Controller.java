@@ -13,11 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
-
-
 import com.beans.FactoryProvider;
 import com.beans.Product;
-
 import com.beans.User;
 import com.beans.daoFactory.HistoriqueCommandeDAOFactory;
 import com.beans.daoFactory.PDFfactory;
@@ -55,6 +52,7 @@ public class Controller extends HttpServlet {
 		session.setAttribute("id",user.getId());
 		session.setAttribute("adress",user.getAdresse());
 		session.setAttribute("login",user.getLogin());
+		session.setAttribute("bloque",user.getEst_bloque().toString());
 	}
 
 	public void addInfoCartListSession(){
@@ -173,9 +171,6 @@ public class Controller extends HttpServlet {
 		}
 
 		if(page.equals("showcart")) {
-			System.out.println("je suis dans showcart");
-			//System.out.println(request.getAttribute("id").toString());
-			//System.out.println(userDAOFactory.getOneUserById((Integer) request.getAttribute("id")));
 			request.getRequestDispatcher("cart.jsp").forward(request, response);
 
 		}
@@ -209,11 +204,8 @@ public class Controller extends HttpServlet {
 		
 		if(page.equals("success")) {
 			request.getRequestDispatcher("success.jsp").forward(request, response);
-			session = request.getSession();
 			cartlist.clear();
 			session.setAttribute("cartlist", cartlist);
-			//request.getRequestDispatcher("compte.jsp").forward(request, response);
-
 		}
 		
 		if(page.equals("remove")) {
