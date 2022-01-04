@@ -46,6 +46,7 @@
 								<img src="${product.getImage() }" class="img-responsive" >
 								<br>
 								<div class="text-center"><a style="color: black;"><c:out value="${product.getNom() }"></c:out></a></div>
+								<p style="text-align: center;"> <c:out value="Quantité disponible: ${ product.getQuantite() } "></c:out></p>
 								<p style="text-align: center;"> <c:out value="${ product.getPrix() } €"></c:out></p>
 								<c:choose>
 									<c:when test="${session == null}">

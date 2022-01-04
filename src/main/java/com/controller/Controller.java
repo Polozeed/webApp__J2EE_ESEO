@@ -204,6 +204,15 @@ public class Controller extends HttpServlet {
 		
 		if(page.equals("success")) {
 			request.getRequestDispatcher("success.jsp").forward(request, response);
+			System.out.println("============= Je suis dans la boucle ==============");
+			ArrayList listproduct = new ArrayList();
+			ArrayList<ProduitEntity> listProduitEntityToPDF = new ArrayList();
+			for (String entity:cartlist){
+				ProduitEntity res = produitDAOFactory.getOneProduit(Integer.parseInt(entity));
+				int quantite = res.getQuantite();
+				res.setQuantite(quantite-1);
+				produitDAOFactory.updateProduct(res);
+			}
 
 			session.setAttribute("cartlist", cartlist);
 		}
