@@ -24,6 +24,7 @@ import com.beans.entity.HistoriqueCommandeEntity;
 import com.beans.entity.ProduitEntity;
 import com.beans.entity.UserEntity;
 
+import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public class Controller extends HttpServlet {
@@ -181,11 +182,10 @@ public class Controller extends HttpServlet {
 			ProduitEntity p = new ProduitEntity();
 			boolean check = p.check(cartlist,id);
 			if(check) {
-				//JOptionPane.showMessageDialog(null, "Product is already added to Cart", "Info", JOptionPane.INFORMATION_MESSAGE);
+				// If check
 			}
 			else {
 				cartlist.add(id);
-				//JOptionPane.showMessageDialog(null, "Product successfully added to Cart", "Info", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
 			if(action.equals("index"))

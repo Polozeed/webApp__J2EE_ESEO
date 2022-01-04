@@ -14,7 +14,7 @@ plugins {
 }
 apply plugin: 'com.bmuschko.tomcat'
 
-group 'fr.bruush'
+group 'fr.Ecommerce'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -31,9 +31,6 @@ targetCompatibility = '1.8'
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
-
-
-
 
 task stage(dependsOn: ['build', 'clean'])
 build.mustRunAfter clean
