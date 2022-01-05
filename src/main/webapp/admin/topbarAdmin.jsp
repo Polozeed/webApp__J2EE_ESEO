@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<script src="https://kit.fontawesome.com/e23d203d3a.js" crossorigin="anonymous"></script>
 <!-- Topbar pour l'admin appelée sur chaque jsp le concernant-->
 <header>
     <h1>

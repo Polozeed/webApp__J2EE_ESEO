@@ -17,7 +17,7 @@
 	 	<h2>Ajouter un produit</h2>
 	 </div>
 
-	 <form method="post" action="admin">
+	 <form enctype="multipart/form-data" method="post" action="admin">
 	 
 	 <input type="hidden" name="page" value="add_product">
      
@@ -45,6 +45,8 @@
 	 		 <label for="fileupload"> Select an image to upload</label>
 	 		<input type="file" name="image" required><br>
 	 	</div>
+
+
 	 	<div class="signup-group">
 			<input type="submit" value="Process">	 
 		</div>
