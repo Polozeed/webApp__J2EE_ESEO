@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletContext;
@@ -207,12 +208,25 @@ public class Controller extends HttpServlet {
 			System.out.println("============= Je suis dans la boucle ==============");
 			ArrayList listproduct = new ArrayList();
 			ArrayList<ProduitEntity> listProduitEntityToPDF = new ArrayList();
+
+			HistoriqueCommandeEntity historique = new HistoriqueCommandeEntity();
+			UserEntity userAccount = userDAOFactory.getOneUser(session.getAttribute("login").toString());
 			for (String entity:cartlist){
 				ProduitEntity res = produitDAOFactory.getOneProduit(Integer.parseInt(entity));
 				int quantite = res.getQuantite();
 				res.setQuantite(quantite-1);
 				produitDAOFactory.updateProduct(res);
+
+				// Ajout dans l'historique
+				historique.setId_produit(res.getId());
+				historique.setId_client(userAccount.getId());
+				historique.setDateheure(LocalDateTime.now());
+				historique.setQuantite(1);
+				historiqueDAOFactory.ajoutHistorique(historique);
+
+
 			}
+
 
 			session.setAttribute("cartlist", cartlist);
 		}

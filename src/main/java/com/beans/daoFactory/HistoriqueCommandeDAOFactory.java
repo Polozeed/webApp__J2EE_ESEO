@@ -43,7 +43,7 @@ public class HistoriqueCommandeDAOFactory {
 
     public void ajoutHistorique(HistoriqueCommandeEntity historique) {
         try {
-            System.out.println("----------------// New One Produit //----------------");
+            System.out.println("----------------// Ajout Historique //----------------");
             System.out.println(historique.toString());
             hibernateSession.save(historique);
         } catch (Exception e) {
