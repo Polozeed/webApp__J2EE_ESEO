@@ -48,20 +48,21 @@
     <input type="text" name="address" placeholder="Adresse" value="<c:out value="${address }"></c:out>">
   </div>
 
-  <div>
-    <a href="Controller?page=historique" style="color: #000000">Consulter votre historique des commandes</a>
-  </div>
 
-  <div>
-    <a href="Controller?page=changement-mdp" style="color: #000000">Changer votre mot de passe</a>
-  </div>
 
   <div class="te">
     <button type="submit" name="majInfo" class="signup-btn" >Mettre à jour les informations</button>
+
   </div>
 
 </form>
-<br><br><br>
+<br>
+<div>
+  <a href="Controller?page=historique"><input type="submit" value="Consulter votre historique des commandes" class="btn btn-success" style="width:100%;padding:8px;font-size:16px;"></a><br>
+  <a href="Controller?page=changement-mdp"><input type="submit" value="Changer votre Mot de passe" class="btn btn-success" style="width:100%;padding:8px;font-size:16px;"></a><br>
+</div>
+
+<br>
 <%@include file="bottombar.jsp" %>
 
 

@@ -1,11 +1,16 @@
 package com.beans.entity;
 
 import javax.persistence.*;
+import java.text.DateFormat;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 @Table(name = "historique_commande")
 @Entity(name = "HistoriqueCommandeEntity")
 public class HistoriqueCommandeEntity {
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,7 +58,19 @@ public class HistoriqueCommandeEntity {
 
     public void setId_hist_commande(Integer id_hist_commande) {this.id_hist_commande = id_hist_commande;}
 
-    public LocalDateTime getDateheure() {return dateheure;}
+    public LocalDateTime getDateheure() {
+        return dateheure;
+    }
+    public String getDateheureFront() {
+        Date out = Date.from(dateheure.atZone(ZoneId.systemDefault()).toInstant());
+        DateFormat mediumDateFormat = DateFormat.getDateTimeInstance(
+                DateFormat.MEDIUM,
+                DateFormat.MEDIUM);
+        return mediumDateFormat.format(out);
+
+    }
+
+
 
     public void setDateheure(LocalDateTime dateheure) {this.dateheure = dateheure;}
 

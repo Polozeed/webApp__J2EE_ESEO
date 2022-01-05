@@ -14,7 +14,9 @@ public class HistoriqueCommande {
 
     public void setId_hist_commande(int id_hist_commande) {this.id_hist_commande = id_hist_commande;}
 
-    public LocalDateTime getDateheure() {return dateheure;}
+    public LocalDateTime getDateheure() {
+        System.out.println("======================================33333 je suis dans historique Command");
+        return dateheure;}
 
     public void setDateheure(LocalDateTime dateheure) {this.dateheure = dateheure;}
 

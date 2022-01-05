@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -25,6 +28,7 @@ import com.beans.entity.HistoriqueCommandeEntity;
 import com.beans.entity.ProduitEntity;
 import com.beans.entity.UserEntity;
 
+import static java.time.format.DateTimeFormatter.ofLocalizedDateTime;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 
@@ -40,6 +44,7 @@ public class Controller extends HttpServlet {
 	static ArrayList<String> cartlist = new ArrayList<>();
 	ArrayList<UserEntity> userList = new ArrayList<>();
 	HttpSession session;
+
 
 
 
@@ -215,19 +220,16 @@ public class Controller extends HttpServlet {
 				ProduitEntity res = produitDAOFactory.getOneProduit(Integer.parseInt(entity));
 				int quantite = res.getQuantite();
 				res.setQuantite(quantite-1);
-
 				// Ajout dans l'historique
 				historique.setId_produit(res.getId());
 				historique.setId_client(userAccount.getId());
 				historique.setDateheure(LocalDateTime.now());
 				historique.setQuantite(1);
-				historiqueDAOFactory.ajoutHistorique(historique);
+
+				// Sauvegarde Historique Command et Mise a jour du produit
 				produitDAOFactory.updateProduct(res);
-
-
+				historiqueDAOFactory.ajoutHistorique(historique);
 			}
-
-
 			session.setAttribute("cartlist", cartlist);
 		}
 		
@@ -298,9 +300,7 @@ public class Controller extends HttpServlet {
 		if(page.equals("historique")) {
 			UserEntity userAccount = userDAOFactory.getOneUser(session.getAttribute("login").toString());
 			historiqueList = historiqueDAOFactory.getHistorique(userAccount.getId());
-			System.out.println("Historique : " + historiqueList);
-			System.out.println("CartList : " + cartlist);
-			System.out.println("List : " + list);
+
 			request.setAttribute("historique", historiqueList);
 			request.getRequestDispatcher("historique.jsp").forward(request, response);
 		}
