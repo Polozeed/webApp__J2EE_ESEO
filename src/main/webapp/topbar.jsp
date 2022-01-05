@@ -8,21 +8,21 @@
     </h1>
     <nav>
         <ul>
-            <li><a href="Controller?page=index">Accueil</a></li>
+            <li> <a href="Controller?page=index">Accueil</a></li>
             <c:choose>
                 <c:when test="${session == null}">
                     <li><a href="Controller?page=login">Se connecter</a></li>
                     <li><a href="Controller?page=sign-up">S'inscrire</a></li>
-                    <li> <a href="Controller?page=showcart" ><i  class="fas fa-shopping-cart" style="color: white;width: auto; padding: 5px"></i>(<c:out value="${x}"/>)</a>
+                    <li> <a href="Controller?page=showcart" ><i  class="fas fa-shopping-cart fa-2x" style="color: white;width: auto; padding: 5px"></i>(<c:out value="${x}"/>)</a>
             </c:when>
                 <c:when test="${session != null}">
                     <li><a href="Controller?page=logout" style="color: #F24638;">Se déconnecter</a></li>
                     <li><a href="Controller?page=compte">Mon Compte</a></li>
-                    <li> <a href="Controller?page=showcart" ><i  class="fas fa-shopping-cart" style="color: white;width: auto; padding: 5px"></i>(<c:out value="${x}"/>)</a>
+                    <li> <a href="Controller?page=showcart" ><i  class="fas fa-shopping-cart fa-2x" style="color: white;width: auto; padding: 5px"></i>(<c:out value="${x}"/>)</a>
 
             </c:when>
             </c:choose>
-            <li><a href="admin">Se connecter en administrateur</a></li>
+            <a href="admin" ><i  class="fas fa-users-cog fa-2x" style="color: white;width: 25px; height: 25px; padding: 9px; margin-left: 40px"></i></a>
         </ul>
     </nav>
 </header>
