@@ -45,3 +45,4 @@
 /.gradle/buildOutputCleanup/buildOutputCleanup.lock
 /build/classes/java/main/com/beans/daoFactory/HistoriqueCommandeDAOFactory.class
 /build/classes/java/main/com/beans/entity/HistoriqueCommandeEntity.class
+
