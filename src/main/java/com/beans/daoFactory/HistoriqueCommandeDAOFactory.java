@@ -50,7 +50,7 @@ public class HistoriqueCommandeDAOFactory {
             e.printStackTrace();
         }
         finally {
-            this.transactionSessionClose();
+            //this.transactionSessionClose();
         }
     }
 }

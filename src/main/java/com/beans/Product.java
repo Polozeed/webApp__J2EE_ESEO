@@ -1,5 +1,8 @@
 package com.beans;
 
+import com.beans.entity.ComparaisonPrix;
+import com.beans.entity.ProduitEntity;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -86,8 +89,8 @@ public class Product implements Comparable<Product> {
 		
 		return Integer.parseInt(this.price) - Integer.parseInt(p.price);
 	}
-	public ArrayList<Product> hightolow(ArrayList<Product> list) {
-		Collections.sort(list, new Temp());
+	public ArrayList<ProduitEntity> hightolow(ArrayList<ProduitEntity> list) {
+		Collections.sort(list, new ComparaisonPrix());
 		return list;
 	}
 	

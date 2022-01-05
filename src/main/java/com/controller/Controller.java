@@ -209,13 +209,12 @@ public class Controller extends HttpServlet {
 			ArrayList listproduct = new ArrayList();
 			ArrayList<ProduitEntity> listProduitEntityToPDF = new ArrayList();
 
-			HistoriqueCommandeEntity historique = new HistoriqueCommandeEntity();
 			UserEntity userAccount = userDAOFactory.getOneUser(session.getAttribute("login").toString());
 			for (String entity:cartlist){
+				HistoriqueCommandeEntity historique = new HistoriqueCommandeEntity();
 				ProduitEntity res = produitDAOFactory.getOneProduit(Integer.parseInt(entity));
 				int quantite = res.getQuantite();
 				res.setQuantite(quantite-1);
-				produitDAOFactory.updateProduct(res);
 
 				// Ajout dans l'historique
 				historique.setId_produit(res.getId());
@@ -223,6 +222,7 @@ public class Controller extends HttpServlet {
 				historique.setDateheure(LocalDateTime.now());
 				historique.setQuantite(1);
 				historiqueDAOFactory.ajoutHistorique(historique);
+				produitDAOFactory.updateProduct(res);
 
 
 			}
