@@ -30,8 +30,8 @@
         <label>Prenom: ${u.getPrenom() }</label>
     </div>
     <div class="signup-group">
-        <label>True ou False :</label>
-        <input type="text" name="bloque" value="<c:out value="${u.getEst_bloque() }"></c:out>" required>
+        <label>Bloquer l'utilisateur</label>
+        <input type="checkbox" id="bloque" name="bloque" value="bloque" checked>
     </div>
 
     <div class="signup-group">
