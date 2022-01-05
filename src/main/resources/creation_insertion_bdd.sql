@@ -74,6 +74,7 @@ INSERT INTO `produit` (`id_produit`, `nom`, `prix`, `categorie`, `quantite`, `en
 (1, 'One plus ', '1800', 'mobiles', 5, 'oui', 'img/oneplus-6.jpg'),
 (2, 'Iphone X', '2000', 'mobiles', 3, 'oui', 'img/iphone-x.jpeg'),
 (3, 'Pocophone F1', '2000', 'mobiles', 4, 'oui', 'img/pocophone-f1.jpg'),
+
 (4, 'Samsung S9', '1200', 'mobiles', 54, 'non', 'img/samsung-s9.jpg'),
 (5, 'Macbook Air', '1200', 'laptops', 0, 'oui', 'img/macbook-air.jpg'),
 (6, 'Asus Rog', '3200', 'laptops', 1, 'oui', 'img/asus-rog.jpg'),
@@ -90,7 +91,13 @@ INSERT INTO `produit` (`id_produit`, `nom`, `prix`, `categorie`, `quantite`, `en
 (21, 'Maillot SCO', '40', 'clothing', 7, 'yes', 'img/scoPull.jpg'),
 (22, 'Maillot Duc', '35', 'clothing', 2, 'yes', 'img/ducAngers.png'),
 (23, 'Carte Wifi', '4', 'electronique', 10, 'non', 'img/wifi.jpg'),
-(24, 'Rapsberry PI', '4', 'electronique', 7, 'non', 'img/raspberry.jpg');
+(24, 'Rapsberry PI', '4', 'electronique', 7, 'non', 'img/raspberry.jpg'),
+(25, 'Telephone Fixe ', '45', 'mobiles', 5, 'oui', 'img/tel.jpg'),
+(26, 'Iphone 8', '2000', 'mobiles', 3, 'oui', 'img/iphone8.jpg'),
+(27, 'Google Pixel', '2000', 'mobiles', 4, 'oui', 'img/pixel.jpg'),
+(28, 'BlackBerry', '400', 'mobiles', 4, 'oui', 'img/backberry.jpg'),
+(29, 'Microsoft Surface', '800', 'laptops', 4, 'oui', 'img/surfae.jpg'),
+(30, 'Samsung A50', '200', 'mobiles', 4, 'oui', 'img/a50.png'),
 
 
 -- --------------------------------------------------------
