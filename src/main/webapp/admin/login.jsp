@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<%@include file="../topbar.jsp" %>
+	<%@include file="topbarAdmin.jsp" %>
 
 	<div class="signup-header">
 	 	<h2> <mark>Connexion</mark> Admin</h2>
@@ -34,7 +34,8 @@
 	 		<button type="submit" name="Se connecter" class="signup-btn">Se connecter</button>
 	 	</div>
 	 </form>
-
+<br>
+	<br>
 	<%@include file="../bottombar.jsp" %>
 </body>
 </html>

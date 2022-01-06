@@ -3,11 +3,10 @@
 --
 
 -- --------------------------------------------------------
-
+CREATE DATABASE vente_en_ligne;
 --
 -- Structure de la table `client`
 --
-
 DROP TABLE IF EXISTS `client`;
 CREATE TABLE IF NOT EXISTS `client` (
   `id_client` int(11) NOT NULL AUTO_INCREMENT,
@@ -16,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(30) NOT NULL,
   `mail` varchar(100) NOT NULL,
-  `adresse_livraison` varchar(30) NOT NULL,
+  `adresse_livraison` varchar(100) NOT NULL,
   `est_bloque` tinyint(1) DEFAULT NULL,
   `token` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id_client`)
@@ -24,15 +23,15 @@ CREATE TABLE IF NOT EXISTS `client` (
 
 DELETE FROM `client`;
 INSERT INTO `client` (`id_client`, `login`, `mdp`, `nom`, `prenom`, `mail`, `adresse_livraison`, `est_bloque`, `token`) VALUES
-(1, 'pouplama', '1234', 'Maxime', 'Pouplain', 'maxime.pouplain@reseau.eseo.fr', 'Angers', 0, 'abc'),
-(2, 'martin', 'martin', 'Martin', 'Courier de Mere', 'martin.courierdemere@reseau.eseo.fr', 'Tours 62 rue de Boisdenier', 0, 'def'),
-(3, 'martin Courier de mere', 'bvc', 'vcvbvc', 'vcvbvc', 'martincourierdemere@gmail.com', '62 rue de boisdenier', 1, NULL),
-(4, 'martin Courier de mere', 'ki', 'kk', 'kk', 'martincourierdemere@gmail.com', '62 rue de boisdenier', 0, NULL),
-(5, 'polo', 'zeze', 'polozed', 'polozed', 'martincourierdemere@gmail.com', '62 rue de boisdenier', 0, NULL),
-(6, 'martin Courier de mere', 'AAAA', 'test14', 'test14', 'martincourierdemere@gmail.com', '62 rue de boisdenier', 0, NULL),
-(7, 'martin Courier de mere', 'aaaa', 'polozed', 'polozed', 'martincourierdemere@gmail.com', '62 rue de boisdenier', 0, NULL),
-(8, 'martin Courier de mere', 'rrrr', 'martin', 'martin', 'martincourierdemere@gmail.com', '62 rue de boisdenier', 0, NULL),
-(9, 'zed', 'qqqq', 'race', 'race', 'martincourierdemere@gmail.com', '62 rue de boisdenier', 0, NULL);
+(1, 'pouplama', '1234', 'Pouplain', 'Maxime', 'maxime.pouplain@reseau.eseo.fr', '32 rue de Belgique Angers 49000', 0, 'abc'),
+(2, 'martin', 'martin', 'Courier de mere', 'Martin', 'martin.courierdemere@reseau.eseo.fr', '62 rue de Boisdenier Tours 37000', 0, 'def'),
+(3, 'Polozed', '1234', 'Berranger', 'louis', 'louisdebrranger@gmail.com', '42 Avenue Pasteur Angers 490000', 1, NULL),
+(4, 'Zinzin', 'ki', 'Antoine', 'legendre', 'antoine-legendre@gmail.com', '37 Avenue de Grammont Vannes 56000', 0, NULL),
+(5, 'MLeboss', 'zeze', 'Nolwen', 'leroy', 'nolwen_leroy_72@gmail.com', '45 rue Zinédine Zidane Paris 72000 ', 0, NULL),
+(6, 'Antoine47', 'aaaa', 'Corneau', 'antoine', 'antoineCorneau@hotmail.com', '22 Rue Réné Paris 72000 ', 0, NULL),
+(7, 'Maxime175', 'aaaa', 'Delatour', 'Maxime', 'martincourierdemere@reseau.eseo.fr', '12 impasse de la pucelle Angers 49000', 0, NULL),
+(8, 'JohnnyDansMonCoeur', 'Haliday', 'Johnny', 'martin', 'johHaliday@amerique.com', '64 Avenue de la soif Rennes 74100', 0, NULL),
+(9, 'Fredo', 'fred', 'Lemarie', 'frederique', 'frederique_lemarie@orange.com', '89 Avenue de la Réplublique 72100 Paris', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -96,7 +95,16 @@ CREATE TABLE IF NOT EXISTS `historique_commande` (
 
 INSERT INTO `historique_commande` (`id_hist_commande`, `dateheure`, `id_client`, `id_produit`, `quantite`) VALUES
 (1, '2021-11-16 16:00:00', 1, 1, 2),
-(2, '2021-11-16 17:30:00', 2, 3, 1),
-(3, '2021-11-16 15:15:00', 1, 4, 3);
+(2, '2021-11-16 23:30:00', 2, 3, 1),
+(3, '2021-11-16 19:15:00', 1, 4, 3),
+(4, '2021-11-16 16:00:00', 1, 1, 2),
+(5, '2021-11-16 17:30:00', 2, 3, 1),
+(6, '2021-11-16 19:15:00', 1, 4, 3),
+(7, '2021-12-14 16:10:00', 1, 1, 2),
+(8, '2021-12-13 17:30:00', 1, 8, 1),
+(9, '2021-11-18 22:23:00', 1, 9, 1),
+(10, '2021-11-23 16:22:00', 1, 11, 1),
+(11, '2021-11-27 21:21:00', 2, 3, 1),
+(12, '2021-11-8 15:10:00', 1, 14, 1);
 
 COMMIT;

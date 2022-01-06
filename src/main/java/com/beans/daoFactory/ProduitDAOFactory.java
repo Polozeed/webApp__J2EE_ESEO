@@ -21,6 +21,7 @@ public class ProduitDAOFactory {
 
     public void transactionSessionClose(){
         transaction.commit();
+
     }
 
     
@@ -81,11 +82,9 @@ public class ProduitDAOFactory {
             System.out.println("----------------// Update One Produit //----------------");
             System.out.println(produit.toString());
            hibernateSession.merge(produit);
+            this.transactionSessionClose();
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            //this.transactionSessionClose();
         }
     }
 
