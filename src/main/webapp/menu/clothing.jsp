@@ -40,7 +40,7 @@
 					</form>
 					<c:forEach items="${list }" var="product">
 
-						<c:if test="${product.getCategorie() == 'Vêtements' }">
+						<c:if test="${product.getCategorie() == 'Vetements' }">
 							<!-- Afficher les produits correspondant au menu sélectionné -->
 							<div class="col-md-4">
 								<img src="${product.getImage() }" class="img-responsive" >

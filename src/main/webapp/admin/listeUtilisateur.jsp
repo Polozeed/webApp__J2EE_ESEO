@@ -18,12 +18,12 @@
   <table>
     <tr>
 
-      <th>Login</th>
-      <th>Nom</th>
-      <th>Prénom</th>
-      <th>Adresse de livraison</th>
-      <th>Compte bloqué</th>
-      <th>Option</th>
+      <th style="width: 100px;text-align: center">Login</th>
+      <th style="width: 100px;text-align: center">Nom</th>
+      <th style="width: 100px;text-align: center">Prénom</th>
+      <th style="width: 100px;text-align: center">Adresse de livraison</th>
+      <th style="width: 100px;text-align: center">Compte bloqué</th>
+      <th style="width: 100px;text-align: center">Option</th>
 
     </tr>
   </table>

@@ -26,27 +26,27 @@
 	 		<input type="text" name="nom" placeholder="Ajouter un nom"  required>
 	 	</div>
 	 	<div class="signup-group">
-	 		<label>Prix</label>
-	 		<input type="text" name="prix" placeholder="Prix du produit" required>
+	 		<label>Prix (€)</label>
+	 		<input type="number" name="prix" placeholder="Prix du produit" required>
 	 	</div>
 	 	<div class="signup-group">
 			<label>Categorie</label>
 			<select name="select-categorie" id="select-categorie" required>
-				<option value="Téléphones">Téléphones</option>
+				<option value="Telephones">Téléphones</option>
 				<option value="Ordinateurs portables">Ordinateurs portables</option>
-				<option value="Vêtements">Vêtements</option>
+				<option value="Vetements">Vêtements</option>
 				<option value="Electronique">Electronique</option>
 			</select>
 	 	</div>
 		 <div class="signup-group">
 			 <label>Quantité en stock</label>
-			 <input type="text" name="quantite" placeholder="Quantite en stock" pattern="[0-9]" required>
+			 <input type="number" name="quantite" placeholder="Quantite en stock" required>
 		 </div>
 	 	<div class="signup-group">
 	 		<label>En tendance</label>
 			<select name="select-tendance" id="select-tendance" required>
-				<option value="Oui">Oui</option>
-				<option value="Non">Non</option>
+				<option value="oui">Oui</option>
+				<option value="non">Non</option>
 			</select>
 	 	</div>
 	 	<div class="signup-group">
@@ -57,7 +57,8 @@
 			<input type="submit" value="Valider">
 		</div>
 	 </form>
-
+	<br>
+	<br>
 	<%@include file="../bottombar.jsp" %>
 </body>
 </html>

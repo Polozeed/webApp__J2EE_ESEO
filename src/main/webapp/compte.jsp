@@ -26,7 +26,7 @@
 
   <div class="signup-group">
     <label>Identifiant</label>
-    <input type="text" name="username" placeholder="Identifiant" value="<c:out value="${username }"></c:out>">
+    <input type="text" name="username" placeholder="Identifiant" value="<c:out value="${username }"></c:out>" disabled>
   </div>
 
   <div class="signup-group">

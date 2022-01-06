@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.beans.daoFactory.AdminDAOFactory;
+import com.beans.daoFactory.ProduitDAOFactory;
 import com.beans.entity.ProduitEntity;
 import com.beans.entity.UserEntity;
 
@@ -16,6 +17,7 @@ import com.beans.entity.UserEntity;
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final AdminDAOFactory adminDAOFactory = new AdminDAOFactory();
+	private final ProduitDAOFactory produitDAOFactory = new ProduitDAOFactory();
 	HttpSession session;
 	ArrayList list = new ArrayList();
 	ArrayList listUtilisateur = new ArrayList();
@@ -121,23 +123,34 @@ public class AdminController extends HttpServlet {
 			String id = request.getParameter("id");
 			String name = request.getParameter("nom");
 			String price = request.getParameter("prix");
-			String category = request.getParameter("categorie");
+			String category = request.getParameter("select-categorie");
+			String categoryDefaut = request.getParameter("categorie");
 			int quantite = Integer.parseInt(request.getParameter("quantite"));
-			String featured = request.getParameter("en_tendance");
+			String featured = request.getParameter("select-tendance");
+			String featuredDefaut = request.getParameter("tendance");
 			String image = request.getParameter("image");
+			System.out.print("categoryDefaut : " + categoryDefaut);
+			System.out.print("featuredDefaut : " + featuredDefaut);
 			ProduitEntity p = new ProduitEntity();
 			p.setId(Integer.parseInt(id));
 			p.setNom(name);
 			p.setPrix(price);
-			p.setCategorie(category);
-			p.setEnTendance(featured);
+			if(category.equals("CategorieDefaut")) {
+				p.setCategorie(categoryDefaut);
+			} else {
+				p.setCategorie(category);
+			}
+			if(featured.equals("TendanceDefaut")) {
+				p.setEnTendance(featuredDefaut);
+			} else {
+				p.setEnTendance(featured);
+			}
 			p.setQuantite(quantite);
 			p.setImage("img/"+image);
 			try {
 				adminDAOFactory.updateOneProduct(p);
 				list.add(p);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			request.getRequestDispatcher("admin/index.jsp").forward(request, response);
@@ -165,9 +178,9 @@ public class AdminController extends HttpServlet {
 		if(page.equals("add_product")){
 			String name = request.getParameter("nom");
 			String price = request.getParameter("prix");
-			String category = request.getParameter("categorie");
+			String category = request.getParameter("select-categorie");
 			int quantite = Integer.parseInt(request.getParameter("quantite"));
-			String featured = request.getParameter("en_tendance");
+			String featured = request.getParameter("select-tendance");
 			String image = request.getParameter("image");
 			ProduitEntity p = new ProduitEntity();
 			p.setNom(name);

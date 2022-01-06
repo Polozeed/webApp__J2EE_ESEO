@@ -33,11 +33,11 @@
 	</c:choose>
 	<table>
 		<tr>
-			<th>Nom du produit</th>
-			<th>Prix</th>
-			<th>Quantité</th>
-			<th>Catégorie</th>
-			<th>Supprimer produit</th>
+			<th style="width: 100px;text-align: center">Nom du produit</th>
+			<th style="width: 50px;text-align: center">Prix</th>
+			<th style="width: 100px;text-align: center">Catégorie</th>
+			<th style="width: 50px;text-align: center">Quantité</th>
+			<th style="width: 100px;text-align: center">Supprimer produit</th>
 		</tr>
 	</table>
 	
@@ -50,10 +50,11 @@
 				
 			<table style="table-layout: fixed;width: 100%;">
 				<tr>
-					<td style="width: 100px;"><img src="${Product.getImage()}" height="100" width="150" >  (<c:out value="${Product.getNom()}"/>)</td>
-					<td style="width: 50px;"><c:out value="${Product.getPrix()}"/></td>
-					<td style="width: 100px;"><c:out value="${Product.getQuantite()}"/></td>
-					<td style="width: 100px;"><a href="Controller?page=remove&id=<c:out value="${Product.getId()}"/>"><span class="btn btn-danger">X</span></a></td>
+					<td style="width: 100px;text-align: center"><img src="${Product.getImage()}" height="100" width="150" >  (<c:out value="${Product.getNom()}"/>)</td>
+					<td style="width: 50px;text-align: center"><c:out value="${Product.getPrix()}"/></td>
+					<td style="width: 100px;text-align: center"><c:out value="${Product.getCategorie()}"/></td>
+					<td style="width: 50px;text-align: center"><c:out value="${Product.getQuantite()}"/></td>
+					<td style="width: 100px;text-align: center"><a href="Controller?page=remove&id=<c:out value="${Product.getId()}"/>"><span class="btn btn-danger">X</span></a></td>
 				</tr>
 			</table>
 				</c:if>
@@ -62,11 +63,13 @@
 	
 	<h4 style="margin-top: 40px;margin-bottom: 40px;">Prix total : <c:out value="${ total}"></c:out> €</h4>
 	
-	<a href="Controller?page=success"><input type="submit" value="Finaliser la commande" class="btn btn-success" style="width:100%;padding:8px;font-size:16px;"></a><br>
-	<a href="Controller?page=index"><input type="button" value="Poursuivre mes achats" class="btn btn-warning" style="width:100%;padding:8px;font-size:16px;"></a>
+	<a href="Controller?page=success"><input type="submit" value="Finaliser la commande"  style="width:100%;padding:8px;font-size:16px;"></a><br>
+	<a href="Controller?page=index"><input type="button" value="Poursuivre mes achats" style="width:100%;padding:8px;font-size:16px;"></a>
 	
 	
 	</div>
+	<br>
+	<br>
 
 	<%@include file="bottombar.jsp" %>
 

@@ -20,28 +20,42 @@
 	 
 	 <input type="hidden" name="page" value="edit_product">
 	 <input type="hidden" name="id" value="<c:out value="${p.getId() }"/>">
+	 <input type="hidden" name="categorie" value="<c:out value="${p.getCategorie() }"/>">
+	 <input type="hidden" name="tendance" value="<c:out value="${p.getEnTendance() }"/>">
      
 	 	<div class="signup-group">
 	 		<label>Nom</label>
 	 		<input type="text" name="nom" value="<c:out value="${p.getNom() }"></c:out>" required>
 	 	</div>
 	 	<div class="signup-group">
-	 		<label>Prix</label>
-	 		<input type="text" name="prix" value="<c:out value="${p.getPrix() }"></c:out>" required>
+	 		<label>Prix (€)</label>
+	 		<input type="number" name="prix" value="<c:out value="${p.getPrix() }"></c:out>" required>
 	 	</div>
+
+
 	 	<div class="signup-group">
 	 		<label>Catégorie</label>
-	 		<input type="text" name="categorie" value="<c:out value="${p.getCategorie() }"></c:out>" required>
+			<select name="select-categorie" id="select-categorie" required>
+				<option value="CategorieDefaut">${p.getCategorie()}</option>
+				<option value="Telephones">Téléphones</option>
+				<option value="Ordinateurs portables">Ordinateurs portables</option>
+				<option value="Vetements">Vêtements</option>
+				<option value="Electronique">Electronique</option>
+			</select>
 	 	</div>
 	 	
 	 	<div class="signup-group">
 	 		<label>Quantité</label>
-	 		<input type="text" name="quantite" value="<c:out value="${p.getQuantite() }"></c:out>" required>
+	 		<input type="number" name="quantite" value="<c:out value="${p.getQuantite() }"></c:out>" required>
 	 	</div>
 
 		 <div class="signup-group">
 			 <label>En tendance</label>
-			 <input type="text" name="en_tendance" value="<c:out value="${p.getEnTendance() }"></c:out>" required>
+			 <select name="select-tendance" id="select-tendance" required>
+				 <option value="TendanceDefaut">${p.getEnTendance()}</option>
+				 <option value="oui">Oui</option>
+				 <option value="non">Non</option>
+			 </select>
 		 </div>
 
 	 	<div class="signup-group">
@@ -55,6 +69,8 @@
 		</div>
 	 </form>
 
+	<br>
+	<br>
 	<%@include file="../bottombar.jsp" %>
 </body>
 </html>
