@@ -146,7 +146,7 @@ public class AdminController extends HttpServlet {
 				p.setEnTendance(featured);
 			}
 			p.setQuantite(quantite);
-			p.setImage("img/"+image);
+			p.setImage(image);
 			try {
 				adminDAOFactory.updateOneProduct(p);
 				list.add(p);

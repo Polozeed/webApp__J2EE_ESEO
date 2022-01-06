@@ -53,7 +53,7 @@
 					<td style="width: 100px;text-align: center"><img src="${Product.getImage()}" height="100" width="150" >  (<c:out value="${Product.getNom()}"/>)</td>
 					<td style="width: 50px;text-align: center"><c:out value="${Product.getPrix()}"/></td>
 					<td style="width: 100px;text-align: center"><c:out value="${Product.getCategorie()}"/></td>
-					<td style="width: 50px;text-align: center"><c:out value="${Product.getQuantite()}"/></td>
+					<td style="width: 50px;text-align: center"><c:out value="1"/></td>
 					<td style="width: 100px;text-align: center"><a href="Controller?page=remove&id=<c:out value="${Product.getId()}"/>"><span class="btn btn-danger">X</span></a></td>
 				</tr>
 			</table>
