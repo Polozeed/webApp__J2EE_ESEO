@@ -23,7 +23,7 @@
 
 
     <div class="signup-group">
-        <label>Nom: ${u.getLogin()} </label>
+        <label>Nom: ${u.getNom()} </label>
 
     </div>
     <div class="signup-group">
@@ -31,7 +31,11 @@
     </div>
     <div class="signup-group">
         <label>Bloquer l'utilisateur</label>
-        <input type="checkbox" id="bloque" name="bloque" value="bloque" checked>
+        <select name="bloquer" id="select-bloquer">
+            <option value="choisir">Choisir une option</option>
+            <option value="bloquer">Bloquer</option>
+            <option value="debloquer">Débloquer</option>
+        </select>
     </div>
 
     <div class="signup-group">

@@ -90,11 +90,6 @@ public class AdminController extends HttpServlet {
 			try {
 				UserEntity u = adminDAOFactory.getOneUserEntity(editUser);
 				request.setAttribute("u", u);
-				if(u.getEst_bloque()== true) {
-					request.setAttribute("bloque", "Oui");
-				} else {
-					request.setAttribute("bloque", "Non");
-				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -148,10 +143,10 @@ public class AdminController extends HttpServlet {
 
 		//----------------------------------------// Formulaire Edition User //----------------------------------------
 		if(page.equals("edit_user")){
-			Boolean bloque = Boolean.valueOf(request.getParameter("bloque"));
+			String bloque = request.getParameter("select-bloquer");
 			System.out.println("------------------  " + bloque);
 			UserEntity u = adminDAOFactory.getOneUserEntity(editUser);
-			u.setEst_bloque(bloque);
+			u.setEst_bloque(Boolean.valueOf(bloque));
 			try {
 				adminDAOFactory.updateOneUser(u);
 			} catch (Exception e) {
