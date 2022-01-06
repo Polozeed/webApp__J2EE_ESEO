@@ -13,7 +13,7 @@
 	<%@include file="topbarAdmin.jsp" %>
 	
 	<div class="signup-header">
-	 	<h2>Edit Product</h2>
+	 	<h2>Editer un produit</h2>
 	 </div>
 
 	 <form method="post" action="admin">
@@ -22,20 +22,20 @@
 	 <input type="hidden" name="id" value="<c:out value="${p.getId() }"/>">
      
 	 	<div class="signup-group">
-	 		<label>Name</label>
+	 		<label>Nom</label>
 	 		<input type="text" name="nom" value="<c:out value="${p.getNom() }"></c:out>" required>
 	 	</div>
 	 	<div class="signup-group">
-	 		<label>Price</label>
+	 		<label>Prix</label>
 	 		<input type="text" name="prix" value="<c:out value="${p.getPrix() }"></c:out>" required>
 	 	</div>
 	 	<div class="signup-group">
-	 		<label>Categorie</label>
+	 		<label>Catégorie</label>
 	 		<input type="text" name="categorie" value="<c:out value="${p.getCategorie() }"></c:out>" required>
 	 	</div>
 	 	
 	 	<div class="signup-group">
-	 		<label>Quantite</label>
+	 		<label>Quantité</label>
 	 		<input type="text" name="quantite" value="<c:out value="${p.getQuantite() }"></c:out>" required>
 	 	</div>
 
@@ -51,7 +51,7 @@
 			<input type="text" name="image" value="<c:out value="${p.getImage() }"></c:out>" >
 	 	</div>
 	 	<div class="signup-group">
-			<input type="submit" value="Process">	 
+			<input type="submit" value="Valider">
 		</div>
 	 </form>
 

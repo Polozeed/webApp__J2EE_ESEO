@@ -23,30 +23,38 @@
      
 	 	<div class="signup-group">
 	 		<label>Nom</label>
-	 		<input type="text" name="nom" placeholder="product name goes here"  required>
+	 		<input type="text" name="nom" placeholder="Ajouter un nom"  required>
 	 	</div>
 	 	<div class="signup-group">
 	 		<label>Prix</label>
-	 		<input type="text" name="prix" placeholder="product price" required>
+	 		<input type="text" name="prix" placeholder="Prix du produit" required>
 	 	</div>
 	 	<div class="signup-group">
 			<label>Categorie</label>
-			<input type="text" name="categorie"  required>
+			<select name="select-categorie" id="select-categorie" required>
+				<option value="Téléphones">Téléphones</option>
+				<option value="Ordinateurs portables">Ordinateurs portables</option>
+				<option value="Vêtements">Vêtements</option>
+				<option value="Electronique">Electronique</option>
+			</select>
 	 	</div>
 		 <div class="signup-group">
 			 <label>Quantité en stock</label>
-			 <input type="text" name="quantite" placeholder="Quantite en stock" required>
+			 <input type="text" name="quantite" placeholder="Quantite en stock" pattern="[0-9]" required>
 		 </div>
 	 	<div class="signup-group">
 	 		<label>En tendance</label>
-	 		<input type="text" name="en_tendance" placeholder="yes/no" required>
+			<select name="select-tendance" id="select-tendance" required>
+				<option value="Oui">Oui</option>
+				<option value="Non">Non</option>
+			</select>
 	 	</div>
 	 	<div class="signup-group">
-	 		 <label for="fileupload"> Select an image to upload</label>
-	 		<input type="file" name="image" required><br>
+	 		 <label for="fileupload"> Selectionner une image à importer</label>
+	 		<input type="file" name="image"><br>
 	 	</div>
 	 	<div class="signup-group">
-			<input type="submit" value="Process">	 
+			<input type="submit" value="Valider">
 		</div>
 	 </form>
 

@@ -35,7 +35,7 @@ public class UserEntity
     private String adresse;
 
 
-    @Column(name = "est_bloque", nullable = true)
+    @Column(name = "est_bloque", nullable = false)
     private Boolean est_bloque;
 
     @Column(name = "token", nullable = true)
@@ -185,5 +185,14 @@ public class UserEntity
                 ", est_bloque=" + est_bloque +
                 ", token='" + token + '\'' +
                 '}';
+    }
+
+    public String affichage_bloquerDebloquer() {
+        Boolean bool = getEst_bloque();
+        if (bool == true) {
+            return "Oui";
+        } else {
+            return "Non";
+        }
     }
 }

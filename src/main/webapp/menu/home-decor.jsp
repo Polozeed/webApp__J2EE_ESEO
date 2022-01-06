@@ -25,7 +25,7 @@
 				<%@include file="menu.jsp" %>
 
  				<div class="col-md-8"><!-- right -->
- 					<h2 style="text-align: center;">Décoration d'intérieurs</h2>
+ 					<h2 style="text-align: center;">Electronique</h2>
 
 					<!-- Trie appelé sur les jsp du menu -->
 					<h5>Trier par prix :</h5>
@@ -41,7 +41,7 @@
 
 					<c:forEach items="${list }" var="product">
 
-						<c:if test="${product.getCategorie() == 'electronique' }">
+						<c:if test="${product.getCategorie() == 'Electronique' }">
 							<!-- Afficher les produits correspondant au menu sélectionné -->
 							<div class="col-md-4">
 								<img src="${product.getImage() }" class="img-responsive" >

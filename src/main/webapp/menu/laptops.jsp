@@ -42,7 +42,7 @@
 
 					<c:forEach items="${list }" var="product">
 
-						<c:if test="${product.getCategorie() == 'laptops' }">
+						<c:if test="${product.getCategorie() == 'Ordinateurs portables' }">
 							<!-- Afficher les produits correspondant au menu sélectionné -->
 							<div class="col-md-4">
 								<img src="${product.getImage() }" class="img-responsive" >

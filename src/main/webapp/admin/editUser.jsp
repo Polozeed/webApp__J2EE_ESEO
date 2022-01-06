@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="ISO-8859-1">
-    <title>Editer User</title>
+    <title>Edition de l'utilisateur</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
@@ -31,15 +31,15 @@
     </div>
     <div class="signup-group">
         <label>Bloquer l'utilisateur</label>
-        <select name="bloquer" id="select-bloquer">
-            <option value="choisir">Choisir une option</option>
-            <option value="bloquer">Bloquer</option>
-            <option value="debloquer">Débloquer</option>
+        <select name="select-bloque" id="select-bloque">
+            <option value="0">Choisir une option</option>
+            <option value="1">Bloquer</option>
+            <option value="2">Débloquer</option>
         </select>
     </div>
 
     <div class="signup-group">
-        <input type="submit" value="Process">
+        <input type="submit" value="Valider">
     </div>
 </form>
 

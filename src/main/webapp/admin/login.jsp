@@ -31,7 +31,7 @@
 	 		<input type="password" name="password" placeholder="Votre mot de passe">
 	 	</div>
 	 	<div class="signup-group">
-	 		<button type="submit" name="Se connecter" class="signup-btn">Log in</button>
+	 		<button type="submit" name="Se connecter" class="signup-btn">Se connecter</button>
 	 	</div>
 	 </form>
 

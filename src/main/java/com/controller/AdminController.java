@@ -44,7 +44,7 @@ public class AdminController extends HttpServlet {
 				request.getRequestDispatcher("admin/index.jsp").forward(request, response);
 			}
 			else {
-				request.setAttribute("msg", "Invalid Crediantials");
+				request.setAttribute("msg", "Identifiant ou mot de passe incorrect");
 				request.setAttribute("username", username);
 				request.getRequestDispatcher("admin/login.jsp").forward(request, response);
 			}
@@ -82,6 +82,7 @@ public class AdminController extends HttpServlet {
 			}
 			session = request.getSession();
 			session.setAttribute("listUser", listUtilisateur);
+
 			request.getRequestDispatcher("admin/listeUtilisateur.jsp").forward(request, response);
 		}
 
@@ -144,10 +145,13 @@ public class AdminController extends HttpServlet {
 
 		//----------------------------------------// Formulaire Edition User //----------------------------------------
 		if(page.equals("edit_user")){
-			String bloque = request.getParameter("select-bloquer");
-			System.out.println("------------------  " + bloque);
 			UserEntity u = adminDAOFactory.getOneUserEntity(editUser);
-			u.setEst_bloque(Boolean.valueOf(bloque));
+			String bloque = request.getParameter("select-bloque");
+			if(bloque.equals("1")) {
+				u.setEst_bloque(true);
+			} else {
+				u.setEst_bloque(false);
+			}
 			try {
 				adminDAOFactory.updateOneUser(u);
 			} catch (Exception e) {

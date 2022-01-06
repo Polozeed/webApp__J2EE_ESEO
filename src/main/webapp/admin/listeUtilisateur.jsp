@@ -35,7 +35,7 @@
         <td style="width: 100px;text-align: center"><c:out value="${row.nom }"></c:out></td>
         <td style="width: 100px;text-align: center"><c:out value="${row.prenom}"/></td>
         <td style="width: 100px;text-align: center"><c:out value="${row.adresse}"/></td>
-        <td style="width: 100px;text-align: center"><c:out value="${row.est_bloque}"/></td>
+        <td style="width: 100px;text-align: center"><c:out value="${row.affichage_bloquerDebloquer()}"/></td>
         <td style="width: 100px;text-align: center"><a href="<%= request.getContextPath() %>/admin?page=editUser&id=${row.login}" style="color:#6bb1f8;">Bloquer le compte</a></td>
       </tr>
     </table>

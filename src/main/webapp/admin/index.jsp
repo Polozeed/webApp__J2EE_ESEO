@@ -17,12 +17,12 @@
 	<h2>Liste des produits :</h2>
 		 <table>
 			<tr>
-			<th>Identifiant</th>
-			<th>Nom</th>
-			<th>Prix</th>
-			<th>Catégorie</th>
-			<th>Image</th>
-			<th>Option</th>
+			<th style="width: 100px;text-align: center">Nom</th>
+			<th style="width: 100px;text-align: center">Prix</th>
+			<th style="width: 100px;text-align: center">Catégorie</th>
+			<th style="width: 100px;text-align: center">Image</th>
+			<th style="width: 100px;text-align: center">Editer</th>
+			<th style="width: 100px;text-align: center">Supprimer</th>
 		</tr>
 	</table>
 
@@ -31,13 +31,12 @@
 		  <table style="table-layout: fixed;width: 100%;">
 		  	
 				<tr>
-					<td style="width: 50px;"><c:out value="${row.id }"></c:out></td>
-					<td style="width: 100px;"><c:out value="${row.nom }"></c:out></td>
-					<td style="width: 100px;"><c:out value="${row.prix }"></c:out></td>
-					<td style="width: 100px;"><c:out value="${row.categorie}"/></td>
-					<td style="width: 100px;"><img src="${row.image}" height="100" width="150" ></td>
-					<td style="width: 100px;"><a href="<%= request.getContextPath() %>/admin?page=edit&id=${row.id}" style="color: #6bb1f8;">edit</a> ||
-					<a href="<%= request.getContextPath() %>/admin?page=delete&id=${row.id}" style="color:#6bb1f8;">delete</a></td>
+					<td style="width: 100px;text-align: center"><c:out value="${row.nom }"></c:out></td>
+					<td style="width: 100px;text-align: center"><c:out value="${row.prix }"></c:out></td>
+					<td style="width: 100px;text-align: center"><c:out value="${row.categorie}"/></td>
+					<td style="width: 100px;text-align: center"><img src="${row.image}" height="100" width="150" ></td>
+					<td style="width: 100px;text-align: center"><a href="<%= request.getContextPath() %>/admin?page=edit&id=${row.id}" style="color: #6bb1f8;">Editer</a></td>
+					<td style="width: 100px;text-align: center"><a href="<%= request.getContextPath() %>/admin?page=delete&id=${row.id}" style="color:#6bb1f8;">Supprimer</a></td>
 				</tr>
 			</table>
 		 </c:forEach>
