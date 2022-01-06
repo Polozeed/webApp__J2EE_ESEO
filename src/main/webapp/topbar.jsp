@@ -13,7 +13,7 @@
                 <c:when test="${session == null}">
                     <li><a href="Controller?page=login">Se connecter</a></li>
                     <li><a href="Controller?page=sign-up">S'inscrire</a></li>
-                    <li> <a href="Controller?page=showcart" ><i  class="fas fa-shopping-cart fa-2x" style="color: white;width: auto; padding: 5px"></i>(<c:out value="${x}"/>)</a>
+                    <li> <a href="Controller?page=login" ><i  class="fas fa-shopping-cart fa-2x" style="color: white;width: auto; padding: 5px"></i>(<c:out value="${x}"/>)</a>
             </c:when>
                 <c:when test="${session != null}">
                     <li><a href="Controller?page=logout" style="color: #F24638;">Se déconnecter</a></li>

@@ -1,4 +1,4 @@
-<%@page import="com.beans.Product"%>
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="javax.swing.JOptionPane"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
