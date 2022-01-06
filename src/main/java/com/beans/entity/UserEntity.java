@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 
 
+//----------------------------------------// Entity Client//--------------------------------------
 @Table(name = "client")
 @Entity(name = "UserEntity")
 public class UserEntity

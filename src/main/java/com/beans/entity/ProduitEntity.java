@@ -3,11 +3,13 @@ package com.beans.entity;
 
 
 
+import com.beans.ComparaisonPrix;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
+//----------------------------------------// Entity Produit //--------------------------------------
 @Table(name = "produit")
 @Entity(name = "ProduitEntity")
 public class ProduitEntity  implements Comparable<ProduitEntity>{
@@ -135,6 +137,7 @@ public class ProduitEntity  implements Comparable<ProduitEntity>{
         }
         return false;
     }
+    //----------------------------------------// Fct supprimer produit du panier//--------------------------------------
     public ArrayList<String> remove(ArrayList<String> cartlist, String id) {
         for(String cid : cartlist) {
             if(cid.equals(id)) {
@@ -145,6 +148,7 @@ public class ProduitEntity  implements Comparable<ProduitEntity>{
         return cartlist;
     }
 
+    //----------------------------------------// Fct classement produit croissant//--------------------------------------
     public ArrayList<ProduitEntity> lowtohigh(ArrayList<ProduitEntity> list) {
         Collections.sort(list);
         return list;
@@ -154,6 +158,7 @@ public class ProduitEntity  implements Comparable<ProduitEntity>{
         return Integer.parseInt(this.prix) - Integer.parseInt(p.prix);
     }
 
+    //----------------------------------------// Fct classement produit decroissant//--------------------------------------
     public ArrayList<ProduitEntity> hightolow(ArrayList<ProduitEntity> list) {
         Collections.sort(list, new ComparaisonPrix());
         return list;

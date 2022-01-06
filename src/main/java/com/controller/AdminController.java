@@ -12,6 +12,7 @@ import com.beans.entity.ProduitEntity;
 import com.beans.entity.UserEntity;
 
 
+//----------------------------------------// Controller Admin//--------------------------------------
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final AdminDAOFactory adminDAOFactory = new AdminDAOFactory();

@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
+//----------------------------------------// Entity Historique Commande //--------------------------------------
 @Table(name = "historique_commande")
 @Entity(name = "HistoriqueCommandeEntity")
 public class HistoriqueCommandeEntity {
@@ -61,6 +62,8 @@ public class HistoriqueCommandeEntity {
     public LocalDateTime getDateheure() {
         return dateheure;
     }
+
+    //----------------------------------------// GetDateHeure au format date Francaise //--------------------------------------
     public String getDateheureFront() {
         Date out = Date.from(dateheure.atZone(ZoneId.systemDefault()).toInstant());
         DateFormat mediumDateFormat = DateFormat.getDateTimeInstance(
@@ -69,8 +72,6 @@ public class HistoriqueCommandeEntity {
         return mediumDateFormat.format(out);
 
     }
-
-
 
     public void setDateheure(LocalDateTime dateheure) {this.dateheure = dateheure;}
 

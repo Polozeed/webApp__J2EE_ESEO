@@ -1,4 +1,4 @@
-package com.beans.daoFactory;
+package com.beans;
 
 
 import java.io.*;
@@ -14,6 +14,7 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
 
+//----------------------------------------// Classe permettant la génération de la facture //--------------------------------------
 public class PDFfactory {
 
     public PDFfactory() {
@@ -23,6 +24,7 @@ public class PDFfactory {
     private BaseFont bf;
     private int pageNumber = 0;
 
+    //----------------------------------------// Fonction Main permettant de génerer un pdf //--------------------------------------
     public static void main(String[] args) {
 
         String pdfFilename = "my2.pdf";
@@ -44,6 +46,7 @@ public class PDFfactory {
         return in;
     }
 
+    //----------------------------------------// Fct généré pdf //--------------------------------------
     public void createPDF (String pdfFilename, ArrayList<ProduitEntity> produitEntityArrayList, UserEntity user){
 
         System.out.println(produitEntityArrayList.toString());
@@ -99,6 +102,7 @@ public class PDFfactory {
         }
     }
 
+    //----------------------------------------// Fct generer structure du pdf //--------------------------------------
     private void generateLayout(Document doc, PdfContentByte cb)  {
         try {
             cb.setLineWidth(1f);
@@ -140,6 +144,7 @@ public class PDFfactory {
 
     }
 
+    //----------------------------------------// Fct generer Header du pdf //--------------------------------------
     private void generateHeader(Document doc, PdfContentByte cb, UserEntity user)  {
         try {
             createHeadings(cb,200,750,"E-commerce ESEO");
