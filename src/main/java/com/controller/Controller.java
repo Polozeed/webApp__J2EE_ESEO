@@ -3,25 +3,17 @@ package com.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.sql.SQLException;
-import java.text.DateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
-import com.beans.FactoryProvider;
-import com.beans.Product;
-import com.beans.User;
+
 import com.beans.daoFactory.HistoriqueCommandeDAOFactory;
-import com.beans.daoFactory.PDFfactory;
+import com.beans.PDFfactory;
 import com.beans.daoFactory.ProduitDAOFactory;
 import com.beans.daoFactory.UserDAOFactory;
 import com.beans.entity.HistoriqueCommandeEntity;
@@ -32,6 +24,7 @@ import static java.time.format.DateTimeFormatter.ofLocalizedDateTime;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 
+//----------------------------------------// Controller Client//--------------------------------------
 public class Controller extends HttpServlet {
 
 
@@ -46,15 +39,13 @@ public class Controller extends HttpServlet {
 	HttpSession session;
 
 
-
-
 	private static final int BYTES_DOWNLOAD = 1024;
-	private final com.beans.daoFactory.PDFfactory pdFfactory = new PDFfactory();
+	private final com.beans.PDFfactory pdFfactory = new PDFfactory();
 	private final PDFfactory PDFfactory = new PDFfactory();
 
 
 
-
+	//----------------------------------------// Fct Ajout des informations User dans la session //--------------------------------------
 	public void addInfoUserSession(UserEntity user ){
 		session.setAttribute("id",user.getId());
 		session.setAttribute("adress",user.getAdresse());
@@ -63,9 +54,9 @@ public class Controller extends HttpServlet {
 	}
 
 	public void addInfoCartListSession(){
-
 	}
 
+	//----------------------------------------// JSP Accueil//--------------------------------------
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String page = request.getParameter("page");
 		if(page == null || page.equals("index")) {
@@ -87,7 +78,7 @@ public class Controller extends HttpServlet {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 
 	}
-
+	//----------------------------------------// JSP login, Inscription//--------------------------------------
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String page = request.getParameter("page");
 		if(page.equals("login")) {
@@ -97,7 +88,8 @@ public class Controller extends HttpServlet {
 		if(page.equals("sign-up")) {
 			request.getRequestDispatcher("signup.jsp").forward(request, response);
 		}
-		
+
+		//----------------------------------------// Formulaire Inscription/--------------------------------------
 		if(page.equals("sign-up-form")) {
 			String name = request.getParameter("name");
 			String email = request.getParameter("email");
@@ -126,7 +118,8 @@ public class Controller extends HttpServlet {
 				request.getRequestDispatcher("signup.jsp").forward(request, response);
 			}
 		}
-		
+
+		//----------------------------------------// Formulaire Connexion//--------------------------------------
 		if(page.equals("login-form")) {
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
@@ -147,7 +140,8 @@ public class Controller extends HttpServlet {
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 		}
-		
+
+		//----------------------------------------// JSP Deconnexion//--------------------------------------
 		if(page.equals("logout")) {
 			session = request.getSession();
 			session.invalidate();
@@ -157,7 +151,8 @@ public class Controller extends HttpServlet {
 			session.setAttribute("list", list);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
-		
+
+		//----------------------------------------// JSP categorie produit //--------------------------------------
 		if(page.equals("mobiles") || page.equals("laptops") || page.equals("clothing") || page.equals("home-decor") || page.equals("all-products")) {
 			try {
 				list = produitDAOFactory.produitEntityList();
@@ -177,11 +172,13 @@ public class Controller extends HttpServlet {
 				request.getRequestDispatcher("menu/all-products.jsp").forward(request, response);
 		}
 
+		//----------------------------------------// JSP Panier//--------------------------------------
 		if(page.equals("showcart")) {
 			request.getRequestDispatcher("cart.jsp").forward(request, response);
 
 		}
-		
+
+		//----------------------------------------// Fonction ajout produit dans le panier//--------------------------------------
 		if(page.equals("addtocart")) {
 			String id = request.getParameter("id");
 			String action = request.getParameter("action");
@@ -207,10 +204,10 @@ public class Controller extends HttpServlet {
 			if(action.equals("mobiles"))
 				request.getRequestDispatcher("menu/mobiles.jsp").forward(request, response);
 		}
-		
+
+		//----------------------------------------// JSP validation du panier//--------------------------------------
 		if(page.equals("success")) {
 			request.getRequestDispatcher("success.jsp").forward(request, response);
-			System.out.println("============= Je suis dans la boucle ==============");
 			ArrayList listproduct = new ArrayList();
 			ArrayList<ProduitEntity> listProduitEntityToPDF = new ArrayList();
 
@@ -232,7 +229,8 @@ public class Controller extends HttpServlet {
 			}
 			session.setAttribute("cartlist", cartlist);
 		}
-		
+
+		//----------------------------------------// Supression produit dans le Panier//--------------------------------------
 		if(page.equals("remove")) {
 			String id = request.getParameter("id");
 			ProduitEntity p = new ProduitEntity();
@@ -242,7 +240,8 @@ public class Controller extends HttpServlet {
 			session.setAttribute("cartlist", cartlist);
 			request.getRequestDispatcher("cart.jsp").forward(request, response);
 		}
-		
+
+		//----------------------------------------// Fct de classement par ordre de prix //--------------------------------------
 		if(page.equals("price-sort")) {
 			String price = request.getParameter("sort");
 			String action = request.getParameter("action");
@@ -268,6 +267,8 @@ public class Controller extends HttpServlet {
 				request.getRequestDispatcher("menu/home-decor.jsp").forward(request, response);
 		}
 
+
+		//----------------------------------------// JSP Compte client //--------------------------------------
 		if(page.equals("compte")) {
 			UserEntity userAccount = userDAOFactory.getOneUser(session.getAttribute("login").toString());
 			request.setAttribute("username", userAccount.getLogin());
@@ -278,6 +279,7 @@ public class Controller extends HttpServlet {
 			request.getRequestDispatcher("compte.jsp").forward(request, response);
 		}
 
+		//----------------------------------------// Formulaire Modification du client //--------------------------------------
 		if(page.equals("compte-form")) {
 			String name = request.getParameter("name");
 			String firstname = request.getParameter("firstname");
@@ -297,6 +299,7 @@ public class Controller extends HttpServlet {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 
+		//----------------------------------------// JSP Historique du client //--------------------------------------
 		if(page.equals("historique")) {
 			UserEntity userAccount = userDAOFactory.getOneUser(session.getAttribute("login").toString());
 			historiqueList = historiqueDAOFactory.getHistorique(userAccount.getId());
@@ -305,10 +308,12 @@ public class Controller extends HttpServlet {
 			request.getRequestDispatcher("historique.jsp").forward(request, response);
 		}
 
+		//----------------------------------------// JSP Changmeent du mot de passe //--------------------------------------
 		if(page.equals("changement-mdp")) {
 			request.getRequestDispatcher("changement-mdp.jsp").forward(request, response);
 		}
 
+		//----------------------------------------// Formulaire du changmement de mot de passe //--------------------------------------
 		if(page.equals("changement-mdp-form")) {
 			String password_1 = request.getParameter("mdp1");
 			String password_2 = request.getParameter("mdp2");
@@ -327,6 +332,7 @@ public class Controller extends HttpServlet {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 
+		//----------------------------------------// JSP Géneration du PDF//--------------------------------------
 		if(page.equals("pdf")) {
 			System.out.println("je suis dans pdf");
 			UserEntity userpdf = userDAOFactory.getOneUser(session.getAttribute("login").toString());
@@ -351,6 +357,7 @@ public class Controller extends HttpServlet {
 			}
 			os.flush();
 			os.close();
+			// Clear du panier
 			cartlist.clear();
 
 		}
