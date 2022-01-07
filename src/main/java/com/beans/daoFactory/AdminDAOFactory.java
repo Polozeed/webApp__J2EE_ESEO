@@ -13,8 +13,7 @@ import java.util.List;
 
 public class AdminDAOFactory {
 
-    private Session hibernateSession = FactoryProvider.getFactory().openSession();
-    private Transaction transaction = hibernateSession.beginTransaction();
+
     private final ProduitDAOFactory produitDAOFactory = new ProduitDAOFactory();
     private final UserDAOFactory userDAOFactory = new UserDAOFactory();
 
@@ -23,15 +22,12 @@ public class AdminDAOFactory {
 
 
 
-    public void transactionSessionClose(){
-        transaction.commit();
-        hibernateSession.close();
-    }
+
 
     public void supprimerProduit(int id)  {
+
         try {
             produitDAOFactory.deleteOneProduit(id);
-
         } catch (Exception e) {
             e.printStackTrace();
         }

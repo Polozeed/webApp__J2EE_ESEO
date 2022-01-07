@@ -12,26 +12,21 @@ import java.util.List;
 
 public class ProduitDAOFactory {
 
-    private final Session hibernateSession = FactoryProvider.getFactory().openSession();
-    private final Transaction transaction = hibernateSession.beginTransaction();
-
 
     public ProduitDAOFactory() {
     }
 
-    public void transactionSessionClose(){
-        transaction.commit();
 
-    }
-
-    
     public ArrayList<ProduitEntity> produitEntityList() {
 
         ArrayList<ProduitEntity> list = new ArrayList<ProduitEntity>();
+        Session hibernateSession = FactoryProvider.getFactory().openSession();
+        Transaction transaction= hibernateSession.beginTransaction();
         try {
             List<ProduitEntity> res = hibernateSession
                     .createQuery("from com.beans.entity.ProduitEntity P", ProduitEntity.class)
                     .getResultList();
+            transaction.commit();
             for (ProduitEntity rs : res) {
                 ProduitEntity p = new ProduitEntity(rs.getId(), rs.getNom(), rs.getPrix(), rs.getQuantite(), rs.getEnTendance(), rs.getCategorie(), rs.getImage());
                 System.out.println(p.toString());
@@ -39,8 +34,10 @@ public class ProduitDAOFactory {
                 p = null;
             }
         } catch (Exception e) {
+            hibernateSession.close();
             e.printStackTrace();
         }
+        hibernateSession.close();
         return list;
     }
 
@@ -49,6 +46,8 @@ public class ProduitDAOFactory {
     }
 
     public ProduitEntity getOneProduit(int id) {
+        Session hibernateSession = FactoryProvider.getFactory().openSession();
+        Transaction transaction= hibernateSession.beginTransaction();
         System.out.println("----------------// Get One Produit //----------------");
         ProduitEntity res = new ProduitEntity();
         try {
@@ -57,47 +56,62 @@ public class ProduitDAOFactory {
                     .setParameter("id", id)
                     .getSingleResult();
             System.out.println(res.toString());
+            transaction.commit();
         } catch (Exception e) {
+            hibernateSession.close();
             e.printStackTrace();
+
         }
+        hibernateSession.close();
         return res;
     }
 
 
     public void deleteOneProduit(int id) {
+        System.out.println("----------------// Delete One Produit //----------------");
+        Session hibernateSession = FactoryProvider.getFactory().openSession();
+        Transaction transaction= hibernateSession.beginTransaction();
         try {
             ProduitEntity res =hibernateSession.find(ProduitEntity.class, id);
             hibernateSession.remove(res);
-            System.out.println("----------------// Delete One Produit //----------------");
+            transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
         finally {
-            this.transactionSessionClose();
+            hibernateSession.close();
         }
     }
 
     public void updateProduct(ProduitEntity produit) {
+        Session hibernateSession = FactoryProvider.getFactory().openSession();
+        Transaction transaction= hibernateSession.beginTransaction();
         try {
             System.out.println("----------------// Update One Produit //----------------");
             System.out.println(produit.toString());
-           hibernateSession.merge(produit);
-            this.transactionSessionClose();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void newProduct(ProduitEntity produit) {
-        try {
-            System.out.println("----------------// New One Produit //----------------");
-            System.out.println(produit.toString());
-            hibernateSession.save(produit);
+            hibernateSession.merge(produit);
+            transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
         finally {
-            this.transactionSessionClose();
+            hibernateSession.close();
+        }
+    }
+
+    public void newProduct(ProduitEntity produit) {
+        Session hibernateSession = FactoryProvider.getFactory().openSession();
+        Transaction transaction= hibernateSession.beginTransaction();
+        try {
+            System.out.println("----------------// New One Produit //----------------");
+            System.out.println(produit.toString());
+            hibernateSession.save(produit);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            hibernateSession.close();
         }
     }
 }

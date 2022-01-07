@@ -100,7 +100,7 @@ public class Controller extends HttpServlet {
 			
 			if(password_1.equals(password_2)) {
 
-				UserEntity user = new UserEntity(username,password_1,username,name,email,address,null, null);
+				UserEntity user = new UserEntity(username,password_1,username,name,email,address,null, false);
 				Object res = userDAOFactory.inscription(user);
 
 				HttpSession httpSession = request.getSession();
