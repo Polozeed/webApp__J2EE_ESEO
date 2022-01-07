@@ -1,9 +1,9 @@
 --
 -- Base de données : `vente_en_ligne`
 --
-
--- --------------------------------------------------------
 CREATE DATABASE vente_en_ligne;
+-- --------------------------------------------------------
+
 --
 -- Structure de la table `client`
 --
@@ -53,24 +53,24 @@ CREATE TABLE IF NOT EXISTS `produit` (
 
 DELETE FROM `produit`;
 INSERT INTO `produit` (`id_produit`, `nom`, `prix`, `categorie`, `quantite`, `en_tendance`, `image`) VALUES
-(1, 'One plus ', '1800', 'Téléphones', 5, 'oui', 'img/oneplus-6.jpg'),
-(2, 'Iphone X', '2000', 'Téléphones', 3, 'oui', 'img/iphone-x.jpeg'),
-(3, 'Pocophone F1', '2000', 'Téléphones', 4, 'oui', 'img/pocophone-f1.jpg'),
-(4, 'Samsung S9', '1200', 'Téléphones', 54, 'non', 'img/samsung-s9.jpg'),
+(1, 'One plus ', '1800', 'Telephones', 5, 'oui', 'img/oneplus-6.jpg'),
+(2, 'Iphone X', '2000', 'Telephones', 3, 'oui', 'img/iphone-x.jpeg'),
+(3, 'Pocophone F1', '2000', 'Telephones', 4, 'oui', 'img/pocophone-f1.jpg'),
+(4, 'Samsung S9', '1200', 'Telephones', 54, 'non', 'img/samsung-s9.jpg'),
 (5, 'Macbook Air', '1200', 'Ordinateurs portables', 0, 'oui', 'img/macbook-air.jpg'),
 (6, 'Asus Rog', '3200', 'Ordinateurs portables', 1, 'oui', 'img/asus-rog.jpg'),
 (7, 'HP Pavilion', '900', 'Ordinateurs portables', 1, 'oui', 'img/hp-pavilion.png'),
 (8, 'Acer Predator', '1600', 'Ordinateurs portables', 0, 'oui', 'img/acer-predator.jpg'),
-(9, 'Jeans', '75', 'Vêtements', 10, 'non', 'img/jeans.jpg'),
-(10, 'Shirts', '60', 'Vêtements', 10, 'non', 'img/shirts.jpg'),
-(11, 'T-Shirt', '40', 'Vêtements', 25, 'non', 'img/t-shirt.jpg'),
-(12, 'Sweatshirt', '55', 'Vêtements', 8, 'oui', 'img/sweatshirt.jpg'),
+(9, 'Jeans', '75', 'Vetements', 10, 'non', 'img/jeans.jpg'),
+(10, 'Shirts', '60', 'Vetements', 10, 'non', 'img/shirts.jpg'),
+(11, 'T-Shirt', '40', 'Vetements', 25, 'non', 'img/t-shirt.jpg'),
+(12, 'Sweatshirt', '55', 'Vetements', 8, 'oui', 'img/sweatshirt.jpg'),
 (13, 'Arduino', '12', 'Electronique', 12, 'non', 'img/arduino.jpg'),
 (14, 'Camera CSI', '24', 'Electronique', 15, 'non', 'img/camera.jpg'),
 (18, 'Cable ethernet', '4', 'Electronique', 35, 'non', 'img/ethernet.jpg'),
-(20, 'Pull Eseo', '35', 'Vêtements', 200, 'oui', 'img/pullEseo.jpg'),
-(21, 'Maillot SCO', '40', 'Vêtements', 7, 'oui', 'img/scoPull.jpg'),
-(22, 'Maillot Duc', '35', 'Vêtements', 2, 'oui', 'img/ducAngers.png'),
+(20, 'Pull Eseo', '35', 'Vetements', 200, 'oui', 'img/pullEseo.jpg'),
+(21, 'Maillot SCO', '40', 'Vetements', 7, 'oui', 'img/scoPull.jpg'),
+(22, 'Maillot Duc', '35', 'Vetements', 2, 'oui', 'img/ducAngers.png'),
 (23, 'Carte Wifi', '4', 'Electronique', 10, 'non', 'img/wifi.jpg'),
 (24, 'Rapsberry PI', '4', 'Electronique', 7, 'non', 'img/raspberry.jpg');
 
