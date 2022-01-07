@@ -4,7 +4,7 @@
 <html>
 
 <meta charset="ISO-8859-1">
-<title>Login page</title>
+<title>Connexion</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 
 <body>
