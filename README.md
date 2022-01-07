@@ -17,6 +17,21 @@ Ce qu'il est requis pour commencer l'installation du projet
 - Installation d'une base de donnée SQL.
 - Execution du Script creation_insertion_bdd.sql.
 - Création d'un Serveur Tomcat 9.0 connecté à l'Artefact du projet.
+- Connexion avec les comptes ci dessous
+
+## Compte et mot de passe 
+
+- **Administateur**
+  - **Id** : admin
+  - **mdp** : admin@1234
+
+- **Utilisateur**
+  - **Id** : martin
+  - **mdp** : martin
+
+- **Utilisateur bloqué**
+  - **Id** : polozed
+  - **mdp** : 1234
 
 ## Consignes du projet
 
@@ -78,5 +93,5 @@ de commander
 * **Maxime Pouplain** _alias_ [@Maxime175](https://github.com/Maxime175)
 
 
-### ESEO A3 Decembre 2022
+### ESEO A3 Janvier 2022
 

@@ -9,18 +9,21 @@ import org.hibernate.Transaction;
 import java.util.ArrayList;
 import java.util.List;
 
+//----------------------------------------// DAO USER/--------------------------------------
 public class UserDAOFactory {
+
 
     public UserDAOFactory() {
     }
 
+    //----------------------------------------// Inscription/--------------------------------------
     public Object inscription(UserEntity user){
         System.out.println("----------------// User Inscription  //----------------");
         Session hibernateSession = FactoryProvider.getFactory().openSession();
         Transaction transaction= hibernateSession.beginTransaction();
         try {
             System.out.println(user.toString());
-            int res = (int)hibernateSession.save(user);
+            int save = (int)hibernateSession.save(user);
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -31,24 +34,25 @@ public class UserDAOFactory {
         return null;
     }
 
+    //----------------------------------------// Fct Connexion /--------------------------------------
     public Boolean connexion(String username, String password) {
         System.out.println("----------------// User Connexion //----------------");
         Session hibernateSession = FactoryProvider.getFactory().openSession();
         Transaction transaction= hibernateSession.beginTransaction();
         boolean status = false;
         try {
-            UserEntity res = hibernateSession
+            UserEntity userEntity = hibernateSession
                     .createQuery("FROM com.beans.entity.UserEntity  WHERE login = :username", UserEntity.class)
                     .setParameter("username", username)
                     .getSingleResult();
             transaction.commit();
-            System.out.println(res.toString());
-            if (res.getMdp().equals(password))
+            System.out.println(userEntity.toString());
+            // Test si mot de passe saisi = mot de passe en base de donnée
+            if (userEntity.getMdp().equals(password))
                 status = true;
             else {
                 status = false;
             }
-
         } catch (Exception e) {
             hibernateSession.close();
             e.printStackTrace();
@@ -57,60 +61,66 @@ public class UserDAOFactory {
         return status;
     }
 
+    //----------------------------------------// Fct Get un User/--------------------------------------
     public UserEntity getOneUser(String login) {
         System.out.println("----------------// Get One User //----------------");
         Session hibernateSession = FactoryProvider.getFactory().openSession();
         Transaction transaction= hibernateSession.beginTransaction();
-        UserEntity res = new UserEntity();
+        UserEntity userEntity = new UserEntity();
         try {
-            res = hibernateSession
+            userEntity = hibernateSession
                     .createQuery("FROM com.beans.entity.UserEntity p WHERE p.login = :login", UserEntity.class)
                     .setParameter("login", login)
                     .getSingleResult();
-            System.out.println(res.toString());
+            System.out.println(userEntity.toString());
             transaction.commit();
         } catch (Exception e) {
             hibernateSession.close();
             e.printStackTrace();
         }
         hibernateSession.close();
-        return res;
+        return userEntity;
     }
 
+    //----------------------------------------// Fct Get un User by ID /--------------------------------------
     public UserEntity getOneUserById(int id) {
         System.out.println("----------------// Get One User By Id //----------------");
         Session hibernateSession = FactoryProvider.getFactory().openSession();
         Transaction transaction= hibernateSession.beginTransaction();
-        UserEntity res = new UserEntity();
+        UserEntity userEntity = new UserEntity();
         try {
-            res = hibernateSession
+            userEntity = hibernateSession
                     .createQuery("FROM com.beans.entity.UserEntity p WHERE p.id = :id", UserEntity.class)
                     .setParameter("id", id)
                     .getSingleResult();
+            // Recuperation d'un seul resultat
             transaction.commit();
-            System.out.println(res.toString());
+            System.out.println(userEntity.toString());
         } catch (Exception e) {
             hibernateSession.close();
             e.printStackTrace();
         }
         hibernateSession.close();
-        return res;
+        return userEntity;
     }
 
+    //----------------------------------------// Fct Liste User/--------------------------------------
     public ArrayList<UserEntity> userEntityList() {
+        System.out.println("----------------// Get List User //----------------");
         Session hibernateSession = FactoryProvider.getFactory().openSession();
         Transaction transaction= hibernateSession.beginTransaction();
         ArrayList<UserEntity> list = new ArrayList<UserEntity>();
         try {
-            List<UserEntity> res = hibernateSession
+            List<UserEntity> resultList = hibernateSession
                     .createQuery("from com.beans.entity.UserEntity S", UserEntity.class)
                     .getResultList();
             transaction.commit();
-            for (UserEntity rs : res) {
-                UserEntity S = new UserEntity(rs.getLogin(),rs.getMdp(),rs.getNom(),rs.getPrenom(), rs.getMail(),rs.getAdresse(),rs.getToken(),rs.getEst_bloque());
-                System.out.println(S.toString());
-                list.add(S);
-                S = null;
+            // Boucle For pour chaque UserEntity
+            for (UserEntity userEntity : resultList) {
+                UserEntity entity = new UserEntity(userEntity.getLogin(),userEntity.getMdp(),userEntity.getNom(),userEntity.getPrenom(), userEntity.getMail(),userEntity.getAdresse(),userEntity.getToken(),userEntity.getEst_bloque());
+                System.out.println(entity.toString());
+                list.add(entity);
+                entity = null;
             }
         } catch (Exception e) {
             hibernateSession.close();
@@ -120,12 +130,12 @@ public class UserDAOFactory {
         return list;
     }
 
-
+    //----------------------------------------// Fct Update User/--------------------------------------
     public void updateUser(UserEntity user) {
+        System.out.println("----------------// Update One User //----------------");
         Session hibernateSession = FactoryProvider.getFactory().openSession();
         Transaction transaction= hibernateSession.beginTransaction();
         try {
-            System.out.println("----------------// Update One User//----------------");
             System.out.println(user.toString());
             hibernateSession.merge(user);
             transaction.commit();
@@ -137,7 +147,4 @@ public class UserDAOFactory {
             hibernateSession.close();
         }
     }
-
-
-
 }

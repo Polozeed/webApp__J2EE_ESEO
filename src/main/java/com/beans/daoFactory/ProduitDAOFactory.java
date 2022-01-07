@@ -10,28 +10,28 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+//----------------------------------------// DAO Produit//--------------------------------------
 public class ProduitDAOFactory {
-
 
     public ProduitDAOFactory() {
     }
 
-
+    //----------------------------------------// Fct List produit//--------------------------------------
     public ArrayList<ProduitEntity> produitEntityList() {
-
         ArrayList<ProduitEntity> list = new ArrayList<ProduitEntity>();
         Session hibernateSession = FactoryProvider.getFactory().openSession();
         Transaction transaction= hibernateSession.beginTransaction();
         try {
-            List<ProduitEntity> res = hibernateSession
+            List<ProduitEntity> resultList = hibernateSession
                     .createQuery("from com.beans.entity.ProduitEntity P", ProduitEntity.class)
                     .getResultList();
             transaction.commit();
-            for (ProduitEntity rs : res) {
-                ProduitEntity p = new ProduitEntity(rs.getId(), rs.getNom(), rs.getPrix(), rs.getQuantite(), rs.getEnTendance(), rs.getCategorie(), rs.getImage());
-                System.out.println(p.toString());
-                list.add(p);
-                p = null;
+            // Boucle for pour chaque produit
+            for (ProduitEntity produitEntity : resultList) {
+                ProduitEntity produit = new ProduitEntity(produitEntity.getId(), produitEntity.getNom(), produitEntity.getPrix(), produitEntity.getQuantite(), produitEntity.getEnTendance(), produitEntity.getCategorie(), produitEntity.getImage());
+                System.out.println(produit.toString());
+                list.add(produit);
+                produit = null;
             }
         } catch (Exception e) {
             hibernateSession.close();
@@ -45,35 +45,35 @@ public class ProduitDAOFactory {
         return null;
     }
 
+    //----------------------------------------// Fct Get un produit//--------------------------------------
     public ProduitEntity getOneProduit(int id) {
+        System.out.println("----------------// Get One Produit //----------------");
         Session hibernateSession = FactoryProvider.getFactory().openSession();
         Transaction transaction= hibernateSession.beginTransaction();
-        System.out.println("----------------// Get One Produit //----------------");
-        ProduitEntity res = new ProduitEntity();
+        ProduitEntity produitEntity = new ProduitEntity();
         try {
-            res = hibernateSession
+            produitEntity = hibernateSession
                     .createQuery("FROM com.beans.entity.ProduitEntity p WHERE p.id = :id", ProduitEntity.class)
                     .setParameter("id", id)
                     .getSingleResult();
-            System.out.println(res.toString());
+            System.out.println(produitEntity.toString());
             transaction.commit();
         } catch (Exception e) {
             hibernateSession.close();
             e.printStackTrace();
-
         }
         hibernateSession.close();
-        return res;
+        return produitEntity;
     }
 
-
+    //----------------------------------------// Fct Delete un produit//--------------------------------------
     public void deleteOneProduit(int id) {
         System.out.println("----------------// Delete One Produit //----------------");
         Session hibernateSession = FactoryProvider.getFactory().openSession();
         Transaction transaction= hibernateSession.beginTransaction();
         try {
-            ProduitEntity res =hibernateSession.find(ProduitEntity.class, id);
-            hibernateSession.remove(res);
+            ProduitEntity produitEntity =hibernateSession.find(ProduitEntity.class, id);
+            hibernateSession.remove(produitEntity);
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,11 +83,12 @@ public class ProduitDAOFactory {
         }
     }
 
+    //----------------------------------------// Fct Update un produit/--------------------------------------
     public void updateProduct(ProduitEntity produit) {
+        System.out.println("----------------// Update One Produit //----------------");
         Session hibernateSession = FactoryProvider.getFactory().openSession();
         Transaction transaction= hibernateSession.beginTransaction();
         try {
-            System.out.println("----------------// Update One Produit //----------------");
             System.out.println(produit.toString());
             hibernateSession.merge(produit);
             transaction.commit();
@@ -98,12 +99,12 @@ public class ProduitDAOFactory {
             hibernateSession.close();
         }
     }
-
+    //----------------------------------------// Fct Nouveau produit/--------------------------------------
     public void newProduct(ProduitEntity produit) {
+        System.out.println("----------------// New One Produit //----------------");
         Session hibernateSession = FactoryProvider.getFactory().openSession();
         Transaction transaction= hibernateSession.beginTransaction();
         try {
-            System.out.println("----------------// New One Produit //----------------");
             System.out.println(produit.toString());
             hibernateSession.save(produit);
             transaction.commit();

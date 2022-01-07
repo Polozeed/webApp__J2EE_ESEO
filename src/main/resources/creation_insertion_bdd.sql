@@ -25,7 +25,7 @@ DELETE FROM `client`;
 INSERT INTO `client` (`id_client`, `login`, `mdp`, `nom`, `prenom`, `mail`, `adresse_livraison`, `est_bloque`, `token`) VALUES
 (1, 'pouplama', '1234', 'Pouplain', 'Maxime', 'maxime.pouplain@reseau.eseo.fr', '32 rue de Belgique Angers 49000', 0, 'abc'),
 (2, 'martin', 'martin', 'Courier de mere', 'Martin', 'martin.courierdemere@reseau.eseo.fr', '62 rue de Boisdenier Tours 37000', 0, 'def'),
-(3, 'Polozed', '1234', 'Berranger', 'louis', 'louisdebrranger@gmail.com', '42 Avenue Pasteur Angers 490000', 1, NULL),
+(3, 'polozed', '1234', 'Berranger', 'louis', 'louisdebrranger@gmail.com', '42 Avenue Pasteur Angers 490000', 1, NULL),
 (4, 'Zinzin', 'ki', 'Antoine', 'legendre', 'antoine-legendre@gmail.com', '37 Avenue de Grammont Vannes 56000', 0, NULL),
 (5, 'MLeboss', 'zeze', 'Nolwen', 'leroy', 'nolwen_leroy_72@gmail.com', '45 rue Zinédine Zidane Paris 72000 ', 0, NULL),
 (6, 'Antoine47', 'aaaa', 'Corneau', 'antoine', 'antoineCorneau@hotmail.com', '22 Rue Réné Paris 72000 ', 0, NULL),
