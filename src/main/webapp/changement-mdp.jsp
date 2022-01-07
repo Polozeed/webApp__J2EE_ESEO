@@ -23,10 +23,7 @@
 <form method="post" action="Controller">
 
     <input type="hidden" name="page" value="changement-mdp-form">
-
-    <!-- Validations errors -->
     <span style="color: #F24638; "><c:out value="${msg }"></c:out></span>
-
     <div class="signup-group">
         <label>Mot de passe</label>
         <input type="password" name="mdp1" placeholder="Nouveau mot de passe" value="<c:out value="${mdp}"></c:out>">
@@ -39,11 +36,10 @@
         <button type="submit" name="valider" class="signup-btn">Valider</button>
         <a href='Controller?page=index' style="color: #000000">Annuler</a>
     </div>
-
 </form>
+
+
 <br><br><br>
 <%@include file="bottombar.jsp" %>
-
-
 </body>
 </html>

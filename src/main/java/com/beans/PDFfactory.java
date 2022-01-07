@@ -63,8 +63,8 @@ public class PDFfactory {
             doc.addCreator("Maxime Martin");
             doc.addTitle("Facture ESEO");
             doc.setPageSize(PageSize.LETTER);
-
             doc.open();
+
             PdfContentByte cb = docWriter.getDirectContent();
 
             boolean beginPage = true;
@@ -106,7 +106,6 @@ public class PDFfactory {
     private void generateLayout(Document doc, PdfContentByte cb)  {
         try {
             cb.setLineWidth(1f);
-
             cb.rectangle(420,700,150,60);
             cb.moveTo(420,720);
             cb.lineTo(570,720);
@@ -141,18 +140,17 @@ public class PDFfactory {
         } catch (Exception ex){
             ex.printStackTrace();
         }
-
     }
 
     //----------------------------------------// Fct generer Header du pdf //--------------------------------------
     private void generateHeader(Document doc, PdfContentByte cb, UserEntity user)  {
         try {
+            // Ajoute des informations dans le Header
             createHeadings(cb,200,750,"E-commerce ESEO");
             createHeadings(cb,200,735,"10 Bd Jean Jeanneteau, 49100 Angers");
             createHeadings(cb,200,720,user.getLogin()+ "  /" +user.getAdresse());
             createHeadings(cb,200,705,user.getMail());
             createHeadings(cb,200,690,"France");
-
             createHeadings(cb,482,743, user.getNom() + ", " + user.getPrenom());
             createHeadings(cb,482,723,"ESEO-OO" + user.getId().toString());
             createHeadings(cb,482,703,java.time.LocalDate.now().toString());

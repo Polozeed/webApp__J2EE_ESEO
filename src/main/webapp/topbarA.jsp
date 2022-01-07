@@ -5,9 +5,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/e23d203d3a.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="style.css">
-<!-- Topbar appelée sur chaque jsp -->
-
-
+<!-- Topbar appelée sur la page Acceuil-->
 
 
 <header>
@@ -17,7 +15,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center" style="margin-left: 33%; float: right; margin-top: -2%;">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center" style="margin-left: 33%; float: right;">
                 <li> <a href="Controller?page=index">Accueil</a></li>
                 <c:choose>
                 <c:when test="${session == null}">
@@ -29,10 +27,13 @@
                 <li><a href="Controller?page=logout" style="color: #F24638;">Se déconnecter</a></li>
                 <li><a href="Controller?page=compte">Mon Compte</a></li>
                 <li> <a href="Controller?page=showcart" ><i  class="fas fa-shopping-cart fa-2x" style="color: white;width: auto; padding: 5px"></i>(<c:out value="${x}"/>)</a>
+
                     </c:when>
                     </c:choose>
                     <a href="admin" ><i  class="fas fa-users-cog fa-2x" style="color: white; padding: 9px; margin-left: 40px"></i></a>
+
             </ul>
+
         </div>
     </div>
 </nav>

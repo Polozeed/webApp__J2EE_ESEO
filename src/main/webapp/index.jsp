@@ -15,14 +15,14 @@
 		<c:set var="x" value="${x+1 }"></c:set>
 	</c:forEach>
 
-	<%@include file="topbar.jsp" %>
+	<%@include file="topbarA.jsp" %>
 
 	<div class="tiazon-content">
  	<div class="container">
  		<div class="row">
 				<%@include file="menu/menu.jsp" %>
 
- 				<div class="col-md-8"><!-- right -->
+ 				<div class="col-md-8">
  					<h2 style="text-align: center;">Produits en tendance</h2><br>
 
 					<!-- Trie appelé sur les jsp du menu -->
@@ -79,15 +79,10 @@
 										</c:when>
 									</c:choose>
 								</c:if>
-
 								<br>
 							</div>
-
  						</c:if>
-
-
  					</c:forEach>
-
  				</div>
  			</div>
  		</div>

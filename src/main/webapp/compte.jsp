@@ -21,14 +21,11 @@
 </div>
 
 <form method="post" action="Controller">
-
   <input type="hidden" name="page" value="compte-form">
-
   <div class="signup-group">
     <label>Identifiant</label>
     <input type="text" name="username" placeholder="Identifiant" value="<c:out value="${username }"></c:out>" disabled>
   </div>
-
   <div class="signup-group">
     <label>Nom</label>
     <input type="text" name="firstname" placeholder="Nom" value="<c:out value="${firstname }"></c:out>">
@@ -36,13 +33,11 @@
     <input type="text" name="name" placeholder="Prénom" value="<c:out value="${name }"></c:out>">
   </div>
   <div class="signup-group">
-
   </div>
   <div class="signup-group">
     <label>Email</label>
     <input type="email" name="email" placeholder="Adresse email" value="<c:out value="${email }"></c:out>">
   </div>
-
   <div class="signup-group">
     <label>Adresse de livraison</label>
     <input type="text" name="address" placeholder="Adresse" value="<c:out value="${address }"></c:out>">

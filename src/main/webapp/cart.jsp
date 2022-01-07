@@ -45,7 +45,6 @@
 		<c:forEach items="${cartlist }" var="i">
 			<c:forEach items="${list }" var="Product">
 				<c:if test="${i == Product.getId() }">
-				
 				<c:set var="total" value="${total + Product.getPrix() }"></c:set>
 				
 			<table style="table-layout: fixed;width: 100%;">
@@ -62,14 +61,13 @@
 		</c:forEach>
 	
 	<h4 style="margin-top: 40px;margin-bottom: 40px;">Prix total : <c:out value="${ total}"></c:out> €</h4>
-	
 	<a href="Controller?page=success"><input type="submit" value="Finaliser la commande"  style="width:100%;padding:8px;font-size:16px;"></a><br>
 	<a href="Controller?page=index"><input type="button" value="Poursuivre mes achats" style="width:100%;padding:8px;font-size:16px;"></a>
-	
-	
 	</div>
 	<br>
 	<br>
+
+
 
 	<%@include file="bottombar.jsp" %>
 

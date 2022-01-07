@@ -4,7 +4,6 @@ import com.beans.FactoryProvider;
 import com.beans.entity.HistoriqueCommandeEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import java.util.ArrayList;
 import java.util.List;
 

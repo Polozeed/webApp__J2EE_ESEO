@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Sign up page</title>
+<title>Inscription</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -20,14 +20,10 @@
 	 	<h2>S'inscrire sur E-Commerce Eseo</h2>
 	 </div>
 
+<!--// Formulaire d'inscription -->
 	 <form method="post" action="Controller">
-	 
 	 <input type="hidden" name="page" value="sign-up-form">
-	 
-	 	<!-- Validations errors -->
 	 	<span style="color: #F24638; "><c:out value="${msg }"></c:out></span>
-	 	
-	 	
 	 	<div class="signup-group">
 	 		<label>Nom</label>
 	 		<input type="text" name="name" placeholder="Nom" value="<c:out value="${firstname }"></c:out>" required>
@@ -44,7 +40,6 @@
 	 		<label>Identifiant</label>
 	 		<input type="text" name="username" placeholder="Identifiant" value="<c:out value="${username }"></c:out>" required>
 	 	</div>
-	 	
 	 	<div class="signup-group">
 	 		<label>Adresse de livraison</label>
 	 		<input type="text" name="address" placeholder="Adresse" value="<c:out value="${address }"></c:out>" required>
@@ -57,7 +52,6 @@
 	 		<label>Confirmer le mot de passe</label>
 	 		<input type="password" name="password_2" placeholder="Confirmer le mot de passe" required>
 	 	</div>
-	 	
 	 	<div class="signup-group">
 	 		<button type="submit" name="register" class="signup-btn">S'inscrire</button>
 	 	</div>

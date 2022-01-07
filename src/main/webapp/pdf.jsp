@@ -17,18 +17,18 @@
 
 <header>
     <h1>
-        Tiazon
+        PDF
     </h1>
     <nav>
         <ul>
-            <li><a href="Controller?page=index">Home</a></li>
+            <li><a href="Controller?page=index">Accueil</a></li>
             <c:choose>
                 <c:when test="${session == null}">
-                    <li><a href="Controller?page=login">Login</a></li>
-                    <li><a href="Controller?page=sign-up">Sign-up</a></li>
+                    <li><a href="Controller?page=login">Connexion</a></li>
+                    <li><a href="Controller?page=sign-up">Inscription</a></li>
                 </c:when>
                 <c:when test="${session != null}">
-                    <li><a href="Controller?page=logout" style="color: #F24638;">Logout</a></li>
+                    <li><a href="Controller?page=logout" style="color: #F24638;">Déconnexion</a></li>
                     <li><a href="#">My Account(<c:out value="${username }"></c:out>)</a></li>
                 </c:when>
             </c:choose>
@@ -56,7 +56,7 @@
 
 <footer style="position: fixed;bottom: 0;left: 0;width: 100%;">
     <div class="footer"> &copy; 2018 Copyright:
-        <a href="Controller?page=index"> Tiazon.com</a>
+        <a href="Controller?page=index"> E-commerce-ESEO.com</a>
     </div>
 </footer>
 </body>

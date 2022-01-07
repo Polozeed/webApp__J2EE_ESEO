@@ -32,9 +32,7 @@
     <c:forEach items="${historique}" var="Hist">
         <c:forEach items="${list }" var="Product">
             <c:if test="${Hist.getId_produit() == Product.getId() }">
-
                 <c:set var="total" value="${total + Product.getPrix() }"></c:set>
-
                 <table style="table-layout: fixed;width: 100%;">
                     <tr>
                         <td style="width: 100px;text-align: center"><c:out value="${Hist.getDateheureFront()}"/></td>
@@ -47,9 +45,7 @@
             </c:if>
         </c:forEach>
     </c:forEach>
-
     <h4 style="margin-top: 40px;margin-bottom: 40px;">Prix total : <c:out value="${ total}"></c:out> €</h4>
-
 </div>
 
 <%@include file="bottombar.jsp" %>

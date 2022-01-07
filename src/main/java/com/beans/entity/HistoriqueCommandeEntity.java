@@ -11,8 +11,6 @@ import java.util.Date;
 @Entity(name = "HistoriqueCommandeEntity")
 public class HistoriqueCommandeEntity {
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_hist_commande", nullable = false)
@@ -52,7 +50,6 @@ public class HistoriqueCommandeEntity {
     }
 
     public HistoriqueCommandeEntity() {
-
     }
 
     public Integer getId_hist_commande() {return id_hist_commande;}
@@ -70,7 +67,6 @@ public class HistoriqueCommandeEntity {
                 DateFormat.MEDIUM,
                 DateFormat.MEDIUM);
         return mediumDateFormat.format(out);
-
     }
 
     public void setDateheure(LocalDateTime dateheure) {this.dateheure = dateheure;}

@@ -4,7 +4,6 @@ import com.beans.FactoryProvider;
 import com.beans.entity.ProduitEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
