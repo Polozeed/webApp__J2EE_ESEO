@@ -75,6 +75,17 @@ de commander
 <img src="src/main/resources/images/commad.PNG" width="45%"></img>
 <img src="src/main/resources/images/configurationcommad.PNG" width="45%"></img>
 
+
+## Génération de facture 
+
+Utilisation de la librairie ItextPDF 
+###**Exemple de facture :**
+
+<img src="src/main/resources/images/facture.PNG" width="90%"></img>
+
+
+
+
 ## Developpé avec :
 
 
