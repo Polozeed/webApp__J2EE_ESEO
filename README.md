@@ -79,10 +79,21 @@ de commander
 ## Génération de facture 
 
 Utilisation de la librairie ItextPDF 
-###**Exemple de facture :**
+
+###Exemple de facture
 
 <img src="src/main/resources/images/facture.PNG" width="90%"></img>
 
+
+##Chemin Utilisateur 
+
+### Chemin Admin : 
+
+<img src="src/main/resources/images/cheminAdmin.PNG" width="90%"></img>
+
+### Chemin Client :
+
+<img src="src/main/resources/images/cheminUser.PNG" width="90%"></img>
 
 
 
