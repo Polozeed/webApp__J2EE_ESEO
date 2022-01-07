@@ -17,7 +17,7 @@
 	<%@include file="topbar.jsp" %>
 	
 	<div class="signup-header">
-	 	<h2>S'inscrire sur E-Commerce Eseo</h2>
+	 	<h2>S'inscrire sur Vendredi Noir</h2>
 	 </div>
 
 <!--// Formulaire d'inscription -->

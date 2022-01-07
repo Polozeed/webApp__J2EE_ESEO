@@ -4,6 +4,6 @@
 
 <footer>
     <div class="footer">
-        <a href="Controller?page=index"> Site E-Commerce Eseo - Maxime et Martin</a>
+        <a href="Controller?page=index"> Vendredi Noir - Maxime et Martin</a>
     </div>
 </footer>
