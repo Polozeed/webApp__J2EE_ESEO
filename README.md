@@ -2,7 +2,7 @@
 # Site JSP Ecommerce Projet ESEO A3
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com) 
-[![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](http://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](http://forthebadge.com)
 
 Projet devellopé durant le module JSP dans le cadre d'etude au sein de l'ESEO.
 <br>
